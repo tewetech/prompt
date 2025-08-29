@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Mendefinisikan variabel CSS untuk warna agar mudah diubah */
+        :root {
+            --smooth-dark-bg-main: #1a1a2e;
+            --smooth-dark-bg-secondary: #24263b;
+            --smooth-dark-text-primary: #e0e0e0;
+            --orange-accent: #ff9800;
+            --orange-light: #ffb74d;
+            --white-soft: #f0f0f0;
+            --glass-bg: rgba(36, 38, 59, 0.6); 
+            --glass-border: rgba(240, 240, 240, 0.1);
+            --glass-shadow: rgba(0, 0, 0, 0.3);
+            --inner-light: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            /* Menggunakan font Poppins sebagai default untuk seluruh halaman */
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px; 
+            color: var(--smooth-dark-text-primary);
+            /* Menggunakan Flexbox untuk memusatkan konten secara vertikal dan horizontal */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            /* Membuat background dengan gradien animasi */
+            background: linear-gradient(-45deg, var(--smooth-dark-bg-main), #2c3e50, #1f2838, var(--smooth-dark-bg-secondary));
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        /* Animasi untuk background gradien */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            /* Menerapkan efek glassmorphism pada container */
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px var(--glass-shadow);
+            padding: 30px; 
+            width: 100%;
+            max-width: 400px; 
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        h1 {
+            color: var(--orange-accent);
+            margin-bottom: 20px; 
+            font-size: 1.8em; 
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9em; 
+            margin-bottom: 5px; 
+            font-weight: 300;
+            text-align: left;
+            color: var(--orange-light);
+        }
+
+        /* Styling untuk kolom input (textarea) */
+        textarea.glass-element {
+            width: 100%;
+            height: 120px; 
+            padding: 12px; 
+            border: 1.5px solid var(--orange-light);
+            border-radius: 12px;
+            box-sizing: border-box;
+            font-size: 13px; 
+            margin-bottom: 20px; 
+            background: var(--glass-bg);
+            color: var(--smooth-dark-text-primary);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            overflow-y: auto;
+            resize: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 
+                        inset 0 0 10px var(--inner-light); 
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        textarea.glass-element:focus {
+            border-color: var(--orange-accent);
+            box-shadow: 0 6px 15px rgba(255, 152, 0, 0.2),
+                        inset 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px; 
+        }
+
+        button {
+            width: 100%; 
+            padding: 10px 20px; 
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px; 
+            font-weight: 600;
+            color: var(--smooth-dark-bg-main);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            background: var(--orange-accent);
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+        }
+        
+        /* Kelas baru untuk umpan balik "Berhasil Disalin" */
+        button.success {
+            background-color: #4CAF50; /* Warna hijau untuk sukses */
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            background: var(--orange-light);
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.6);
+        }
+
+        /* Styling untuk kolom output */
+        .output-box {
+            width: 100%;
+            height: 120px; 
+            padding: 12px; 
+            border: 1.5px solid var(--orange-light);
+            border-radius: 12px;
+            box-sizing: border-box;
+            font-family: 'Roboto Mono', monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-top: 20px; 
+            text-align: left;
+            color: #cccccc;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            overflow-y: auto;
+            resize: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
+                        inset 0 0 10px var(--inner-light);
+            font-size: 13px; 
+        }
+        
+        /* Gaya khusus untuk teks placeholder di output box */
+        .output-box.placeholder-text {
+            color: #999999;
+            font-style: italic;
+        }
+
+        /* Styling scrollbar untuk kedua elemen */
+        .output-box::-webkit-scrollbar,
+        textarea.glass-element::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .output-box::-webkit-scrollbar-track,
+        textarea.glass-element::-webkit-scrollbar-track {
+            background: var(--smooth-dark-bg-secondary);
+            border-radius: 10px;
+        }
+
+        .output-box::-webkit-scrollbar-thumb,
+        textarea.glass-element::-webkit-scrollbar-thumb {
+            background-color: var(--orange-accent);
+            border-radius: 10px;
+            border: 2px solid var(--smooth-dark-bg-secondary);
+        }
+
+        .output-box::-webkit-scrollbar-thumb:hover,
+        textarea.glass-element::-webkit-scrollbar-thumb:hover {
+            background-color: var(--orange-light);
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+        }
+        
+        ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--orange-accent);
+            font-size: 1.5em;
+            line-height: 1;
+        }
+
+        /* --- Media Query untuk layar kecil (maksimal 420px) --- */
+        @media (max-width: 420px) {
+            body {
+                /* Ukuran font dasar diperkecil untuk HP */
+                font-size: 12px; 
+            }
+            .container {
+                /* Lebar container diperkecil agar pas di layar HP */
+                max-width: 360px;
+                /* Padding container dikurangi */
+                padding: 20px; 
+            }
+            h1 {
+                /* Ukuran font judul diperkecil */
+                font-size: 1.5em; 
+                margin-bottom: 15px;
+            }
+            label {
+                /* Ukuran font label diperkecil */
+                font-size: 0.8em;
+            }
+            textarea.glass-element,
+            .output-box {
+                /* Tinggi elemen input dan output diperkecil */
+                height: 100px;
+                /* Ukuran font di dalamnya juga diperkecil */
+                font-size: 12px;
+                padding: 10px;
+                margin-bottom: 15px;
+            }
+            .output-box {
+                margin-top: 15px;
+            }
+            button {
+                /* Padding dan font-size tombol diperkecil */
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Prompt AI-Ku ⚙️</h1>
+        <label for="inputText">Masukkan teks Anda di sini:</label>
+        <textarea id="inputText" class="glass-element" placeholder="Contoh: buatkan script html untuk landing page produk kopi"></textarea>
+        
+        <div class="button-group">
+            <button id="generateAndCopyBtn">Buat Prompt & Salin</button>
+        </div>
+        
+        <div class="output-box placeholder-text" id="outputBox">Teks prompt yang direvisi akan muncul di sini.</div>
+    </div>
+
+    <script>
+        // Menunggu seluruh elemen HTML dimuat sebelum menjalankan script
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mendapatkan referensi ke elemen HTML
+            const inputTextarea = document.getElementById('inputText');
+            const generateAndCopyBtn = document.getElementById('generateAndCopyBtn');
+            const outputBox = document.getElementById('outputBox');
+            
+            // Teks dan kelas asli tombol
+            const originalBtnText = generateAndCopyBtn.textContent;
+            const successClass = 'success';
+
+            // Menambahkan event listener saat tombol 'Buat Prompt & Salin' diklik
+            generateAndCopyBtn.addEventListener('click', () => {
+                const text = inputTextarea.value.trim();
+                if (text === '') {
+                    // Menampilkan pesan error di output box jika input kosong
+                    outputBox.textContent = 'Silakan masukkan teks Anda terlebih dahulu!';
+                    outputBox.classList.add('placeholder-text');
+                    return;
+                }
+
+                // Menghapus class placeholder-text saat konten diisi
+                outputBox.classList.remove('placeholder-text');
+                outputBox.style.color = '';
+                outputBox.style.fontStyle = 'normal';
+
+                // Membuat prompt yang direvisi dengan format yang diinginkan
+                const generatedPrompt = 
+`JAWAB MENGGUNAKAN BAHASA INDONESIA
+revisi script html saya sesuai yang saya lampirkan:
+
+${text}
+
+semuanya harus dibuatkan comment dalam bahasa indonesia
+buatkan full revisi scriptnya dari html, css, js semuanya dibungkus dalam satu file index.html`;
+
+                // Menampilkan prompt yang sudah direvisi di kolom output
+                outputBox.textContent = generatedPrompt;
+
+                // Fungsi untuk menyalin teks dan memberikan umpan balik pada tombol
+                const copyTextToClipboard = async (textToCopy) => {
+                    try {
+                        // Menggunakan Clipboard API modern untuk menyalin
+                        if (navigator.clipboard && window.isSecureContext) {
+                            await navigator.clipboard.writeText(textToCopy);
+                        } else {
+                            // Fallback untuk browser lama
+                            const tempTextarea = document.createElement('textarea');
+                            tempTextarea.value = textToCopy;
+                            document.body.appendChild(tempTextarea);
+                            tempTextarea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(tempTextarea);
+                        }
+
+                        // Umpan balik visual pada tombol
+                        generateAndCopyBtn.textContent = 'Berhasil Disalin!';
+                        generateAndCopyBtn.classList.add(successClass);
+                        
+                        // Kembalikan tombol ke kondisi semula setelah 2 detik
+                        setTimeout(() => {
+                            generateAndCopyBtn.textContent = originalBtnText;
+                            generateAndCopyBtn.classList.remove(successClass);
+                        }, 2000);
+                        
+                    } catch (err) {
+                        console.error('Gagal menyalin teks: ', err);
+                        alert('Gagal menyalin teks. Silakan salin manual.');
+                    }
+                };
+
+                // Panggil fungsi copy langsung setelah generate
+                copyTextToClipboard(generatedPrompt);
+            });
+        });
+    </script>
+</body>
+</html>
