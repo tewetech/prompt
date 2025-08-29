@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
         /* Mendefinisikan variabel CSS untuk warna agar mudah diubah */
@@ -21,6 +22,7 @@
             --glass-border: rgba(240, 240, 240, 0.1);
             --glass-shadow: rgba(0, 0, 0, 0.3);
             --inner-light: rgba(255, 255, 255, 0.1);
+            --dark-gray-text: #b0b0b0; /* Warna abu-abu redup baru untuk tooltip */
         }
 
         body {
@@ -216,32 +218,95 @@
             line-height: 1;
         }
 
+        /* --- Gaya CSS untuk Floating Music Button --- */
+        .music-button {
+            /* Mengubah posisi tombol menjadi di kanan atas */
+            position: fixed;
+            top: 15px;  /* Jarak dari atas */
+            right: 15px; /* Jarak dari kanan */
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%;
+            background-color: var(--orange-accent);
+            color: var(--smooth-dark-bg-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px; 
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+            z-index: 1000;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            position: relative;
+        }
+
+        .music-button:hover {
+            transform: scale(1.1);
+            background-color: var(--orange-light);
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.6);
+        }
+
+        .music-button .tooltip-text {
+            /* Gaya untuk tooltip di bawah tombol */
+            visibility: hidden;
+            width: 120px;
+            background-color: var(--smooth-dark-bg-secondary);
+            color: var(--dark-gray-text); 
+            text-align: center;
+            padding: 3px 0; 
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            /* Mengatur posisi tooltip di bawah tombol */
+            top: 125%; 
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            /* Mengubah ukuran font agar lebih kecil lagi */
+            font-size: 0.6em; 
+            pointer-events: none;
+        }
+
+        .music-button .tooltip-text::after {
+            /* Membuat panah kecil di atas tooltip */
+            content: "";
+            position: absolute;
+            /* Mengatur posisi panah di bagian atas tooltip */
+            bottom: 100%; 
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            /* Mengubah warna border untuk membuat panah menunjuk ke atas */
+            border-color: transparent transparent var(--smooth-dark-bg-secondary) transparent;
+        }
+
+        /* Tampilkan tooltip saat di-hover */
+        .music-button:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
         /* --- Media Query untuk layar kecil (maksimal 420px) --- */
         @media (max-width: 420px) {
             body {
-                /* Ukuran font dasar diperkecil untuk HP */
                 font-size: 12px; 
             }
             .container {
-                /* Lebar container diperkecil agar pas di layar HP */
                 max-width: 360px;
-                /* Padding container dikurangi */
                 padding: 20px; 
             }
             h1 {
-                /* Ukuran font judul diperkecil */
                 font-size: 1.5em; 
                 margin-bottom: 15px;
             }
             label {
-                /* Ukuran font label diperkecil */
                 font-size: 0.8em;
             }
             textarea.glass-element,
             .output-box {
-                /* Tinggi elemen input dan output diperkecil */
                 height: 100px;
-                /* Ukuran font di dalamnya juga diperkecil */
                 font-size: 12px;
                 padding: 10px;
                 margin-bottom: 15px;
@@ -250,14 +315,32 @@
                 margin-top: 15px;
             }
             button {
-                /* Padding dan font-size tombol diperkecil */
                 padding: 8px 15px;
                 font-size: 13px;
+            }
+            /* Menyesuaikan posisi dan ukuran tombol musik di layar kecil */
+            .music-button {
+                top: 10px; /* Jarak dari atas diperkecil */
+                right: 10px; /* Jarak dari kanan diperkecil */
+                width: 35px;
+                height: 35px;
+                font-size: 15px;
+            }
+            /* Sembunyikan tooltip pada layar kecil untuk menghindari masalah tata letak */
+            .music-button .tooltip-text {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
+
+    <div class="music-button" id="musicButton">
+        <i class="fas fa-music" id="musicIcon"></i>
+        <span class="tooltip-text" id="tooltipText">Putar Musik</span>
+    </div>
+    
+    <audio id="backgroundMusic" src="https://raw.githubusercontent.com/tewetech/wedding-invitation-tri-chusnul/refs/heads/main/Melepas%20Lajang.mp3" loop></audio>
 
     <div class="container">
         <h1>Prompt AI-Ku ⚙️</h1>
@@ -345,6 +428,37 @@ buatkan full revisi scriptnya dari html, css, js semuanya dibungkus dalam satu f
 
                 // Panggil fungsi copy langsung setelah generate
                 copyTextToClipboard(generatedPrompt);
+            });
+
+            // --- Logika untuk tombol musik ---
+            const musicButton = document.getElementById('musicButton');
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            const musicIcon = document.getElementById('musicIcon');
+            const tooltipText = document.getElementById('tooltipText');
+
+            let isPlaying = false; // Status awal musik
+
+            // Event listener untuk tombol musik
+            musicButton.addEventListener('click', () => {
+                if (isPlaying) {
+                    // Jika sedang diputar, jeda musik
+                    backgroundMusic.pause();
+                    // Ubah ikon menjadi catatan musik
+                    musicIcon.classList.remove('fa-pause-circle');
+                    musicIcon.classList.add('fa-music');
+                    // Ubah teks tooltip
+                    tooltipText.textContent = "Putar Musik";
+                } else {
+                    // Jika tidak sedang diputar, mainkan musik
+                    backgroundMusic.play();
+                    // Ubah ikon menjadi pause
+                    musicIcon.classList.remove('fa-music');
+                    musicIcon.classList.add('fa-pause-circle');
+                    // Ubah teks tooltip
+                    tooltipText.textContent = "Hentikan Musik";
+                }
+                // Ubah status pemutaran
+                isPlaying = !isPlaying;
             });
         });
     </script>
