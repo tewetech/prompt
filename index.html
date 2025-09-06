@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompt</title>
+    <title>Generator Prompt</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
             --glass-border: rgba(240, 240, 240, 0.1);
             --glass-shadow: rgba(0, 0, 0, 0.3);
             --inner-light: rgba(255, 255, 255, 0.1);
-            --dark-gray-text: #b0b0b0; /* Warna abu-abu redup baru untuk tooltip */
+            --dark-gray-text: #b0b0b0; 
         }
 
         body {
@@ -32,6 +32,8 @@
             color: var(--smooth-dark-text-primary);
             /* Menggunakan Flexbox untuk memusatkan konten secara vertikal dan horizontal */
             display: flex;
+            /* Mengatur arah flex menjadi baris untuk menampung dua card secara berdampingan */
+            flex-direction: row; 
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -40,6 +42,8 @@
             background: linear-gradient(-45deg, var(--smooth-dark-bg-main), #2c3e50, #1f2838, var(--smooth-dark-bg-secondary));
             background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite;
+            /* Mengizinkan wrap pada flex item jika ruang tidak cukup */
+            flex-wrap: wrap; 
         }
 
         /* Animasi untuk background gradien */
@@ -59,11 +63,14 @@
             box-shadow: 0 8px 32px var(--glass-shadow);
             padding: 30px; 
             width: 100%;
+            /* Mengatur lebar maksimum agar berdampingan */
             max-width: 400px; 
             text-align: center;
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease;
+            /* Menambahkan margin di sekeliling card */
+            margin: 15px; 
         }
 
         h1 {
@@ -98,7 +105,8 @@
             outline: none;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            overflow-y: auto;
+            /* Mengatur scrollbar agar berada di belakang */
+            overflow-y: scroll; 
             resize: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 
                         inset 0 0 10px var(--inner-light); 
@@ -160,7 +168,8 @@
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            overflow-y: auto;
+            /* Mengatur scrollbar agar berada di belakang */
+            overflow-y: scroll;
             resize: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
                         inset 0 0 10px var(--inner-light);
@@ -181,8 +190,7 @@
 
         .output-box::-webkit-scrollbar-track,
         textarea.glass-element::-webkit-scrollbar-track {
-            background: var(--smooth-dark-bg-secondary);
-            border-radius: 10px;
+            background: transparent; /* Membuat track scrollbar transparan */
         }
 
         .output-box::-webkit-scrollbar-thumb,
@@ -191,12 +199,18 @@
             border-radius: 10px;
             border: 2px solid var(--smooth-dark-bg-secondary);
         }
-
+        /* Efek hover pada thumb scrollbar */
         .output-box::-webkit-scrollbar-thumb:hover,
         textarea.glass-element::-webkit-scrollbar-thumb:hover {
             background-color: var(--orange-light);
         }
-        
+        /* Mengatur scrollbar di belakang konten agar tidak menimpa */
+        .output-box,
+        textarea.glass-element {
+            scrollbar-color: var(--orange-accent) transparent;
+            scrollbar-width: thin;
+        }
+
         ul {
             list-style: none;
             padding-left: 0;
@@ -292,10 +306,13 @@
         @media (max-width: 420px) {
             body {
                 font-size: 12px; 
+                /* Mengubah arah flex menjadi kolom saat di layar kecil */
+                flex-direction: column; 
             }
             .container {
                 max-width: 360px;
                 padding: 20px; 
+                margin: 15px 0; /* Mengembalikan margin ke atas-bawah */
             }
             h1 {
                 font-size: 1.5em; 
@@ -342,46 +359,93 @@
     
     <audio id="backgroundMusic" src="https://raw.githubusercontent.com/tewetech/wedding-invitation-tri-chusnul/refs/heads/main/Melepas%20Lajang.mp3" loop></audio>
 
-    <div class="container">
-        <h1>Prompt AI-Ku ⚙️</h1>
-        <label for="inputText">Masukkan teks Anda di sini:</label>
-        <textarea id="inputText" class="glass-element" placeholder="Contoh: buatkan script html untuk landing page produk kopi"></textarea>
+    <div class="container" id="newPromptCard">
+        <h1>Prompt AI Baru ✨</h1>
+        <label for="newInputText">Masukkan ide prompt baru:</label>
+        <textarea id="newInputText" class="glass-element" placeholder="Contoh: jelaskan cara kerja algoritma merge sort dengan bahasa yang mudah dipahami"></textarea>
         
         <div class="button-group">
-            <button id="generateAndCopyBtn">Buat Prompt & Salin</button>
+            <button id="newGenerateAndCopyBtn">Buat Prompt & Salin</button>
         </div>
         
-        <div class="output-box placeholder-text" id="outputBox">Teks prompt yang direvisi akan muncul di sini.</div>
+        <div class="output-box placeholder-text" id="newOutputBox">Teks prompt baru akan muncul di sini.</div>
     </div>
 
+    <div class="container" id="revisiPromptCard">
+        <h1>Revisi Prompt AI 🛠️</h1>
+        <label for="revisiInputText">Masukkan teks yang ingin direvisi:</label>
+        <textarea id="revisiInputText" class="glass-element" placeholder="Contoh: buatkan script html untuk landing page produk kopi"></textarea>
+        
+        <div class="button-group">
+            <button id="revisiGenerateAndCopyBtn">Revisi & Salin</button>
+        </div>
+        
+        <div class="output-box placeholder-text" id="revisiOutputBox">Teks prompt yang direvisi akan muncul di sini.</div>
+    </div>
+    
     <script>
         // Menunggu seluruh elemen HTML dimuat sebelum menjalankan script
         document.addEventListener('DOMContentLoaded', () => {
-            // Mendapatkan referensi ke elemen HTML
-            const inputTextarea = document.getElementById('inputText');
-            const generateAndCopyBtn = document.getElementById('generateAndCopyBtn');
-            const outputBox = document.getElementById('outputBox');
+            // --- Elemen untuk card revisi ---
+            const revisiInputTextarea = document.getElementById('revisiInputText');
+            const revisiGenerateAndCopyBtn = document.getElementById('revisiGenerateAndCopyBtn');
+            const revisiOutputBox = document.getElementById('revisiOutputBox');
+            const originalRevisiBtnText = revisiGenerateAndCopyBtn.textContent;
+
+            // --- Elemen untuk card baru ---
+            const newInputTextarea = document.getElementById('newInputText');
+            const newGenerateAndCopyBtn = document.getElementById('newGenerateAndCopyBtn');
+            const newOutputBox = document.getElementById('newOutputBox');
+            const originalNewBtnText = newGenerateAndCopyBtn.textContent;
             
-            // Teks dan kelas asli tombol
-            const originalBtnText = generateAndCopyBtn.textContent;
+            // Kelas untuk umpan balik sukses pada tombol
             const successClass = 'success';
 
-            // Menambahkan event listener saat tombol 'Buat Prompt & Salin' diklik
-            generateAndCopyBtn.addEventListener('click', () => {
-                const text = inputTextarea.value.trim();
+            // Fungsi untuk menyalin teks dan memberikan umpan balik pada tombol
+            const copyTextToClipboard = async (textToCopy, buttonElement, originalText) => {
+                try {
+                    // Menggunakan Clipboard API modern untuk menyalin
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(textToCopy);
+                    } else {
+                        // Fallback untuk browser lama
+                        const tempTextarea = document.createElement('textarea');
+                        tempTextarea.value = textToCopy;
+                        document.body.appendChild(tempTextarea);
+                        tempTextarea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(tempTextarea);
+                    }
+
+                    // Umpan balik visual pada tombol
+                    buttonElement.textContent = 'Berhasil Disalin!';
+                    buttonElement.classList.add(successClass);
+                    
+                    // Kembalikan tombol ke kondisi semula setelah 2 detik
+                    setTimeout(() => {
+                        buttonElement.textContent = originalText;
+                        buttonElement.classList.remove(successClass);
+                    }, 2000);
+                    
+                } catch (err) {
+                    console.error('Gagal menyalin teks: ', err);
+                    alert('Gagal menyalin teks. Silakan salin manual.');
+                }
+            };
+            
+            // Event listener untuk tombol revisi prompt
+            revisiGenerateAndCopyBtn.addEventListener('click', () => {
+                const text = revisiInputTextarea.value.trim();
                 if (text === '') {
-                    // Menampilkan pesan error di output box jika input kosong
-                    outputBox.textContent = 'Silakan masukkan teks Anda terlebih dahulu!';
-                    outputBox.classList.add('placeholder-text');
+                    revisiOutputBox.textContent = 'Silakan masukkan teks Anda terlebih dahulu!';
+                    revisiOutputBox.classList.add('placeholder-text');
                     return;
                 }
 
-                // Menghapus class placeholder-text saat konten diisi
-                outputBox.classList.remove('placeholder-text');
-                outputBox.style.color = '';
-                outputBox.style.fontStyle = 'normal';
+                revisiOutputBox.classList.remove('placeholder-text');
+                revisiOutputBox.style.color = '';
+                revisiOutputBox.style.fontStyle = 'normal';
 
-                // Membuat prompt yang direvisi dengan format yang diinginkan
                 const generatedPrompt = 
 `JAWAB MENGGUNAKAN BAHASA INDONESIA
 revisi script html saya sesuai yang saya lampirkan:
@@ -391,45 +455,40 @@ ${text}
 semuanya harus dibuatkan comment dalam bahasa indonesia
 buatkan full revisi scriptnya dari html, css, js semuanya dibungkus dalam satu file index.html`;
 
-                // Menampilkan prompt yang sudah direvisi di kolom output
-                outputBox.textContent = generatedPrompt;
-
-                // Fungsi untuk menyalin teks dan memberikan umpan balik pada tombol
-                const copyTextToClipboard = async (textToCopy) => {
-                    try {
-                        // Menggunakan Clipboard API modern untuk menyalin
-                        if (navigator.clipboard && window.isSecureContext) {
-                            await navigator.clipboard.writeText(textToCopy);
-                        } else {
-                            // Fallback untuk browser lama
-                            const tempTextarea = document.createElement('textarea');
-                            tempTextarea.value = textToCopy;
-                            document.body.appendChild(tempTextarea);
-                            tempTextarea.select();
-                            document.execCommand('copy');
-                            document.body.removeChild(tempTextarea);
-                        }
-
-                        // Umpan balik visual pada tombol
-                        generateAndCopyBtn.textContent = 'Berhasil Disalin!';
-                        generateAndCopyBtn.classList.add(successClass);
-                        
-                        // Kembalikan tombol ke kondisi semula setelah 2 detik
-                        setTimeout(() => {
-                            generateAndCopyBtn.textContent = originalBtnText;
-                            generateAndCopyBtn.classList.remove(successClass);
-                        }, 2000);
-                        
-                    } catch (err) {
-                        console.error('Gagal menyalin teks: ', err);
-                        alert('Gagal menyalin teks. Silakan salin manual.');
-                    }
-                };
-
-                // Panggil fungsi copy langsung setelah generate
-                copyTextToClipboard(generatedPrompt);
+                revisiOutputBox.textContent = generatedPrompt;
+                copyTextToClipboard(generatedPrompt, revisiGenerateAndCopyBtn, originalRevisiBtnText);
             });
+            
+            // Event listener untuk tombol prompt baru
+            newGenerateAndCopyBtn.addEventListener('click', () => {
+                const text = newInputTextarea.value.trim();
+                if (text === '') {
+                    newOutputBox.textContent = 'Silakan masukkan teks Anda terlebih dahulu!';
+                    newOutputBox.classList.add('placeholder-text');
+                    return;
+                }
 
+                newOutputBox.classList.remove('placeholder-text');
+                newOutputBox.style.color = '';
+                newOutputBox.style.fontStyle = 'normal';
+
+                const generatedPrompt = 
+`JAWAB MENGGUNAKAN BAHASA INDONESIA
+Saya ingin membuat script web dari ide yang saya berikan.
+Gaya penulisan harus santai dan mudah dipahami, seperti mengobrol.
+Berikan penjelasan singkat di awal sebelum kode.
+Kode harus dibuat rapih, dengan indentasi yang benar.
+
+Ini ide saya:
+${text}
+
+Buatkan full scriptnya dari html, css, js, semuanya dibungkus dalam satu file index.html
+Sertakan juga comment dalam Bahasa Indonesia untuk setiap bagian penting di dalam kode.`;
+
+                newOutputBox.textContent = generatedPrompt;
+                copyTextToClipboard(generatedPrompt, newGenerateAndCopyBtn, originalNewBtnText);
+            });
+            
             // --- Logika untuk tombol musik ---
             const musicButton = document.getElementById('musicButton');
             const backgroundMusic = document.getElementById('backgroundMusic');
@@ -438,26 +497,18 @@ buatkan full revisi scriptnya dari html, css, js semuanya dibungkus dalam satu f
 
             let isPlaying = false; // Status awal musik
 
-            // Event listener untuk tombol musik
             musicButton.addEventListener('click', () => {
                 if (isPlaying) {
-                    // Jika sedang diputar, jeda musik
                     backgroundMusic.pause();
-                    // Ubah ikon menjadi catatan musik
                     musicIcon.classList.remove('fa-pause-circle');
                     musicIcon.classList.add('fa-music');
-                    // Ubah teks tooltip
                     tooltipText.textContent = "Putar Musik";
                 } else {
-                    // Jika tidak sedang diputar, mainkan musik
                     backgroundMusic.play();
-                    // Ubah ikon menjadi pause
                     musicIcon.classList.remove('fa-music');
                     musicIcon.classList.add('fa-pause-circle');
-                    // Ubah teks tooltip
                     tooltipText.textContent = "Hentikan Musik";
                 }
-                // Ubah status pemutaran
                 isPlaying = !isPlaying;
             });
         });
