@@ -475,15 +475,13 @@ buatkan full revisi scriptnya dari html, css, js semuanya dibungkus dalam satu f
                 const generatedPrompt = 
 `JAWAB MENGGUNAKAN BAHASA INDONESIA
 Saya ingin membuat script web dari ide yang saya berikan.
-Gaya penulisan harus santai dan mudah dipahami, seperti mengobrol.
-Berikan penjelasan singkat di awal sebelum kode.
-Kode harus dibuat rapih, dengan indentasi yang benar.
+Kode harus dibuat rapih, sangat lengkap dan dengan indentasi yang benar.
 
 Ini ide saya:
 ${text}
 
-Buatkan full scriptnya dari html, css, js, semuanya dibungkus dalam satu file index.html
-Sertakan juga comment dalam Bahasa Indonesia untuk setiap bagian penting di dalam kode.`;
+semuanya harus dibuatkan comment dalam bahasa indonesia
+Buatkan full scriptnya dari html, css, js, semuanya dibungkus dalam satu file index.html`;
 
                 newOutputBox.textContent = generatedPrompt;
                 copyTextToClipboard(generatedPrompt, newGenerateAndCopyBtn, originalNewBtnText);
