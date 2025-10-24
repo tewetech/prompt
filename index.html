@@ -375,7 +375,7 @@
     <div class="container" id="revisiPromptCard">
         <h1>Prompt Revisi File HTML 🛠️</h1>
         <label for="revisiInputText">Masukkan teks yang ingin direvisi:</label>
-        <textarea id="revisiInputText" class="glass-element" placeholder="Contoh: buatkan script html untuk landing page produk kopi"></textarea>
+        <textarea id="revisiInputText" class="glass-element" placeholder="Contoh: Revisi script HTML saya..."></textarea>
         
         <div class="button-group">
             <button id="revisiGenerateAndCopyBtn">Revisi & Salin</button>
@@ -453,8 +453,9 @@ revisi script html saya sesuai yang saya lampirkan:
 
 ${text}
 
+fokuskan apa yang saya perintahkan. jangan rubah fungsi-fungsi yang sudah ada.
 semuanya harus dibuatkan comment dalam bahasa indonesia
-buatkan full revisi scriptnya dari html, css, js semuanya dibungkus dalam satu file index.html`;
+berikan full revisi scriptnya dari html, Tailwind CSS, js semuanya dibungkus dalam satu file index.html`;
 
                 revisiOutputBox.textContent = generatedPrompt;
                 copyTextToClipboard(generatedPrompt, revisiGenerateAndCopyBtn, originalRevisiBtnText);
@@ -480,9 +481,9 @@ buatkan saya website sesuai apa yang saya perintahkan:
 
 ${text}
 
-Kode harus dibuat rapih, sangat lengkap dan dengan indentasi yang benar.
+
 semuanya harus dibuatkan comment dalam bahasa indonesia
-Buatkan full scriptnya dari html, css, js, semuanya dibungkus dalam satu file index.html`;
+berikan full scriptnya dari html, Tailwind CSS, js semuanya dibungkus dalam satu file index.html`;
 
                 newOutputBox.textContent = generatedPrompt;
                 copyTextToClipboard(generatedPrompt, newGenerateAndCopyBtn, originalNewBtnText);
