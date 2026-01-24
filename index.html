@@ -1,415 +1,412 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tewetech/prompt/refs/heads/main/favicon-prompt.png">    
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generator Prompt</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tewe Prompt</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tewetech/prompt/refs/heads/main/favicon-prompt.png">    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        retro: {
+                            bg: '#f8fafc',
+                            orange: '#c2410c',
+                            dark: '#1c1917',
+                            border: '#000000'
+                        }
+                    },
+                    boxShadow: {
+                        'retro': '4px 4px 0px 0px rgba(0,0,0,1)',
+                        'retro-hover': '2px 2px 0px 0px rgba(0,0,0,1)',
+                        'retro-xl': '8px 8px 0px 0px rgba(0,0,0,1)',
+                    }
+                }
+            }
+        }
+    </script>
     
     <style>
-        /* Mendefinisikan variabel CSS untuk warna agar mudah diubah */
-        :root {
-            --smooth-dark-bg-main: #1a1a2e;
-            --smooth-dark-bg-secondary: #24263b;
-            --smooth-dark-text-primary: #e0e0e0;
-            --orange-accent: #ff9800;
-            --orange-light: #ffb74d;
-            --white-soft: #f0f0f0;
-            --glass-bg: rgba(36, 38, 59, 0.6); 
-            --glass-border: rgba(240, 240, 240, 0.1);
-            --glass-shadow: rgba(0, 0, 0, 0.3);
-            --inner-light: rgba(255, 255, 255, 0.1);
-            --dark-gray-text: #b0b0b0; 
-        }
-
         body {
-            /* Menggunakan font Poppins sebagai default untuk seluruh halaman */
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px; 
-            color: var(--smooth-dark-text-primary);
-            /* Menggunakan Flexbox untuk memusatkan konten secara vertikal dan horizontal */
-            display: flex;
-            /* Mengatur arah flex menjadi baris untuk menampung dua card secara berdampingan */
-            flex-direction: row; 
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            /* Membuat background dengan gradien animasi */
-            background: linear-gradient(-45deg, var(--smooth-dark-bg-main), #2c3e50, #1f2838, var(--smooth-dark-bg-secondary));
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
-            /* Mengizinkan wrap pada flex item jika ruang tidak cukup */
-            flex-wrap: wrap; 
-        }
-
-        /* Animasi untuk background gradien */
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
-            /* Menerapkan efek glassmorphism pada container */
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 2px solid var(--glass-border);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px var(--glass-shadow);
-            padding: 30px; 
-            width: 100%;
-            /* Mengatur lebar maksimum agar berdampingan */
-            max-width: 400px; 
-            text-align: center;
-            position: relative;
+            background-color: #f8fafc;
+            color: #1c1917;
+            font-family: 'Outfit', sans-serif;
             overflow: hidden;
-            transition: transform 0.3s ease;
-            /* Menambahkan margin di sekeliling card */
-            margin: 15px; 
+            height: 100vh;
+            width: 100vw;
         }
-
-        h1 {
-            color: var(--orange-accent);
-            margin-bottom: 20px; 
-            font-size: 1.8em; 
-            font-weight: 600;
-        }
-
-        label {
-            display: block;
-            font-size: 0.9em; 
-            margin-bottom: 5px; 
-            font-weight: 300;
-            text-align: left;
-            color: var(--orange-light);
-        }
-
-        /* Styling untuk kolom input (textarea) */
-        textarea.glass-element {
-            width: 100%;
-            height: 120px; 
-            padding: 12px; 
-            border: 1.5px solid var(--orange-light);
-            border-radius: 12px;
-            box-sizing: border-box;
-            font-size: 13px; 
-            margin-bottom: 20px; 
-            background: var(--glass-bg);
-            color: var(--smooth-dark-text-primary);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            outline: none;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            /* Mengatur scrollbar agar berada di belakang */
-            overflow-y: scroll; 
-            resize: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 
-                        inset 0 0 10px var(--inner-light); 
-            font-family: 'Roboto Mono', monospace;
-        }
-
-        textarea.glass-element:focus {
-            border-color: var(--orange-accent);
-            box-shadow: 0 6px 15px rgba(255, 152, 0, 0.2),
-                        inset 0 0 15px rgba(255, 255, 255, 0.2);
-        }
-        
-        .button-group {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 15px; 
-        }
-
-        button {
-            width: 100%; 
-            padding: 10px 20px; 
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 14px; 
-            font-weight: 600;
-            color: var(--smooth-dark-bg-main);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-            background: var(--orange-accent);
-            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
-        }
-        
-        /* Kelas baru untuk umpan balik "Berhasil Disalin" */
-        button.success {
-            background-color: #4CAF50; /* Warna hijau untuk sukses */
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
-        }
-
-        button:hover {
-            transform: translateY(-3px);
-            background: var(--orange-light);
-            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.6);
-        }
-
-        /* Styling untuk kolom output */
-        .output-box {
-            width: 100%;
-            height: 120px; 
-            padding: 12px; 
-            border: 1.5px solid var(--orange-light);
-            border-radius: 12px;
-            box-sizing: border-box;
-            font-family: 'Roboto Mono', monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            margin-top: 20px; 
-            text-align: left;
-            color: #cccccc;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            /* Mengatur scrollbar agar berada di belakang */
-            overflow-y: scroll;
-            resize: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
-                        inset 0 0 10px var(--inner-light);
-            font-size: 13px; 
-        }
-        
-        /* Gaya khusus untuk teks placeholder di output box */
-        .output-box.placeholder-text {
-            color: #999999;
-            font-style: italic;
-        }
-
-        /* Styling scrollbar untuk kedua elemen */
-        .output-box::-webkit-scrollbar,
-        textarea.glass-element::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .output-box::-webkit-scrollbar-track,
-        textarea.glass-element::-webkit-scrollbar-track {
-            background: transparent; /* Membuat track scrollbar transparan */
-        }
-
-        .output-box::-webkit-scrollbar-thumb,
-        textarea.glass-element::-webkit-scrollbar-thumb {
-            background-color: var(--orange-accent);
-            border-radius: 10px;
-            border: 2px solid var(--smooth-dark-bg-secondary);
-        }
-        /* Efek hover pada thumb scrollbar */
-        .output-box::-webkit-scrollbar-thumb:hover,
-        textarea.glass-element::-webkit-scrollbar-thumb:hover {
-            background-color: var(--orange-light);
-        }
-        /* Mengatur scrollbar di belakang konten agar tidak menimpa */
-        .output-box,
-        textarea.glass-element {
-            scrollbar-color: var(--orange-accent) transparent;
-            scrollbar-width: thin;
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        ul li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-        }
-        
-        ul li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: var(--orange-accent);
-            font-size: 1.5em;
-            line-height: 1;
-        }
-
-        /* --- Gaya CSS untuk Floating Music Button --- */
-        .music-button {
-            /* Mengubah posisi tombol menjadi di kanan atas */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
             position: fixed;
-            top: 15px;  /* Jarak dari atas */
-            right: 15px; /* Jarak dari kanan */
-            width: 40px; 
-            height: 40px; 
-            border-radius: 50%;
-            background-color: var(--orange-accent);
-            color: var(--smooth-dark-bg-main);
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+        .retro-card {
+            background-color: white;
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0px 0px #000;
+            transition: all 0.2s ease;
+        }
+        .retro-card:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 4px 4px 0px 0px #000;
+        }
+        textarea, .output-box {
+            border: 3px solid #000 !important;
+            border-radius: 12px !important;
+            font-family: 'JetBrains Mono', monospace !important;
+        }
+        button.success {
+            background-color: #22c55e !important;
+        }
+        .music-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border: 3px solid #000;
+            box-shadow: 3px 3px 0px 0px #000;
+            z-index: 50;
             display: flex;
-            justify-content: center;
             align-items: center;
-            font-size: 18px; 
+            justify-content: center;
+            border-radius: 10px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
-            z-index: 1000;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-            position: relative;
+            transition: all 0.2s;
         }
+        .modal-overlay { 
+            position: fixed; 
+            inset: 0; 
+            background: rgba(0,0,0,0.6); 
+            backdrop-filter: blur(8px);
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 1000; 
+            opacity: 0; 
+            visibility: hidden; 
+            transition: 0.4s ease; 
+            padding: 15px; 
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .popup-content { transform: scale(0.95); transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .modal-overlay.active .popup-content { transform: scale(1); }
+        
+        .bolt {
+            width: 12px; height: 12px; background: #d1d5db; border: 2px solid #000; border-radius: 50%;
+            position: absolute; display: flex; align-items: center; justify-content: center;
+        }
+        .bolt::after { content: ""; width: 100%; height: 2px; background: #000; transform: rotate(45deg); }
+        
+        .spinner {
+            width: 18px; height: 18px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ffffff;
+            animation: spin 0.6s linear infinite;
+            display: none;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        .music-button:hover {
-            transform: scale(1.1);
-            background-color: var(--orange-light);
-            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.6);
-        }
-
-        .music-button .tooltip-text {
-            /* Gaya untuk tooltip di bawah tombol */
-            visibility: hidden;
-            width: 120px;
-            background-color: var(--smooth-dark-bg-secondary);
-            color: var(--dark-gray-text); 
-            text-align: center;
-            padding: 3px 0; 
-            border-radius: 6px;
-            position: absolute;
-            z-index: 1;
-            /* Mengatur posisi tooltip di bawah tombol */
-            top: 125%; 
-            left: 50%;
-            margin-left: -60px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            /* Mengubah ukuran font agar lebih kecil lagi */
-            font-size: 0.6em; 
-            pointer-events: none;
-        }
-
-        .music-button .tooltip-text::after {
-            /* Membuat panah kecil di atas tooltip */
-            content: "";
-            position: absolute;
-            /* Mengatur posisi panah di bagian atas tooltip */
-            bottom: 100%; 
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            /* Mengubah warna border untuk membuat panah menunjuk ke atas */
-            border-color: transparent transparent var(--smooth-dark-bg-secondary) transparent;
-        }
-
-        /* Tampilkan tooltip saat di-hover */
-        .music-button:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        /* --- Media Query untuk layar kecil (maksimal 420px) --- */
-        @media (max-width: 420px) {
-            body {
-                font-size: 12px; 
-                /* Mengubah arah flex menjadi kolom saat di layar kecil */
-                flex-direction: column; 
-            }
-            .container {
-                max-width: 360px;
-                padding: 20px; 
-                margin: 15px 0; /* Mengembalikan margin ke atas-bawah */
-            }
-            h1 {
-                font-size: 1.5em; 
-                margin-bottom: 15px;
-            }
-            label {
-                font-size: 0.8em;
-            }
-            textarea.glass-element,
-            .output-box {
-                height: 100px;
-                font-size: 12px;
-                padding: 10px;
-                margin-bottom: 15px;
-            }
-            .output-box {
-                margin-top: 15px;
-            }
-            button {
-                padding: 8px 15px;
-                font-size: 13px;
-            }
-            /* Menyesuaikan posisi dan ukuran tombol musik di layar kecil */
-            .music-button {
-                top: 10px; /* Jarak dari atas diperkecil */
-                right: 10px; /* Jarak dari kanan diperkecil */
-                width: 35px;
-                height: 35px;
-                font-size: 15px;
-            }
-            /* Sembunyikan tooltip pada layar kecil untuk menghindari masalah tata letak */
-            .music-button .tooltip-text {
-                display: none;
-            }
-        }
+        .fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
+    <div class="bg-grid-pattern"></div>
 
-    <div class="music-button" id="musicButton">
-        <i class="fas fa-music" id="musicIcon"></i>
-        <span class="tooltip-text" id="tooltipText">Putar Musik</span>
+    <div id="landingPage" class="fixed inset-0 flex items-center justify-center p-4 z-10">
+        <div class="w-full max-w-[400px] flex flex-col gap-4 fade-in-up">
+            <div class="text-center">
+                <h1 class="text-4xl font-black tracking-tighter mb-1 uppercase italic">
+                    <span class="text-retro-dark">Tewe</span> <span class="text-retro-orange">Prompt</span>
+                </h1>
+                <div class="inline-block relative">
+                    <p class="bg-retro-dark text-white text-[9px] font-bold px-3 py-1 rounded-md border-2 border-black uppercase tracking-widest">HTML Generator v3.0 <span class="bg-yellow-300 text-black px-2 ml-1 border-2 border-black">Tewe</span></p>
+                </div>
+            </div>
+
+            <div class="retro-card p-6 rounded-3xl relative text-center">
+                <div class="bolt top-3 left-3"></div><div class="bolt top-3 right-3"></div>
+                <div class="bolt bottom-3 left-3"></div><div class="bolt bottom-3 right-3"></div>
+
+                <div class="mb-4 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-50 border-4 border-black text-retro-orange relative shadow-retro">
+                    <i class="fas fa-code text-3xl"></i>
+                </div>
+                
+                <p class="text-slate-600 mb-6 text-xs font-bold leading-relaxed">
+                    Sistem pembuat instruksi AI otomatis untuk pengembangan file index.html secara instan.
+                </p>
+
+                <button onclick="openAuthModal()" class="w-full py-3 bg-retro-orange text-white border-4 border-black shadow-retro hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] rounded-xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all">
+                 MASUK
+                </button>
+            </div>
+            
+            <div class="text-center text-[9px] text-slate-500 font-black uppercase tracking-widest">
+                &copy; <span id="yearLanding"></span> Tewe Tech | Tri Wantoro
+            </div>
+        </div>
+    </div>
+
+    <div id="authModal" class="modal-overlay">
+        <div class="popup-content retro-card p-6 rounded-3xl w-[90%] max-w-sm text-center relative">
+            <div class="bolt top-3 left-3"></div><div class="bolt top-3 right-3"></div>
+            
+            <div class="mb-3 text-retro-orange text-3xl">
+                <i class="fas fa-shield-halved"></i>
+            </div>
+            <h3 class="text-xl font-black text-retro-dark mb-1 uppercase tracking-tighter">RESTRICTED</h3>
+            <p class="text-black mb-4 text-[8px] font-mono font-bold bg-yellow-100 border-2 border-black inline-block px-2 py-0.5">AREA TERBATAS</p>
+            
+            <input type="password" id="passInput" 
+                class="w-full bg-white border-4 border-black rounded-xl px-4 py-2 mb-4 text-center font-mono font-bold text-lg text-retro-dark focus:outline-none focus:shadow-retro transition" 
+                placeholder="">
+                
+            <div class="flex flex-col gap-2">
+                <button id="submitPassBtn" class="w-full py-3 bg-retro-dark text-white border-4 border-black shadow-retro hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] rounded-xl font-black tracking-widest uppercase transition-all flex items-center justify-center gap-2">
+                    <span class="btn-text">BUKA</span>
+                    <div class="spinner"></div>
+                </button>
+                <button onclick="closeAuthModal()" class="text-[10px] text-slate-500 hover:text-retro-dark font-black uppercase transition">
+                    Batal
+                </button>
+            </div>
+
+            <div id="passError" class="text-red-600 mt-3 text-[10px] hidden font-bold bg-red-50 p-2 border-2 border-red-500 shadow-retro">
+                <i class="fas fa-bomb mr-1"></i> <span id="errorText">Akses Ditolak!</span>
+            </div>
+
+            <div class="mt-4 pt-3 border-t-4 border-black border-dashed text-[8px] text-slate-500 font-black uppercase tracking-widest">
+                Hubungi <a href="https://wa.me/6282323624177" class="text-retro-orange underline" target="_blank">Tri W</a> untuk akses.
+            </div>
+        </div>
+    </div>
+
+    <div id="autoLockStatus" class="fixed bottom-4 right-4 retro-card px-4 py-1.5 rounded-xl text-[10px] font-mono hidden z-[100] border-2 border-black bg-yellow-300 text-black shadow-retro">
+        <i class="fas fa-hourglass-half mr-2"></i>Sesi berakhir: <span id="seconds" class="font-bold text-red-600 text-sm">5</span> detik
+    </div>
+
+    <div class="music-button hidden" id="musicButton">
+        <i class="fas fa-music text-lg" id="musicIcon"></i>
     </div>
     
-    <audio id="backgroundMusic" src="https://raw.githubusercontent.com/tewetech/wedding-invitation-tri-chusnul/refs/heads/main/Melepas%20Lajang.mp3" loop></audio>
+    <audio id="backgroundMusic" src="https://raw.githubusercontent.com/tewetech/tewetype/refs/heads/main/Merpati%20Tak%20Rela%20(Cover).mp3" loop></audio>
 
-    <div class="container" id="newPromptCard">
-        <h1>Prompt HTML Baru ✨</h1>
-        <label for="newInputText">Masukkan ide prompt baru:</label>
-        <textarea id="newInputText" class="glass-element" placeholder="Contoh: jelaskan cara kerja algoritma merge sort dengan bahasa yang mudah dipahami"></textarea>
-        
-        <div class="button-group">
-            <button id="newGenerateAndCopyBtn">Buat Prompt & Salin</button>
+    <main id="mainContent" class="h-screen flex flex-col items-center justify-between p-4 w-full opacity-0 transition-opacity duration-700 hidden">
+        <div class="text-center pt-2">
+            <h1 class="text-4xl font-black tracking-tighter mb-1 uppercase italic">
+                <span class="text-retro-dark">Tewe</span> <span class="text-retro-orange">Prompt</span>
+            </h1>
+            <div class="inline-block relative">
+                <p class="bg-retro-dark text-white text-[9px] font-bold px-3 py-1 rounded-md border-2 border-black uppercase tracking-widest">HTML Generator v3.0 <span class="bg-yellow-300 text-black px-2 ml-1 border-2 border-black">Tewe</span></p>
+            </div>
         </div>
-        
-        <div class="output-box placeholder-text" id="newOutputBox">Teks prompt baru akan muncul di sini.</div>
-    </div>
 
-    <div class="container" id="revisiPromptCard">
-        <h1>Prompt Revisi File HTML 🛠️</h1>
-        <label for="revisiInputText">Masukkan teks yang ingin direvisi:</label>
-        <textarea id="revisiInputText" class="glass-element" placeholder="Contoh: Revisi script HTML saya..."></textarea>
-        
-        <div class="button-group">
-            <button id="revisiGenerateAndCopyBtn">Revisi & Salin</button>
+        <div class="flex flex-col md:flex-row justify-center gap-4 w-full max-w-5xl flex-1 items-center overflow-hidden py-4">
+            <div class="retro-card p-5 rounded-3xl w-full max-w-[450px] flex flex-col h-full max-h-[500px]" id="newPromptCard">
+                <h1 class="text-xl font-black mb-3 text-retro-dark tracking-tighter uppercase italic border-b-4 border-yellow-300 inline-block self-start">Prompt HTML Baru</h1>
+                <div class="text-left flex-1 flex flex-col min-h-0">
+                    <label for="newInputText" class="block text-[10px] font-black uppercase tracking-widest mb-1">Ide Prompt Baru:</label>
+                    <textarea id="newInputText" class="w-full flex-1 p-3 text-xs bg-slate-50 focus:bg-white outline-none transition-all resize-none" placeholder="Tulis ide website..."></textarea>
+                    <button id="newGenerateAndCopyBtn" class="w-full py-3 mt-3 bg-retro-orange text-white font-black border-4 border-black shadow-retro hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] rounded-xl transition-all flex items-center justify-center gap-2 uppercase text-xs tracking-tight">
+                        Buat & Salin
+                    </button>
+                    <div class="output-box mt-3 p-3 h-24 overflow-y-auto text-left text-[10px] bg-slate-100 text-slate-500 italic" id="newOutputBox"></div>
+                </div>
+            </div>
+
+            <div class="retro-card p-5 rounded-3xl w-full max-w-[450px] flex flex-col h-full max-h-[500px]" id="revisiPromptCard">
+                <h1 class="text-xl font-black mb-3 text-retro-dark tracking-tighter uppercase italic border-b-4 border-yellow-300 inline-block self-start">Revisi HTML</h1>
+                <div class="text-left flex-1 flex flex-col min-h-0">
+                    <label for="revisiInputText" class="block text-[10px] font-black uppercase tracking-widest mb-1">Teks Revisi:</label>
+                    <textarea id="revisiInputText" class="w-full flex-1 p-3 text-xs bg-slate-50 focus:bg-white outline-none transition-all resize-none" placeholder="Tulis revisi..."></textarea>
+                    <button id="revisiGenerateAndCopyBtn" class="w-full py-3 mt-3 bg-retro-dark text-white font-black border-4 border-black shadow-retro hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] rounded-xl transition-all flex items-center justify-center gap-2 uppercase text-xs tracking-tight">
+                        Revisi & Salin
+                    </button>
+                    <div class="output-box mt-3 p-3 h-24 overflow-y-auto text-left text-[10px] bg-slate-100 text-slate-500 italic" id="revisiOutputBox"></div>
+                </div>
+            </div>
         </div>
-        
-        <div class="output-box placeholder-text" id="revisiOutputBox">Teks prompt yang direvisi akan muncul di sini.</div>
-    </div>
-    
+
+        <footer id="mainFooter" class="pb-2 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">
+            © <span id="year"></span> Tewe Tech • Tri Wantoro
+        </footer>
+    </main>
+
+    <div id="toastContainer" class="fixed bottom-6 right-6 flex flex-col-reverse gap-3 z-[2000] items-end pointer-events-none"></div>
+
     <script>
-        // Menunggu seluruh elemen HTML dimuat sebelum menjalankan script
+        const GAS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbylx2cM3xuvwfj_3wzM7Ex9JsK9EfInCBoGHcOk3xKWaW9zTsA361s8nie6DWLqmwj2IQ/exec";
+
+        function showToast(msg, type = "success") {
+            const container = document.getElementById('toastContainer');
+            const t = document.createElement('div');
+            let colorClass = type === 'error' ? 'bg-red-500' : (type === 'warning' ? 'bg-yellow-400' : 'bg-retro-orange');
+            t.className = `${colorClass} border-4 border-black px-5 py-3 rounded-xl text-white text-[10px] font-black uppercase tracking-widest transition-all duration-300 transform translate-y-2 opacity-0 flex items-center gap-3 shadow-retro pointer-events-auto`;
+            if(type === 'warning') t.classList.replace('text-white', 'text-black');
+            t.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check' : 'fa-circle-exclamation'}"></i> <span>${msg}</span>`;
+            container.appendChild(t);
+            requestAnimationFrame(() => { t.style.opacity = '1'; t.style.transform = 'translateY(0)'; });
+            setTimeout(() => { 
+                t.style.opacity = '0'; 
+                t.style.transform = 'translateY(10px)'; 
+                setTimeout(() => t.remove(), 300); 
+            }, 3000);
+        }
+
+        function openAuthModal() {
+            const modal = document.getElementById('authModal');
+            const input = document.getElementById('passInput');
+            modal.classList.add('active'); 
+            input.value = ""; 
+            setTimeout(() => input.focus(), 100); 
+        }
+
+        function closeAuthModal() { document.getElementById('authModal').classList.remove('active'); }
+
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Elemen untuk card revisi ---
+            const currentYear = new Date().getFullYear();
+            document.getElementById('year').textContent = currentYear;
+            document.getElementById('yearLanding').textContent = currentYear;
+
+            const passInput = document.getElementById("passInput");
+            const submitPassBtn = document.getElementById("submitPassBtn");
+            const passError = document.getElementById("passError");
+            const errorText = document.getElementById("errorText");
+            const btnText = submitPassBtn.querySelector(".btn-text");
+            const spinner = submitPassBtn.querySelector(".spinner");
+            const lockStatus = document.getElementById("autoLockStatus");
+            const secondsText = document.getElementById("seconds");
+            const mainContent = document.getElementById("mainContent");
+            const landingPage = document.getElementById("landingPage");
+            const musicBtnDisplay = document.getElementById('musicButton');
+            
+            let idleTimer, countdownInterval;
+            let timeLeft = 5;
+            let isLocked = true;
+
+            function resetButtonState() {
+                btnText.style.display = "block";
+                spinner.style.display = "none";
+                submitPassBtn.disabled = false;
+            }
+
+            function lockSite() {
+                isLocked = true;
+                resetButtonState();
+                landingPage.classList.remove("hidden");
+                mainContent.classList.add("hidden");
+                mainContent.classList.replace("opacity-100", "opacity-0");
+                musicBtnDisplay.classList.add("hidden");
+                document.body.classList.add("locked");
+                lockStatus.classList.add("hidden");
+                closeAuthModal();
+                clearInterval(countdownInterval);
+                clearTimeout(idleTimer);
+            }
+
+            function resetIdleTimer() {
+                if (isLocked) return;
+                lockStatus.classList.add("hidden");
+                timeLeft = 5;
+                clearTimeout(idleTimer);
+                clearInterval(countdownInterval);
+                idleTimer = setTimeout(() => { startCountdown(); }, 10000);
+            }
+
+            function startCountdown() {
+                lockStatus.classList.remove("hidden");
+                timeLeft = 5;
+                secondsText.textContent = timeLeft;
+                countdownInterval = setInterval(() => {
+                    timeLeft--;
+                    secondsText.textContent = timeLeft;
+                    if (timeLeft <= 0) lockSite();
+                }, 1000);
+            }
+
+            ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(evt => {
+                document.addEventListener(evt, resetIdleTimer, true);
+            });
+
+            async function verifyPassword() {
+                const password = passInput.value;
+                if (!password) {
+                    showToast("Isi kode akses terlebih dahulu!", "warning");
+                    return;
+                }
+
+                btnText.style.display = "none";
+                spinner.style.display = "block";
+                passError.classList.add("hidden");
+                submitPassBtn.disabled = true;
+
+                try {
+                    const response = await fetch(GAS_SCRIPT_URL, {
+                        method: "POST",
+                        body: JSON.stringify({ password: password })
+                    });
+                    const result = await response.json();
+                    
+                    if (result.status === "success" || result.result === "success") {
+                        unlockSite();
+                    } else {
+                        throw new Error("Kode yang Anda masukkan salah.");
+                    }
+                } catch (error) {
+                    passError.classList.remove("hidden");
+                    errorText.textContent = "Kode akses salah!";
+                    resetButtonState();
+                    setTimeout(() => { passError.classList.add("hidden"); }, 3000);
+                }
+            }
+
+            function unlockSite() {
+                isLocked = false;
+                closeAuthModal();
+                landingPage.classList.add("hidden");
+                document.body.classList.remove("locked");
+                mainContent.classList.remove("hidden");
+                musicBtnDisplay.classList.remove('hidden');
+                setTimeout(() => mainContent.classList.replace('opacity-0', 'opacity-100'), 50);
+                resetButtonState();
+                resetIdleTimer();
+                showToast("Akses Diterima");
+            }
+
+            submitPassBtn.addEventListener("click", verifyPassword);
+            passInput.addEventListener("keypress", (e) => { if (e.key === "Enter") verifyPassword(); });
+
             const revisiInputTextarea = document.getElementById('revisiInputText');
             const revisiGenerateAndCopyBtn = document.getElementById('revisiGenerateAndCopyBtn');
             const revisiOutputBox = document.getElementById('revisiOutputBox');
             const originalRevisiBtnText = revisiGenerateAndCopyBtn.textContent;
 
-            // --- Elemen untuk card baru ---
             const newInputTextarea = document.getElementById('newInputText');
             const newGenerateAndCopyBtn = document.getElementById('newGenerateAndCopyBtn');
             const newOutputBox = document.getElementById('newOutputBox');
             const originalNewBtnText = newGenerateAndCopyBtn.textContent;
-            
-            // Kelas untuk umpan balik sukses pada tombol
-            const successClass = 'success';
 
-            // Fungsi untuk menyalin teks dan memberikan umpan balik pada tombol
             const copyTextToClipboard = async (textToCopy, buttonElement, originalText) => {
                 try {
-                    // Menggunakan Clipboard API modern untuk menyalin
                     if (navigator.clipboard && window.isSecureContext) {
                         await navigator.clipboard.writeText(textToCopy);
                     } else {
-                        // Fallback untuk browser lama
                         const tempTextarea = document.createElement('textarea');
                         tempTextarea.value = textToCopy;
                         document.body.appendChild(tempTextarea);
@@ -417,101 +414,62 @@
                         document.execCommand('copy');
                         document.body.removeChild(tempTextarea);
                     }
-
-                    // Umpan balik visual pada tombol
-                    buttonElement.textContent = 'Berhasil Disalin!';
-                    buttonElement.classList.add(successClass);
-                    
-                    // Kembalikan tombol ke kondisi semula setelah 2 detik
+                    buttonElement.textContent = 'BERHASIL DISALIN!';
+                    buttonElement.classList.add('success');
                     setTimeout(() => {
                         buttonElement.textContent = originalText;
-                        buttonElement.classList.remove(successClass);
+                        buttonElement.classList.remove('success');
                     }, 2000);
-                    
                 } catch (err) {
                     console.error('Gagal menyalin teks: ', err);
-                    alert('Gagal menyalin teks. Silakan salin manual.');
                 }
             };
-            
-            // Event listener untuk tombol revisi prompt
+
             revisiGenerateAndCopyBtn.addEventListener('click', () => {
                 const text = revisiInputTextarea.value.trim();
-                if (text === '') {
-                    revisiOutputBox.textContent = 'Silakan masukkan teks Anda terlebih dahulu!';
-                    revisiOutputBox.classList.add('placeholder-text');
-                    return;
-                }
-
-                revisiOutputBox.classList.remove('placeholder-text');
-                revisiOutputBox.style.color = '';
-                revisiOutputBox.style.fontStyle = 'normal';
-
-                const generatedPrompt = 
-`JAWAB MENGGUNAKAN BAHASA INDONESIA
-revisi script html saya sesuai yang saya lampirkan:
-
-${text}
-
-fokuskan apa yang saya perintahkan. jangan rubah fungsi-fungsi yang sudah ada.
-semuanya harus dibuatkan comment dalam bahasa indonesia
-berikan full revisi scriptnya dari html, Tailwind CSS, js semuanya dibungkus dalam satu file index.html`;
-
+                if (text === '') return showToast("Masukkan teks revisi!", "warning");
+                revisiOutputBox.classList.remove('italic', 'text-slate-500');
+                revisiOutputBox.classList.add('text-retro-dark', 'not-italic');
+                const generatedPrompt = `JAWAB MENGGUNAKAN BAHASA INDONESIA\nrevisi script html saya sesuai yang saya lampirkan:\n\n${text}\n\nfokuskan apa yang saya perintahkan. jangan rubah fungsi-fungsi yang sudah ada.\nSEMUANYA JANGAN DI BUATKAN KOMENTAR\nberikan full revisi scriptnya dari html, Tailwind CSS, js semuanya dibungkus dalam satu file index.html`;
                 revisiOutputBox.textContent = generatedPrompt;
                 copyTextToClipboard(generatedPrompt, revisiGenerateAndCopyBtn, originalRevisiBtnText);
             });
-            
-            // Event listener untuk tombol prompt baru
+
             newGenerateAndCopyBtn.addEventListener('click', () => {
                 const text = newInputTextarea.value.trim();
-                if (text === '') {
-                    newOutputBox.textContent = 'Silakan masukkan teks Anda terlebih dahulu!';
-                    newOutputBox.classList.add('placeholder-text');
-                    return;
-                }
-
-                newOutputBox.classList.remove('placeholder-text');
-                newOutputBox.style.color = '';
-                newOutputBox.style.fontStyle = 'normal';
-
-                const generatedPrompt = 
-`JAWAB MENGGUNAKAN BAHASA INDONESIA
-
-buatkan saya website sesuai apa yang saya perintahkan:
-
-${text}
-
-
-semuanya harus dibuatkan comment dalam bahasa indonesia
-berikan full scriptnya dari html, Tailwind CSS, js semuanya dibungkus dalam satu file index.html`;
-
+                if (text === '') return showToast("Masukkan ide prompt!", "warning");
+                newOutputBox.classList.remove('italic', 'text-slate-500');
+                newOutputBox.classList.add('text-retro-dark', 'not-italic');
+                const generatedPrompt = `JAWAB MENGGUNAKAN BAHASA INDONESIA\nbuatkan saya website sesuai apa yang saya perintahkan:\n\n${text}\n\nSEMUANYA JANGAN DI BUATKAN KOMENTAR\nberikan full scriptnya dari html, Tailwind CSS, js semuanya dibungkus dalam satu file index.html`;
                 newOutputBox.textContent = generatedPrompt;
                 copyTextToClipboard(generatedPrompt, newGenerateAndCopyBtn, originalNewBtnText);
             });
-            
-            // --- Logika untuk tombol musik ---
+
             const musicButton = document.getElementById('musicButton');
             const backgroundMusic = document.getElementById('backgroundMusic');
             const musicIcon = document.getElementById('musicIcon');
-            const tooltipText = document.getElementById('tooltipText');
-
-            let isPlaying = false; // Status awal musik
+            let isPlaying = false;
 
             musicButton.addEventListener('click', () => {
                 if (isPlaying) {
                     backgroundMusic.pause();
-                    musicIcon.classList.remove('fa-pause-circle');
-                    musicIcon.classList.add('fa-music');
-                    tooltipText.textContent = "Putar Musik";
+                    musicIcon.classList.replace('fa-pause', 'fa-music');
                 } else {
                     backgroundMusic.play();
-                    musicIcon.classList.remove('fa-music');
-                    musicIcon.classList.add('fa-pause-circle');
-                    tooltipText.textContent = "Hentikan Musik";
+                    musicIcon.classList.replace('fa-music', 'fa-pause');
                 }
                 isPlaying = !isPlaying;
             });
         });
+
+        window.openAuthModal = () => {
+            const modal = document.getElementById('authModal');
+            const input = document.getElementById('passInput');
+            modal.classList.add('active'); 
+            input.value = ""; 
+            setTimeout(() => input.focus(), 100); 
+        };
+        window.closeAuthModal = () => { document.getElementById('authModal').classList.remove('active'); };
     </script>
 </body>
 </html>
