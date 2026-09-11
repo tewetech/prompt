@@ -1,460 +1,404 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Tewe Prompt | V3.1</title>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tewetech/prompt/refs/heads/main/favicon-prompt.png">    
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                fontFamily: {
-                    sans: ['Poppins', 'sans-serif'],
-                }
-            }
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>AI Web Prompt Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
-</script>
-<style>
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(180deg, #ffffff 0%, #29b6d3 100%);
-    background-attachment: fixed;
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-}
-::-webkit-scrollbar {
-    width: 4px;
-}
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-::-webkit-scrollbar-thumb {
-    background: rgba(21, 94, 117, 0.2);
-    border-radius: 10px;
-}
-@keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-.shimmer-box {
-    position: relative;
-    overflow: hidden;
-}
-.shimmer-box::before {
-    content: '';
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
-    animation: shimmer 3s infinite;
-    pointer-events: none;
-    z-index: 10;
-}
-.glass-panel {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.7);
-}
-.music-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 42px;
-    height: 42px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    color: #155e75;
-    z-index: 50;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-.music-button:hover {
-    background: rgba(255, 255, 255, 0.9);
-    transform: scale(1.05);
-}
-.modal-overlay { 
-    position: fixed; 
-    inset: 0; 
-    background: rgba(21, 94, 117, 0.4); 
-    backdrop-filter: blur(8px);
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    z-index: 1000; 
-    opacity: 0; 
-    visibility: hidden; 
-    transition: 0.4s ease; 
-    padding: 15px; 
-}
-.modal-overlay.active { opacity: 1; visibility: visible; }
-.popup-content { transform: scale(0.95); transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.modal-overlay.active .popup-content { transform: scale(1); }
-.spinner {
-    width: 16px;
-    padding: 2px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: #ffffff;
-    --_m: conic-gradient(#0000 10%,#000), linear-gradient(#000 0 0) content-box;
-    -webkit-mask: var(--_m);
-    mask: var(--_m);
-    -webkit-mask-composite: source-out;
-    mask-composite: subtract;
-    animation: l3 1s infinite linear;
-    display: none;
-}
-@keyframes l3 {to{transform: rotate(1turn)}}
-.fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-button.success {
-    background-color: #10b981 !important;
-    color: white !important;
-}
-</style>
+    pre, code, textarea {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #3f3f46;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #52525b;
+    }
+  </style>
 </head>
-<body>
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div class="absolute -top-10 -right-10 w-96 h-96 bg-gradient-to-br from-[#38bdf8] to-[#0369a1] rounded-full blur-3xl opacity-30"></div>
-        <div class="absolute top-40 -left-20 w-80 h-80 bg-[#7dd3fc] rounded-full blur-3xl opacity-40"></div>
-        <div class="absolute -bottom-20 right-20 w-96 h-96 bg-[#bae6fd] rounded-full blur-3xl opacity-50"></div>
-    </div>
+<body class="bg-zinc-950 text-zinc-100 min-h-[100svh] flex flex-col antialiased selection:bg-zinc-100 selection:text-zinc-900">
 
-    <div id="landingPage" class="fixed inset-0 flex items-center justify-center p-4 z-10">
-        <div class="w-full max-w-[360px] flex flex-col gap-5 fade-in-up">
-            <div class="text-center">
-                <h1 class="text-3xl font-bold tracking-wide mb-1 text-[#155e75]">
-                    Tewe <span class="text-[#0369a1]">Prompt</span>
-                </h1>
-                <div class="inline-block relative">
-                    <p class="glass-panel text-[#155e75] text-[10px] font-semibold px-3 py-1 rounded-full shadow-sm tracking-wider">HTML Generator v3.1</p>
-                </div>
-            </div>
-
-            <div class="bg-[#f4fbff] rounded-[45px] border-[12px] border-[#155e75] shadow-2xl relative overflow-hidden flex flex-col p-8 text-center">
-                <div class="absolute top-0 inset-x-0 h-6 flex justify-center mt-2 z-20">
-                    <div class="w-24 h-4 bg-[#155e75] rounded-b-xl"></div>
-                </div>
-
-                <div class="absolute -top-10 -right-10 w-64 h-64 bg-gradient-to-br from-[#38bdf8] to-[#0369a1] rounded-full blur-3xl opacity-30 pointer-events-none"></div>
-                
-                <div class="mb-2 mt-4 inline-flex items-center justify-center w-16 h-16 rounded-3xl glass-panel text-[#0369a1] relative mx-auto shadow-sm">
-                    <i class="fas fa-code text-2xl"></i>
-                </div>
-                
-                <p class="text-[#155e75]/80 mb-6 text-xs font-medium leading-relaxed relative z-10">
-                    Sistem pembuat instruksi AI otomatis untuk pengembangan file index.html secara instan.
-                </p>
-
-                <button onclick="openAuthModal()" class="w-full h-[44px] shimmer-box px-6 rounded-2xl bg-[#155e75] text-white font-medium hover:bg-[#0e7490] hover:scale-[1.02] transition-all duration-300 text-xs tracking-widest flex items-center justify-center gap-2 relative z-10 shadow-lg shadow-[#155e75]/20">
-                 MASUK
-                </button>
-            </div>
-            
-            <div class="text-center text-[10px] text-[#155e75]/60 font-semibold tracking-widest">
-                &copy; <span id="yearLanding"></span> Tewe Tech | Tri Wantoro
-            </div>
+  <header class="border-b border-zinc-900 bg-zinc-950 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <div class="w-10 h-10 rounded-xl bg-zinc-100 flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-zinc-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
         </div>
-    </div>
-
-    <div id="authModal" class="modal-overlay">
-        <div class="popup-content bg-[#f4fbff] border border-white/60 p-6 rounded-[35px] shadow-2xl w-[90%] max-w-[320px] text-center relative overflow-hidden">
-            
-            <div class="absolute top-20 -left-10 w-40 h-40 bg-[#7dd3fc] rounded-full blur-2xl opacity-40 pointer-events-none"></div>
-
-            <div class="mb-3 text-[#0369a1] text-3xl relative z-10">
-                <i class="fas fa-shield-halved"></i>
-            </div>
-            <h3 class="text-lg font-bold text-[#155e75] mb-1 tracking-wide relative z-10">RESTRICTED</h3>
-            <p class="text-rose-500 mb-5 text-[9px] font-semibold bg-rose-50 border border-rose-200 inline-block px-3 py-1 rounded-full relative z-10">AREA TERBATAS</p>
-            
-            <input type="password" id="passInput" 
-                class="w-full h-11 block glass-panel px-5 mb-4 rounded-2xl text-[#155e75] text-center font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-[#38bdf8]/50 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] relative z-10" 
-                placeholder="Kode Akses">
-                
-            <div class="flex flex-col gap-3 relative z-10">
-                <button id="submitPassBtn" class="w-full h-[42px] shimmer-box bg-[#155e75] text-white rounded-2xl font-medium tracking-widest text-xs hover:bg-[#0e7490] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#155e75]/20">
-                    <span class="btn-text">BUKA</span>
-                    <div class="spinner"></div>
-                </button>
-                <button onclick="closeAuthModal()" class="text-[10px] text-[#155e75]/60 hover:text-[#155e75] font-semibold tracking-wider transition">
-                    Batal
-                </button>
-            </div>
-
-            <div id="passError" class="text-rose-500 mt-4 text-[10px] hidden font-medium bg-rose-50/80 p-2.5 rounded-xl border border-rose-200 shadow-sm relative z-10 flex items-center justify-center gap-1.5">
-                <i class="fas fa-bomb"></i> <span id="errorText">Akses Ditolak!</span>
-            </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight text-white flex items-center gap-2">
+            AI Prompt Generator
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-300 tracking-wide uppercase">Single File</span>
+          </h1>
+          <p class="text-xs text-zinc-400 font-medium mt-0.5">Generator prompt terstruktur untuk pembuatan & revisi website</p>
         </div>
+      </div>
+      <div class="flex items-center gap-2 text-[11px] font-medium text-zinc-400 bg-zinc-900/50 px-3 py-1.5 rounded-lg border border-zinc-800">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        Auto Copy Aktif
+      </div>
     </div>
+  </header>
 
-    <div class="music-button hidden" id="musicButton">
-        <i class="fas fa-music text-sm" id="musicIcon"></i>
-    </div>
-    
-    <audio id="backgroundMusic" src="https://raw.githubusercontent.com/tewetech/tewetype/refs/heads/main/Merpati%20Tak%20Rela%20(Cover).mp3" loop></audio>
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 items-stretch flex-1">
 
-    <main id="mainContent" class="h-screen flex flex-col items-center justify-between p-4 w-full opacity-0 transition-opacity duration-700 hidden relative z-10">
-        <div class="text-center pt-2">
-            <h1 class="text-3xl font-bold tracking-wide mb-1 text-[#155e75]">
-                Tewe <span class="text-[#0369a1]">Prompt</span>
-            </h1>
-            <div class="inline-block relative">
-                <p class="glass-panel text-[#155e75] text-[10px] font-semibold px-3 py-1 rounded-full shadow-sm tracking-wider">HTML Generator v3.1</p>
+      <section class="bg-zinc-900 rounded-2xl border border-zinc-800/80 p-5 sm:p-7 flex flex-col shadow-xl">
+        <div class="flex items-center justify-between pb-4 mb-4 border-b border-zinc-800/80">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-zinc-800 text-white flex items-center justify-center font-bold text-sm">
+              1
             </div>
+            <div>
+              <h2 class="text-base font-bold text-white">Buat Prompt Baru</h2>
+              <p class="text-xs text-zinc-400">Untuk project website baru dari nol</p>
+            </div>
+          </div>
+          <button type="button" onclick="resetNewForm()" class="text-xs font-semibold text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg bg-zinc-950 border border-zinc-800 hover:border-zinc-700 transition-colors">
+            Reset
+          </button>
         </div>
 
-        <div class="flex flex-col md:flex-row justify-center gap-5 w-full max-w-5xl flex-1 items-center overflow-hidden py-4">
-            
-            <div class="bg-[#f4fbff] rounded-[35px] border-[10px] border-[#155e75] shadow-2xl relative overflow-hidden flex flex-col p-6 w-full max-w-[450px] h-full max-h-[500px]">
-                <div class="absolute top-0 inset-x-0 h-6 flex justify-center mt-1 z-20">
-                    <div class="w-20 h-3 bg-[#155e75] rounded-b-xl"></div>
-                </div>
-                <div class="absolute -top-10 -right-10 w-48 h-48 bg-gradient-to-br from-[#38bdf8] to-[#0369a1] rounded-full blur-3xl opacity-20 pointer-events-none"></div>
-                
-                <h1 class="text-sm font-semibold mb-4 text-[#155e75] tracking-wide inline-block self-start border-b-2 border-[#38bdf8]/40 pb-1 relative z-10">Prompt HTML Baru</h1>
-                <div class="text-left flex-1 flex flex-col min-h-0 relative z-10">
-                    <label for="newInputText" class="block text-[11px] font-medium px-1 text-[#155e75]/80 mb-1.5">Ide Prompt Baru :</label>
-                    <textarea id="newInputText" class="w-full flex-1 block glass-panel p-4 rounded-2xl text-[#155e75] text-xs focus:outline-none focus:ring-2 focus:ring-[#38bdf8]/50 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] resize-none" placeholder="Tulis ide website..."></textarea>
-                    
-                    <button id="newGenerateAndCopyBtn" class="w-full h-[42px] mt-4 shimmer-box px-6 rounded-2xl bg-[#155e75] text-white font-medium hover:bg-[#0e7490] hover:scale-[1.01] transition-all duration-300 text-xs shadow-lg shadow-[#155e75]/20 flex items-center justify-center gap-2">
-                        Buat & Salin
-                    </button>
-                    
-                    <div class="output-box mt-3 p-3 h-24 overflow-y-auto text-left text-[10px] glass-panel bg-white/40 rounded-xl text-[#155e75]/60 italic shadow-inner" id="newOutputBox"></div>
-                </div>
-            </div>
+        <div class="flex flex-col flex-1 gap-5">
+          <div class="flex-1 flex flex-col">
+            <label for="new-detail" class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+              Detail Web Yang Diinginkan <span class="text-rose-400">*</span>
+            </label>
+            <textarea 
+              id="new-detail" 
+              placeholder="Jelaskan secara detail website yang ingin dibuat..." 
+              class="w-full flex-1 min-h-[200px] bg-zinc-950 border border-zinc-800 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 rounded-xl p-4 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition-all resize-none custom-scrollbar"
+            ></textarea>
+          </div>
 
-            <div class="bg-[#f4fbff] rounded-[35px] border-[10px] border-[#155e75] shadow-2xl relative overflow-hidden flex flex-col p-6 w-full max-w-[450px] h-full max-h-[500px]">
-                <div class="absolute top-0 inset-x-0 h-6 flex justify-center mt-1 z-20">
-                    <div class="w-20 h-3 bg-[#155e75] rounded-b-xl"></div>
-                </div>
-                <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-gradient-to-tr from-[#7dd3fc] to-[#0284c7] rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+          <button 
+            type="button" 
+            onclick="generateNewPrompt()" 
+            class="w-full bg-white hover:bg-zinc-200 active:scale-[0.98] text-zinc-950 font-bold py-3.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition-all"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+            </svg>
+            Generate & Salin Prompt Baru
+          </button>
+        </div>
+      </section>
 
-                <h1 class="text-sm font-semibold mb-4 text-[#155e75] tracking-wide inline-block self-start border-b-2 border-[#38bdf8]/40 pb-1 relative z-10">Revisi HTML</h1>
-                <div class="text-left flex-1 flex flex-col min-h-0 relative z-10">
-                    <label for="revisiInputText" class="block text-[11px] font-medium px-1 text-[#155e75]/80 mb-1.5">Teks Revisi :</label>
-                    <textarea id="revisiInputText" class="w-full flex-1 block glass-panel p-4 rounded-2xl text-[#155e75] text-xs focus:outline-none focus:ring-2 focus:ring-[#38bdf8]/50 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] resize-none" placeholder="Tulis revisi..."></textarea>
-                    
-                    <button id="revisiGenerateAndCopyBtn" class="w-full h-[42px] mt-4 px-6 rounded-2xl bg-white/80 border border-white text-[#155e75] font-medium hover:bg-white hover:scale-[1.01] transition-all duration-300 text-xs shadow-sm flex items-center justify-center gap-2">
-                        Revisi & Salin
-                    </button>
-                    
-                    <div class="output-box mt-3 p-3 h-24 overflow-y-auto text-left text-[10px] glass-panel bg-white/40 rounded-xl text-[#155e75]/60 italic shadow-inner" id="revisiOutputBox"></div>
-                </div>
+      <section class="bg-zinc-900 rounded-2xl border border-zinc-800/80 p-5 sm:p-7 flex flex-col shadow-xl">
+        <div class="flex items-center justify-between pb-4 mb-4 border-b border-zinc-800/80">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-zinc-800 text-white flex items-center justify-center font-bold text-sm">
+              2
             </div>
+            <div>
+              <h2 class="text-base font-bold text-white">Buat Prompt Revisi</h2>
+              <p class="text-xs text-zinc-400">Untuk memodifikasi kode yang ada</p>
+            </div>
+          </div>
+          <button type="button" onclick="resetRevForm()" class="text-xs font-semibold text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg bg-zinc-950 border border-zinc-800 hover:border-zinc-700 transition-colors">
+            Reset
+          </button>
         </div>
 
-        <footer id="mainFooter" class="pb-2 text-[10px] font-semibold tracking-widest text-[#155e75]/60 relative z-10">
-            © <span id="year"></span> Tewe Tech • Tri Wantoro
-        </footer>
-    </main>
+        <div class="flex flex-col flex-1 gap-5">
+          <div class="flex-1 flex flex-col gap-4">
+            <div class="flex flex-col flex-1">
+              <label for="rev-changes" class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                Perubahan Yang Diinginkan <span class="text-rose-400">*</span>
+              </label>
+              <textarea 
+                id="rev-changes" 
+                placeholder="Jelaskan bagian mana yang ingin diubah..." 
+                class="w-full flex-1 min-h-[100px] bg-zinc-950 border border-zinc-800 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 rounded-xl p-4 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition-all resize-none custom-scrollbar"
+              ></textarea>
+            </div>
 
-    <div id="toastContainer" class="fixed bottom-6 right-6 flex flex-col-reverse gap-3 z-[2000] items-end pointer-events-none"></div>
+            <div class="flex flex-col flex-1">
+              <label for="rev-code" class="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                Source Code HTML <span class="text-zinc-500 font-medium">(Opsional)</span>
+              </label>
+              <textarea 
+                id="rev-code" 
+                placeholder="Tempelkan source code di sini..." 
+                class="w-full flex-1 min-h-[100px] bg-zinc-950 border border-zinc-800 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 rounded-xl p-4 text-sm text-zinc-100 placeholder-zinc-600 outline-none transition-all resize-none custom-scrollbar"
+              ></textarea>
+            </div>
+          </div>
 
-    <script>
-        const GAS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbylx2cM3xuvwfj_3wzM7Ex9JsK9EfInCBoGHcOk3xKWaW9zTsA361s8nie6DWLqmwj2IQ/exec";
+          <button 
+            type="button" 
+            onclick="generateRevisionPrompt()" 
+            class="w-full bg-white hover:bg-zinc-200 active:scale-[0.98] text-zinc-950 font-bold py-3.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition-all mt-auto"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+            </svg>
+            Generate & Salin Prompt Revisi
+          </button>
+        </div>
+      </section>
 
-        function showToast(msg, type = "success") {
-            const container = document.getElementById('toastContainer');
-            const t = document.createElement('div');
-            
-            let iconColor = type === 'error' ? 'text-rose-500' : (type === 'warning' ? 'text-amber-500' : 'text-emerald-500');
-            let iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
-            
-            t.className = `glass-panel bg-white/80 backdrop-blur-md border border-white/60 px-5 py-3 rounded-2xl text-[#155e75] text-[11px] font-medium transition-all duration-300 transform translate-y-2 opacity-0 flex items-center gap-3 shadow-lg pointer-events-auto shrink-0`;
-            
-            t.innerHTML = `<i class="fas ${iconClass} ${iconColor} text-lg"></i> <span>${msg}</span>`;
-            
-            container.appendChild(t);
-            requestAnimationFrame(() => { t.style.opacity = '1'; t.style.transform = 'translateY(0)'; });
-            setTimeout(() => { 
-                t.style.opacity = '0'; 
-                t.style.transform = 'translateY(10px)'; 
-                setTimeout(() => t.remove(), 300); 
-            }, 3000);
+    </div>
+  </main>
+
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-4 transition-all duration-300 max-w-[90vw] sm:max-w-md w-full">
+    <div id="toast-box" class="bg-zinc-900 border border-zinc-700 text-white px-4 py-3.5 rounded-xl shadow-2xl flex items-center gap-3">
+      <div id="toast-icon" class="w-7 h-7 rounded-full bg-white text-zinc-900 flex items-center justify-center shrink-0">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <p id="toast-text" class="text-xs sm:text-sm font-semibold tracking-wide"></p>
+    </div>
+  </div>
+
+  <footer class="border-t border-zinc-900 py-5 px-4 text-center text-[11px] font-semibold text-zinc-500 uppercase tracking-widest mt-auto">
+    Generator Prompt &bull; Otomatis Tersalin &bull; Tanpa Refresh
+  </footer>
+
+  <script>
+    let toastTimeout;
+
+    function showToast(message, isError = false) {
+      clearTimeout(toastTimeout);
+      const toast = document.getElementById('toast');
+      const toastBox = document.getElementById('toast-box');
+      const toastIcon = document.getElementById('toast-icon');
+      const toastText = document.getElementById('toast-text');
+
+      toastText.textContent = message;
+
+      if (isError) {
+        toastBox.className = 'bg-rose-950 border border-rose-800 text-white px-4 py-3.5 rounded-xl shadow-2xl flex items-center gap-3';
+        toastIcon.className = 'w-7 h-7 rounded-full bg-rose-500 text-white flex items-center justify-center shrink-0';
+        toastIcon.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>';
+      } else {
+        toastBox.className = 'bg-zinc-900 border border-zinc-700 text-white px-4 py-3.5 rounded-xl shadow-2xl flex items-center gap-3';
+        toastIcon.className = 'w-7 h-7 rounded-full bg-white text-zinc-900 flex items-center justify-center shrink-0';
+        toastIcon.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>';
+      }
+
+      toast.classList.remove('opacity-0', 'translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-4');
+      }, 2600);
+    }
+
+    async function writeClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (err) {}
+      }
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      let success = false;
+      try {
+        success = document.execCommand('copy');
+      } catch (err) {}
+      textArea.remove();
+      return success;
+    }
+
+    function generateNewPrompt() {
+      const detail = document.getElementById('new-detail').value.trim();
+
+      if (!detail) {
+        showToast('Silakan isi detail web yang diinginkan!', true);
+        document.getElementById('new-detail').focus();
+        return;
+      }
+
+      const prompt = `Buat website dari nol menggunakan HTML + Tailwind CSS + JavaScript dalam SATU file \`index.html\`. 
+ 
+DETAIL WEB YANG DI INGINKAN :
+${detail}
+
+PRIORITAS UTAMA:
+
+* Mobile-first
+* Sangat smooth, ringan, responsif
+* Optimalkan khusus perangkat mobile
+* Jangan gunakan efek yang menyebabkan lag/jank saat scrolling
+
+WAJIB:
+
+* Minimalkan \`backdrop-filter\`, blur, shadow besar, dan animasi berat di mobile
+* Gunakan animasi seperlunya dan utamakan \`transform\` + \`opacity\`
+* Hindari animasi yang terus berjalan pada banyak elemen sekaligus
+* Optimalkan background/image agar tidak menyebabkan repaint berat
+* Gunakan \`requestAnimationFrame\` untuk proses yang berjalan saat scroll
+* Gunakan passive event listener untuk scroll/touch
+* Hindari layout reflow/recalculation berulang
+* Jangan melakukan manipulasi DOM berlebihan saat scrolling
+* Optimalkan pergantian background agar smooth
+* Gunakan ukuran viewport mobile yang stabil (\`svh\`/\`dvh\`) sesuai kebutuhan
+* Lazy-load gambar yang tidak langsung terlihat
+* Hormati \`prefers-reduced-motion\`
+* Pastikan scrolling touch tetap natural dan tidak patah-patah
+* Desktop tetap bagus, tetapi performa mobile adalah prioritas utama
+
+FUNGSI DAN FITUR:
+Semua fungsi harus tetap lengkap sesuai kebutuhan website.
+
+OUTPUT:
+
+* Full source code
+* Hanya satu file \`index.html\`
+* HTML + Tailwind CSS + JavaScript menjadi satu
+* JANGAN beri komentar di dalam source code
+* Jangan membuat file terpisah
+* Jangan mengurangi fungsi yang sudah ditentukan`;
+
+      writeClipboard(prompt).then((copied) => {
+        if (copied) {
+          showToast('Prompt berhasil digenerate & otomatis disalin!');
+        } else {
+          showToast('Gagal menyalin otomatis. Silakan coba lagi.', true);
         }
+      });
+    }
 
-        function openAuthModal() {
-            const modal = document.getElementById('authModal');
-            const input = document.getElementById('passInput');
-            modal.classList.add('active'); 
-            input.value = ""; 
-            setTimeout(() => input.focus(), 100); 
+    function generateRevisionPrompt() {
+      const changes = document.getElementById('rev-changes').value.trim();
+      const code = document.getElementById('rev-code').value.trim();
+
+      if (!changes) {
+        showToast('Silakan isi perubahan yang diinginkan!', true);
+        document.getElementById('rev-changes').focus();
+        return;
+      }
+
+      let prompt = `Saya akan melampirkan source code HTML yang sudah ada.
+
+TUGAS:
+Revisi source code tersebut sesuai perubahan yang saya minta, tetapi WAJIB mempertahankan seluruh fungsi, fitur, struktur kerja, dan perilaku yang sudah ada kecuali bagian yang secara eksplisit saya minta untuk diubah.
+
+PRIORITAS UTAMA:
+
+* Mobile-first
+* Sangat smooth, ringan, dan responsif
+* Optimalkan khusus perangkat mobile
+* Scrolling harus natural, stabil, tanpa lag/jank
+* Desktop tetap bagus dan responsif, tetapi performa mobile adalah prioritas utama
+
+PERFORMA WAJIB:
+
+* Minimalkan \`backdrop-filter\`, blur, shadow besar, dan animasi berat terutama di mobile
+* Gunakan animasi seperlunya, prioritaskan \`transform\` dan \`opacity\`
+* Hindari animasi terus-menerus pada banyak elemen
+* Optimalkan background/image agar tidak menyebabkan repaint berat
+* Gunakan \`requestAnimationFrame\` untuk proses yang berkaitan dengan scroll
+* Gunakan passive event listener untuk scroll/touch
+* Hindari layout reflow/recalculation berulang
+* Jangan melakukan manipulasi DOM berlebihan saat scrolling
+* Optimalkan pergantian background agar transisinya smooth
+* Gunakan \`svh\`/\`dvh\` sesuai kebutuhan agar viewport mobile stabil
+* Gunakan lazy-loading untuk gambar yang tidak langsung terlihat
+* Hormati \`prefers-reduced-motion\`
+* Jangan menggunakan efek visual yang mengorbankan performa
+* Pastikan touch scrolling tetap natural dan tidak patah-patah
+* Hindari JavaScript yang berjalan terus-menerus jika tidak diperlukan
+* Jangan membuat interval, listener, observer, atau animasi baru yang redundant
+* Pastikan elemen tidak mengalami flicker, jumping, shifting, atau glitch saat scrolling
+
+ATURAN REVISI:
+
+* Jangan menghapus fungsi yang sudah ada
+* Jangan mengurangi fitur yang sudah ada
+* Jangan mengubah alur kerja yang tidak saya minta
+* Jangan mengubah data/content yang tidak saya minta
+* Jangan mengubah desain yang tidak saya minta
+* Jangan mengganti library yang sudah digunakan tanpa alasan kuat
+* Pertahankan semua ID, class, event, fungsi JavaScript, dan mekanisme yang masih diperlukan
+* Jika perubahan membutuhkan modifikasi kode lama, lakukan seminimal mungkin
+* Pastikan fitur lama tetap bekerja setelah revisi
+* Jangan membuat solusi yang hanya bagus di desktop tetapi buruk di mobile
+* Prioritaskan performa nyata di perangkat mobile, bukan hanya tampilan
+
+FUNGSI DAN FITUR:
+Semua fungsi dan fitur harus tetap lengkap sesuai source code awal dan kebutuhan revisi.
+
+OUTPUT:
+
+* Berikan FULL SOURCE CODE
+* Hanya satu file \`index.html\`
+* HTML + Tailwind CSS + JavaScript dalam satu file
+* Jangan membuat file tambahan
+* Jangan memberikan potongan kode
+* Jangan memberikan placeholder
+* Jangan menghilangkan bagian kode yang masih diperlukan
+* JANGAN beri komentar apa pun di dalam source code
+* Source code harus siap langsung digunakan
+
+SEBELUM MEMBERIKAN HASIL:
+Pastikan secara internal bahwa:
+
+1. Semua fitur lama tetap tersedia
+2. Semua perubahan yang saya minta sudah diterapkan
+3. Tidak ada fungsi JavaScript yang rusak
+4. Tidak ada event listener redundant
+5. Tidak ada animasi berat yang tidak diperlukan
+6. Scrolling mobile tetap smooth
+7. Layout tidak mengalami reflow berlebihan
+8. Tampilan mobile dan desktop tetap responsif
+9. Tidak ada bagian penting yang terhapus
+
+PERUBAHAN YANG SAYA INGINKAN:
+${changes}
+
+SOURCE CODE YANG AKAN DIREVISI:`;
+
+      if (code) {
+        prompt += `\n\`\`\`html\n${code}\n\`\`\``;
+      } else {
+        prompt += ` `;
+      }
+
+      writeClipboard(prompt).then((copied) => {
+        if (copied) {
+          showToast('Prompt revisi berhasil digenerate & otomatis disalin!');
+        } else {
+          showToast('Gagal menyalin otomatis. Silakan coba lagi.', true);
         }
+      });
+    }
 
-        function closeAuthModal() { document.getElementById('authModal').classList.remove('active'); }
+    function resetNewForm() {
+      document.getElementById('new-detail').value = '';
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentYear = new Date().getFullYear();
-            document.getElementById('year').textContent = currentYear;
-            document.getElementById('yearLanding').textContent = currentYear;
-
-            const passInput = document.getElementById("passInput");
-            const submitPassBtn = document.getElementById("submitPassBtn");
-            const passError = document.getElementById("passError");
-            const errorText = document.getElementById("errorText");
-            const btnText = submitPassBtn.querySelector(".btn-text");
-            const spinner = submitPassBtn.querySelector(".spinner");
-            const mainContent = document.getElementById("mainContent");
-            const landingPage = document.getElementById("landingPage");
-            const musicBtnDisplay = document.getElementById('musicButton');
-            
-            let isLocked = true;
-
-            function resetButtonState() {
-                btnText.style.display = "block";
-                spinner.style.display = "none";
-                submitPassBtn.disabled = false;
-            }
-
-            function lockSite() {
-                isLocked = true;
-                resetButtonState();
-                landingPage.classList.remove("hidden");
-                mainContent.classList.add("hidden");
-                mainContent.classList.replace("opacity-100", "opacity-0");
-                musicBtnDisplay.classList.add("hidden");
-                document.body.classList.add("locked");
-                closeAuthModal();
-            }
-
-            async function verifyPassword() {
-                const password = passInput.value;
-                if (!password) {
-                    showToast("Isi kode akses terlebih dahulu!", "warning");
-                    return;
-                }
-
-                btnText.style.display = "none";
-                spinner.style.display = "block";
-                passError.classList.add("hidden");
-                submitPassBtn.disabled = true;
-
-                try {
-                    const response = await fetch(GAS_SCRIPT_URL, {
-                        method: "POST",
-                        body: JSON.stringify({ password: password })
-                    });
-                    const result = await response.json();
-                    
-                    if (result.status === "success" || result.result === "success") {
-                        unlockSite();
-                    } else {
-                        throw new Error("Kode yang Anda masukkan salah.");
-                    }
-                } catch (error) {
-                    passError.classList.remove("hidden");
-                    errorText.textContent = "Kode akses salah!";
-                    resetButtonState();
-                    setTimeout(() => { passError.classList.add("hidden"); }, 3000);
-                }
-            }
-
-            function unlockSite() {
-                isLocked = false;
-                closeAuthModal();
-                landingPage.classList.add("hidden");
-                document.body.classList.remove("locked");
-                mainContent.classList.remove("hidden");
-                musicBtnDisplay.classList.remove('hidden');
-                setTimeout(() => mainContent.classList.replace('opacity-0', 'opacity-100'), 50);
-                resetButtonState();
-                showToast("Akses Diterima");
-            }
-
-            submitPassBtn.addEventListener("click", verifyPassword);
-            passInput.addEventListener("keypress", (e) => { if (e.key === "Enter") verifyPassword(); });
-
-            const revisiInputTextarea = document.getElementById('revisiInputText');
-            const revisiGenerateAndCopyBtn = document.getElementById('revisiGenerateAndCopyBtn');
-            const revisiOutputBox = document.getElementById('revisiOutputBox');
-            const originalRevisiBtnText = revisiGenerateAndCopyBtn.textContent.trim();
-
-            const newInputTextarea = document.getElementById('newInputText');
-            const newGenerateAndCopyBtn = document.getElementById('newGenerateAndCopyBtn');
-            const newOutputBox = document.getElementById('newOutputBox');
-            const originalNewBtnText = newGenerateAndCopyBtn.textContent.trim();
-
-            const copyTextToClipboard = async (textToCopy, buttonElement, originalText) => {
-                try {
-                    if (navigator.clipboard && window.isSecureContext) {
-                        await navigator.clipboard.writeText(textToCopy);
-                    } else {
-                        const tempTextarea = document.createElement('textarea');
-                        tempTextarea.value = textToCopy;
-                        document.body.appendChild(tempTextarea);
-                        tempTextarea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(tempTextarea);
-                    }
-                    buttonElement.textContent = 'Berhasil Disalin!';
-                    buttonElement.classList.add('success');
-                    setTimeout(() => {
-                        buttonElement.textContent = originalText;
-                        buttonElement.classList.remove('success');
-                    }, 2000);
-                } catch (err) {
-                    console.error('Gagal menyalin teks: ', err);
-                }
-            };
-
-            revisiGenerateAndCopyBtn.addEventListener('click', () => {
-                const text = revisiInputTextarea.value.trim();
-                if (text === '') return showToast("Masukkan teks revisi!", "warning");
-                revisiOutputBox.classList.remove('italic', 'text-[#155e75]/60');
-                revisiOutputBox.classList.add('text-[#155e75]', 'not-italic');
-                const generatedPrompt = `JAWAB MENGGUNAKAN BAHASA INDONESIA\nrevisi script html saya sesuai yang saya lampirkan:\n\n${text}\n\nfokuskan apa yang saya perintahkan. jangan rubah fungsi-fungsi yang sudah ada.\nSEMUANYA JANGAN DI BUATKAN KOMENTAR\nberikan full revisi scriptnya dari html, Tailwind CSS, js semuanya dibungkus dalam satu file index.html`;
-                revisiOutputBox.textContent = generatedPrompt;
-                copyTextToClipboard(generatedPrompt, revisiGenerateAndCopyBtn, originalRevisiBtnText);
-            });
-
-            newGenerateAndCopyBtn.addEventListener('click', () => {
-                const text = newInputTextarea.value.trim();
-                if (text === '') return showToast("Masukkan ide prompt!", "warning");
-                newOutputBox.classList.remove('italic', 'text-[#155e75]/60');
-                newOutputBox.classList.add('text-[#155e75]', 'not-italic');
-                const generatedPrompt = `JAWAB MENGGUNAKAN BAHASA INDONESIA\nbuatkan saya website sesuai apa yang saya perintahkan:\n\n${text}\n\nSEMUANYA JANGAN DI BUATKAN KOMENTAR\nberikan full scriptnya dari html, Tailwind CSS, js semuanya dibungkus dalam satu file index.html`;
-                newOutputBox.textContent = generatedPrompt;
-                copyTextToClipboard(generatedPrompt, newGenerateAndCopyBtn, originalNewBtnText);
-            });
-
-            const musicButton = document.getElementById('musicButton');
-            const backgroundMusic = document.getElementById('backgroundMusic');
-            const musicIcon = document.getElementById('musicIcon');
-            let isPlaying = false;
-
-            musicButton.addEventListener('click', () => {
-                if (isPlaying) {
-                    backgroundMusic.pause();
-                    musicIcon.classList.replace('fa-pause', 'fa-music');
-                } else {
-                    backgroundMusic.play();
-                    musicIcon.classList.replace('fa-music', 'fa-pause');
-                }
-                isPlaying = !isPlaying;
-            });
-        });
-
-        window.openAuthModal = () => {
-            const modal = document.getElementById('authModal');
-            const input = document.getElementById('passInput');
-            modal.classList.add('active'); 
-            input.value = ""; 
-            setTimeout(() => input.focus(), 100); 
-        };
-        window.closeAuthModal = () => { document.getElementById('authModal').classList.remove('active'); };
-    </script>
+    function resetRevForm() {
+      document.getElementById('rev-changes').value = '';
+      document.getElementById('rev-code').value = '';
+    }
+  </script>
 </body>
 </html>
