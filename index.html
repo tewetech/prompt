@@ -1,3 +1,84 @@
+[PROMPT SPLITTER — PART 1/3]
+[WAITING SEGMENT]
+Ini adalah bagian dari prompt yang dikirim bertahap. Jangan menjawab, menganalisis, menjalankan instruksi, merangkum, atau mengambil tindakan apa pun dulu. Simpan bagian ini sebagai konteks dan tunggu bagian berikutnya sampai pesan FINAL SEGMENT diterima.
+
+--- CONTENT ---
+Saya akan melampirkan source code HTML yang sudah ada.
+
+TUGAS:
+Revisi source code tersebut sesuai perubahan yang saya minta, tetapi WAJIB mempertahankan seluruh fungsi, fitur, struktur kerja, dan perilaku yang sudah ada kecuali bagian yang secara eksplisit saya minta untuk diubah.
+
+PRIORITAS UTAMA:
+
+* Mobile-first
+* Sangat smooth, ringan, dan responsif
+* Optimalkan khusus perangkat mobile
+* Scrolling harus natural, stabil, tanpa lag/jank
+* Desktop tetap bagus dan responsif, tetapi performa mobile adalah prioritas utama
+
+PERFORMA WAJIB:
+
+* Minimalkan `backdrop-filter`, blur, shadow besar, dan animasi berat terutama di mobile
+* Gunakan animasi seperlunya, prioritaskan `transform` dan `opacity`
+* Hindari animasi terus-menerus pada banyak elemen
+* Optimalkan background/image agar tidak menyebabkan repaint berat
+* Gunakan `requestAnimationFrame` untuk proses yang berkaitan dengan scroll
+* Gunakan passive event listener untuk scroll/touch
+* Hindari layout reflow/recalculation berulang
+* Jangan melakukan manipulasi DOM berlebihan saat scrolling
+* Optimalkan pergantian background agar transisinya smooth
+* Gunakan `svh`/`dvh` sesuai kebutuhan agar viewport mobile stabil
+* Gunakan lazy-loading untuk gambar yang tidak langsung terlihat
+* Hormati `prefers-reduced-motion`
+* Jangan menggunakan efek visual yang mengorbankan performa
+* Pastikan touch scrolling tetap natural dan tidak patah-patah
+* Hindari JavaScript yang berjalan terus-menerus jika tidak diperlukan
+* Jangan membuat interval, listener, observer, atau animasi baru yang redundant
+* Pastikan elemen tidak mengalami flicker, jumping, shifting, atau glitch saat scrolling
+
+ATURAN REVISI:
+
+* Jangan menghapus fungsi yang sudah ada
+* Jangan mengurangi fitur yang sudah ada
+* Jangan mengubah alur kerja yang tidak saya minta
+* Jangan mengubah data/content yang tidak saya minta
+* Jangan mengubah desain yang tidak saya minta
+* Jangan mengganti library yang sudah digunakan tanpa alasan kuat
+* Pertahankan semua ID, class, event, fungsi JavaScript, dan mekanisme yang masih diperlukan
+* Jika perubahan membutuhkan modifikasi kode lama, lakukan seminimal mungkin
+* Pastikan fitur lama tetap bekerja setelah revisi
+* Jangan membuat solusi yang hanya bagus di desktop tetapi buruk di mobile
+* Prioritaskan performa nyata di perangkat mobile, bukan hanya tampilan
+
+FUNGSI DAN FITUR:
+Semua fungsi dan fitur harus tetap lengkap sesuai source code awal dan kebutuhan revisi.
+
+OUTPUT:
+
+* Berikan FULL SOURCE CODE
+* Hanya satu file `index.html`
+* HTML + Tailwind CSS + JavaScript dalam satu file
+* Jangan membuat file tambahan
+* Jangan memberikan potongan kode
+* Jangan memberikan placeholder
+* Jangan menghilangkan bagian kode yang masih diperlukan
+* JANGAN beri komentar apa pun di dalam source code
+* Source code harus siap langsung digunakan
+
+SEBELUM MEMBERIKAN HASIL:
+Pastikan secara internal bahwa:
+
+1. Semua fitur lama tetap tersedia
+2. Semua perubahan yang saya minta sudah diterapkan
+3. Tidak ada fungsi JavaScript yang rusak
+4. Tidak ada event listener redundant
+5. Tidak ada animasi berat yang tidak diperlukan
+6. Scrolling mobile tetap smooth
+7. Layout tidak mengalami reflow berlebihan
+8. Tampilan mobile dan desktop tetap responsif
+9. Tidak ada bagian penting yang terhapus
+
+PERUBAHAN YANG SAYA INGINKAN:
 <!DOCTYPE html>
 <html lang="id" class="dark">
 <head>
@@ -48,6 +129,10 @@
       overflow-x: hidden;
       -webkit-tap-highlight-color: transparent;
       font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body.modal-open {
+      overflow: hidden !important;
     }
 
     ::-webkit-scrollbar {
@@ -342,269 +427,6 @@
             </div>
           </div>
 
-          <button type="button" onclick="generateRevisionPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-medium transition-colors shadow-sm mt-auto shrink-0">
-            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1M8 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M8 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m0 0h2a2 2 0 0 1 2 2v3m2 4H10m0 0 3-3m-3 3 3 3"/>
-            </svg>
-            <span class="truncate">Generate & Salin</span>
-          </button>
-        </div>
-      </section>
-    </main>
-
-    <footer class="page-footer mt-7 sm:mt-8 pt-4 border-t border-zinc-800/80 text-center text-xs text-zinc-600 shrink-0">
-      Generator Prompt &bull; Otomatis Tersalin &bull; Tanpa Refresh
-    </footer>
-  </div>
-
-  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-[#111820] border border-cyan-500/20 text-zinc-100 px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2.5 opacity-0 translate-y-3 pointer-events-none transition-all duration-200 z-50 max-w-[calc(100vw-2rem)]">
-    <span id="toast-icon" class="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">
-      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <polyline points="20 6 9 17 4 12"></polyline>
-      </svg>
-    </span>
-
-    <span id="toast-text" class="text-xs sm:text-sm font-medium"></span>
-  </div>
-
-  <script>
-    let toastTimeout = null;
-
-    function showToast(message, isError = false) {
-      clearTimeout(toastTimeout);
-
-      const toast = document.getElementById('toast');
-      const toastText = document.getElementById('toast-text');
-      const toastIcon = document.getElementById('toast-icon');
-
-      toastText.textContent = message;
-
-      if (isError) {
-        toast.classList.remove('border-cyan-500/20');
-        toast.classList.add('border-rose-500/30');
-        toastIcon.className = 'flex items-center justify-center w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 shrink-0';
-        toastIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M6 6l12 12"></path></svg>';
-      } else {
-        toast.classList.remove('border-rose-500/30');
-        toast.classList.add('border-cyan-500/20');
-        toastIcon.className = 'flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0';
-        toastIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-      }
-
-      toast.classList.remove('opacity-0', 'translate-y-3', 'pointer-events-none');
-      toast.classList.add('opacity-100', 'translate-y-0');
-
-      toastTimeout = setTimeout(() => {
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
-      }, 2200);
-    }
-
-    async function writeClipboard(text) {
-      if (navigator.clipboard && window.isSecureContext) {
-        try {
-          await navigator.clipboard.writeText(text);
-          return true;
-        } catch (err) {}
-      }
-
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      textArea.style.position = 'fixed';
-      textArea.style.left = '-999999px';
-      textArea.style.top = '-999999px';
-      textArea.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-
-      let success = false;
-
-      try {
-        success = document.execCommand('copy');
-      } catch (err) {}
-
-      textArea.remove();
-      return success;
-    }
-
-    function generateNewPrompt() {
-      const detail = document.getElementById('new-detail').value.trim();
-
-      if (!detail) {
-        showToast('Silakan isi detail web yang diinginkan!', true);
-        document.getElementById('new-detail').focus();
-        return;
-      }
-
-      const prompt = `Buat website dari nol menggunakan HTML + Tailwind CSS + JavaScript dalam SATU file \`index.html\`. 
-
-DETAIL WEB YANG DI INGINKAN :
-${detail}
-
-PRIORITAS UTAMA:
-
-* Mobile-first
-* Sangat smooth, ringan, responsif
-* Optimalkan khusus perangkat mobile
-* Jangan gunakan efek yang menyebabkan lag/jank saat scrolling
-
-WAJIB:
-
-* Minimalkan \`backdrop-filter\`, blur, shadow besar, dan animasi berat di mobile
-* Gunakan animasi seperlunya dan utamakan \`transform\` + \`opacity\`
-* Hindari animasi yang terus berjalan pada banyak elemen sekaligus
-* Optimalkan background/image agar tidak menyebabkan repaint berat
-* Gunakan \`requestAnimationFrame\` untuk proses yang berjalan saat scroll
-* Gunakan passive event listener untuk scroll/touch
-* Hindari layout reflow/recalculation berulang
-* Jangan melakukan manipulasi DOM berlebihan saat scrolling
-* Optimalkan pergantian background agar smooth
-* Gunakan ukuran viewport mobile yang stabil (\`svh\`/\`dvh\`) sesuai kebutuhan
-* Lazy-load gambar yang tidak langsung terlihat
-* Hormati \`prefers-reduced-motion\`
-* Pastikan scrolling touch tetap natural dan tidak patah-patah
-* Desktop tetap bagus, tetapi performa mobile adalah prioritas utama
-
-FUNGSI DAN FITUR:
-Semua fungsi harus tetap lengkap sesuai kebutuhan website.
-
-OUTPUT:
-
-* Full source code
-* Hanya satu file \`index.html\`
-* HTML + Tailwind CSS + JavaScript menjadi satu
-* JANGAN beri komentar di dalam source code
-* Jangan membuat file terpisah
-* Jangan mengurangi fungsi yang sudah ditentukan`;
-
-      writeClipboard(prompt).then((copied) => {
-        if (copied) {
-          showToast('Prompt berhasil digenerate & otomatis disalin!');
-        } else {
-          showToast('Gagal menyalin otomatis. Silakan coba lagi.', true);
-        }
-      });
-    }
-
-    function generateRevisionPrompt() {
-      const changes = document.getElementById('rev-changes').value.trim();
-      const code = document.getElementById('rev-code').value.trim();
-
-      if (!changes) {
-        showToast('Silakan isi perubahan yang diinginkan!', true);
-        document.getElementById('rev-changes').focus();
-        return;
-      }
-
-      let prompt = `Saya akan melampirkan source code HTML yang sudah ada.
-
-TUGAS:
-Revisi source code tersebut sesuai perubahan yang saya minta, tetapi WAJIB mempertahankan seluruh fungsi, fitur, struktur kerja, dan perilaku yang sudah ada kecuali bagian yang secara eksplisit saya minta untuk diubah.
-
-PRIORITAS UTAMA:
-
-* Mobile-first
-* Sangat smooth, ringan, dan responsif
-* Optimalkan khusus perangkat mobile
-* Scrolling harus natural, stabil, tanpa lag/jank
-* Desktop tetap bagus dan responsif, tetapi performa mobile adalah prioritas utama
-
-PERFORMA WAJIB:
-
-* Minimalkan \`backdrop-filter\`, blur, shadow besar, dan animasi berat terutama di mobile
-* Gunakan animasi seperlunya, prioritaskan \`transform\` dan \`opacity\`
-* Hindari animasi terus-menerus pada banyak elemen
-* Optimalkan background/image agar tidak menyebabkan repaint berat
-* Gunakan \`requestAnimationFrame\` untuk proses yang berkaitan dengan scroll
-* Gunakan passive event listener untuk scroll/touch
-* Hindari layout reflow/recalculation berulang
-* Jangan melakukan manipulasi DOM berlebihan saat scrolling
-* Optimalkan pergantian background agar transisinya smooth
-* Gunakan \`svh\`/\`dvh\` sesuai kebutuhan agar viewport mobile stabil
-* Gunakan lazy-loading untuk gambar yang tidak langsung terlihat
-* Hormati \`prefers-reduced-motion\`
-* Jangan menggunakan efek visual yang mengorbankan performa
-* Pastikan touch scrolling tetap natural dan tidak patah-patah
-* Hindari JavaScript yang berjalan terus-menerus jika tidak diperlukan
-* Jangan membuat interval, listener, observer, atau animasi baru yang redundant
-* Pastikan elemen tidak mengalami flicker, jumping, shifting, atau glitch saat scrolling
-
-ATURAN REVISI:
-
-* Jangan menghapus fungsi yang sudah ada
-* Jangan mengurangi fitur yang sudah ada
-* Jangan mengubah alur kerja yang tidak saya minta
-* Jangan mengubah data/content yang tidak saya minta
-* Jangan mengubah desain yang tidak saya minta
-* Jangan mengganti library yang sudah digunakan tanpa alasan kuat
-* Pertahankan semua ID, class, event, fungsi JavaScript, dan mekanisme yang masih diperlukan
-* Jika perubahan membutuhkan modifikasi kode lama, lakukan seminimal mungkin
-* Pastikan fitur lama tetap bekerja setelah revisi
-* Jangan membuat solusi yang hanya bagus di desktop tetapi buruk di mobile
-* Prioritaskan performa nyata di perangkat mobile, bukan hanya tampilan
-
-FUNGSI DAN FITUR:
-Semua fungsi dan fitur harus tetap lengkap sesuai source code awal dan kebutuhan revisi.
-
-OUTPUT:
-
-* Berikan FULL SOURCE CODE
-* Hanya satu file \`index.html\`
-* HTML + Tailwind CSS + JavaScript dalam satu file
-* Jangan membuat file tambahan
-* Jangan memberikan potongan kode
-* Jangan memberikan placeholder
-* Jangan menghilangkan bagian kode yang masih diperlukan
-* JANGAN beri komentar apa pun di dalam source code
-* Source code harus siap langsung digunakan
-
-SEBELUM MEMBERIKAN HASIL:
-Pastikan secara internal bahwa:
-
-1. Semua fitur lama tetap tersedia
-2. Semua perubahan yang saya minta sudah diterapkan
-3. Tidak ada fungsi JavaScript yang rusak
-4. Tidak ada event listener redundant
-5. Tidak ada animasi berat yang tidak diperlukan
-6. Scrolling mobile tetap smooth
-7. Layout tidak mengalami reflow berlebihan
-8. Tampilan mobile dan desktop tetap responsif
-9. Tidak ada bagian penting yang terhapus
-
-PERUBAHAN YANG SAYA INGINKAN:
-${changes}
-
-SOURCE CODE YANG AKAN DIREVISI:`;
-
-      if (code) {
-        prompt += `
-\`\`\`html
-${code}
-\`\`\``;
-      } else {
-        prompt += ` `;
-      }
-
-      writeClipboard(prompt).then((copied) => {
-        if (copied) {
-          showToast('Prompt revisi berhasil digenerate & otomatis disalin!');
-        } else {
-          showToast('Gagal menyalin otomatis. Silakan coba lagi.', true);
-        }
-      });
-    }
-
-    function resetNewForm() {
-      document.getElementById('new-detail').value = '';
-      document.getElementById('new-detail').focus();
-    }
-
-    function resetRevForm() {
-      document.getElementById('rev-changes').value = '';
-      document.getElementById('rev-code').value = '';
-      document.getElementById('rev-changes').focus();
-    }
-  </script>
-</body>
-</html>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-auto shrink-0">
+            <button type="button" onclick="generateRevisionPrompt()" class="w-full h-11 inline-flex items-center
+--- END PART 1/3 ---
