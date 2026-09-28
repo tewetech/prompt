@@ -30,10 +30,18 @@
       color-scheme: dark;
     }
 
+    html:not(.dark) {
+      color-scheme: light;
+    }
+
     html {
       scroll-behavior: smooth;
       scrollbar-width: thin;
-      scrollbar-color: #155e75 #09090b;
+      scrollbar-color: #0891b2 #0b0f17;
+    }
+
+    html:not(.dark) {
+      scrollbar-color: #0284c7 #f1f5f9;
     }
 
     *,
@@ -41,13 +49,19 @@
     *::after {
       box-sizing: border-box;
       scrollbar-width: thin;
-      scrollbar-color: #155e75 #09090b;
+      scrollbar-color: #0891b2 #0b0f17;
+    }
+
+    html:not(.dark) *,
+    html:not(.dark) *::before,
+    html:not(.dark) *::after {
+      scrollbar-color: #0284c7 #f1f5f9;
     }
 
     body {
       overflow-x: hidden;
       -webkit-tap-highlight-color: transparent;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     body.modal-open {
@@ -60,32 +74,46 @@
     }
 
     ::-webkit-scrollbar-track {
-      background: #09090b;
+      background: #0b0f17;
+    }
+
+    html:not(.dark) ::-webkit-scrollbar-track {
+      background: #f8fafc;
     }
 
     ::-webkit-scrollbar-thumb {
-      background: #155e75;
+      background: #0891b2;
       border-radius: 999px;
     }
 
+    html:not(.dark) ::-webkit-scrollbar-thumb {
+      background: #0284c7;
+    }
+
     ::-webkit-scrollbar-thumb:hover {
-      background: #0891b2;
+      background: #06b6d4;
+    }
+
+    html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+      background: #0369a1;
     }
 
     textarea,
     pre,
     code {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
 
     textarea {
       resize: vertical;
       min-width: 0;
       max-width: 100%;
+      overscroll-behavior: contain;
     }
 
     button,
-    textarea {
+    textarea,
+    input {
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -93,17 +121,18 @@
       touch-action: manipulation;
     }
 
-    .tech-grid {
+    .clean-grid {
       background-image:
-        linear-gradient(rgba(34, 211, 238, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(34, 211, 238, 0.035) 1px, transparent 1px);
-      background-size: 28px 28px;
+        linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
 
-    .tech-glow {
-      background:
-        radial-gradient(circle at 50% -10%, rgba(6, 182, 212, 0.11), transparent 36%),
-        radial-gradient(circle at 90% 70%, rgba(14, 116, 144, 0.07), transparent 28%);
+    html:not(.dark) .clean-grid {
+      background-image:
+        linear-gradient(rgba(2, 132, 199, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
 
     .page-shell,
@@ -118,21 +147,13 @@
 
     .page-card {
       width: 100%;
-      overflow: hidden;
     }
 
     .new-detail,
     .rev-changes,
     .rev-code {
       max-width: 100%;
-      overflow: auto;
       display: block;
-    }
-
-    @media (max-width: 640px) {
-      .tech-grid {
-        background-size: 24px 24px;
-      }
     }
 
     @media (min-width: 1024px) {
@@ -151,12 +172,12 @@
         min-height: 0;
         overflow: hidden;
         padding-top: 1rem !important;
-        padding-bottom: 1rem !important;
+        padding-bottom: 0.85rem !important;
       }
 
       .page-header {
         margin-bottom: 0.75rem !important;
-        padding-bottom: 0.75rem !important;
+        padding-bottom: 0.65rem !important;
       }
 
       .page-main {
@@ -168,7 +189,6 @@
       .page-card {
         min-height: 0 !important;
         height: 100%;
-        overflow: hidden;
       }
 
       .page-card > div {
@@ -183,8 +203,8 @@
       }
 
       .page-footer {
-        margin-top: 0.75rem !important;
-        padding-top: 0.5rem !important;
+        margin-top: 0.65rem !important;
+        padding-top: 0.45rem !important;
       }
 
       .new-detail {
@@ -207,13 +227,19 @@
 
     @media (max-width: 1023px) {
       .page-card {
-        overflow: hidden;
+        min-height: auto;
       }
 
-      .new-detail,
-      .rev-changes,
+      .new-detail {
+        min-height: 180px;
+      }
+
+      .rev-changes {
+        min-height: 130px;
+      }
+
       .rev-code {
-        width: 100%;
+        min-height: 150px;
       }
     }
 
@@ -228,166 +254,246 @@
       }
     }
   </style>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="min-h-dvh bg-[#07090d] text-zinc-100 antialiased selection:bg-cyan-500 selection:text-black flex flex-col tech-grid">
-  <div class="fixed inset-0 pointer-events-none tech-glow"></div>
+<body class="min-h-dvh bg-slate-100 dark:bg-[#080b11] text-slate-800 dark:text-zinc-100 antialiased selection:bg-cyan-500 selection:text-white flex flex-col clean-grid transition-colors duration-200">
 
-  <div class="page-shell relative z-10 w-full max-w-7xl mx-auto px-4 py-5 sm:px-6 sm:py-7 lg:px-8 flex-1 flex flex-col">
-    <header class="page-header mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-zinc-800/80 pb-5">
-      <div class="min-w-0">
-        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium mb-2">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="m18 16 4-4-4-4"/>
-            <path d="m6 8-4 4 4 4"/>
-            <path d="m14.5 4-5 16"/>
+  <div class="page-shell relative z-10 w-full max-w-7xl mx-auto px-3.5 py-4 sm:px-6 sm:py-5 lg:px-8 flex-1 flex flex-col">
+    <header class="page-header mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-200/90 dark:border-zinc-800 pb-4">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+            <line x1="12" y1="3" x2="12" y2="21"></line>
           </svg>
-          AI WEB PROMPT
         </div>
 
-        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-          Tewe Web Prompt
-        </h1>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white truncate">
+              WEB TEWE TECH
+            </h1>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-700 dark:text-cyan-300 text-[11px] font-semibold shrink-0">
+              <svg class="w-3 h-3 text-cyan-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"></path>
+              </svg>
+              PROMPT
+            </span>
+          </div>
 
-        <p class="text-sm text-zinc-400 mt-1">
-          Generator prompt terstruktur untuk pembuatan & revisi website
-        </p>
+          <p class="text-xs text-slate-500 dark:text-zinc-400 mt-0.5 truncate">
+            Generator prompt terstruktur untuk pembuatan & revisi website
+          </p>
+        </div>
       </div>
 
-      <div class="flex items-center justify-center sm:justify-end gap-2 text-xs text-zinc-500 shrink-0">
-        <span class="inline-block w-2 h-2 rounded-full bg-cyan-400"></span>
-        Auto Copy Aktif
+      <div class="flex items-center justify-between sm:justify-end gap-2.5 shrink-0 pt-1 sm:pt-0">
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-xs font-medium text-slate-600 dark:text-zinc-400">
+          <svg class="w-3.5 h-3.5 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <span>Auto Copy Aktif</span>
+        </div>
+
+        <button type="button" id="themeToggleBtn" onclick="toggleTheme()" class="h-8 px-2.5 inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:border-cyan-500/50 hover:text-cyan-600 dark:hover:text-cyan-400 active:scale-95 transition-colors text-xs font-medium shrink-0 shadow-sm" aria-label="Ganti Tema">
+          <span id="themeToggleIcon" class="flex items-center justify-center">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+          </span>
+          <span id="themeToggleLabel">Dark</span>
+        </button>
       </div>
     </header>
 
     <main class="page-main grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 flex-1 items-stretch w-full min-w-0">
-      <section class="page-card bg-[#0d1117]/95 border border-zinc-800/90 rounded-2xl p-4 sm:p-5 flex flex-col gap-4 shadow-[0_8px_30px_rgba(0,0,0,0.16)] min-h-[420px] lg:min-h-0 min-w-0">
-        <div class="flex items-center justify-between gap-3 border-b border-zinc-800/80 pb-3 shrink-0 min-w-0">
+      <section class="page-card bg-white dark:bg-[#0e131d] border border-slate-200 dark:border-zinc-800/90 rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5 shadow-sm min-w-0 transition-colors duration-200">
+        <div class="flex items-center justify-between gap-3 border-b border-slate-100 dark:border-zinc-800/80 pb-3 shrink-0 min-w-0">
           <div class="flex items-center gap-2.5 min-w-0">
-            <span class="flex items-center justify-center w-7 h-7 shrink-0 rounded-lg bg-cyan-500/10 text-cyan-400 font-semibold text-xs border border-cyan-500/20">01</span>
+            <span class="flex items-center justify-center w-7 h-7 shrink-0 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-bold text-xs border border-cyan-500/20">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+            </span>
 
             <div class="min-w-0">
-              <h2 class="text-lg font-semibold text-white tracking-wide truncate">BUAT WEB</h2>
-              <p class="text-xs text-zinc-500 mt-0.5 truncate">Untuk project website baru dari nol</p>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5 truncate">
+                <span>BUAT WEB</span>
+                <span class="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400">01</span>
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-zinc-400 truncate">Project website baru dari nol</p>
             </div>
           </div>
 
-          <button type="button" onclick="resetNewForm()" class="reset-btn h-8 px-2.5 inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-700 bg-zinc-800 text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-400 active:scale-[0.98] transition-colors text-xs font-medium shrink-0">
-            Reset
+          <button type="button" onclick="resetNewForm()" class="reset-btn h-8 px-2.5 inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-600 dark:hover:text-cyan-400 active:scale-95 transition-colors text-xs font-medium shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+            <span>Reset</span>
           </button>
         </div>
 
-        <div class="flex flex-col flex-1 gap-4 min-h-0 min-w-0">
+        <div class="flex flex-col flex-1 gap-3.5 min-h-0 min-w-0">
           <div class="flex flex-col flex-1 min-h-0 min-w-0">
-            <label for="new-detail" class="block text-xs font-medium text-zinc-400 mb-1.5 shrink-0">
-              Detail Web Yang Diinginkan <span class="text-cyan-400">*</span>
+            <label for="new-detail" class="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0">
+              <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+              <span>Detail Web Yang Diinginkan</span>
+              <span class="text-cyan-600 dark:text-cyan-400 font-bold">*</span>
             </label>
 
             <textarea
               id="new-detail"
-              placeholder="Jelaskan secara detail website yang ingin dibuat..."
-              class="new-detail w-full flex-1 min-h-[220px] lg:min-h-0 bg-[#080b10] border border-zinc-800 rounded-xl px-3 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-colors custom-scrollbar"
+              placeholder="Jelaskan secara detail website yang ingin dibuat (tujuan, fitur, susunan section, gaya)..."
+              class="new-detail w-full flex-1 bg-slate-50/80 dark:bg-[#080b11] border border-slate-200 dark:border-zinc-800 rounded-xl p-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:bg-white dark:focus:bg-[#080b11] focus:ring-1 focus:ring-cyan-500/30 transition-colors"
             ></textarea>
           </div>
 
-          <button type="button" onclick="generateNewPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-medium transition-colors shadow-sm shrink-0">
-            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1M8 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M8 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m0 0h2a2 2 0 0 1 2 2v3m2 4H10m0 0 3-3m-3 3 3 3"/>
+          <button type="button" onclick="generateNewPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-semibold transition-colors shadow-sm shrink-0">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
             <span class="truncate">Generate & Salin</span>
           </button>
         </div>
       </section>
 
-      <section class="page-card bg-[#0d1117]/95 border border-zinc-800/90 rounded-2xl p-4 sm:p-5 flex flex-col gap-4 shadow-[0_8px_30px_rgba(0,0,0,0.16)] min-h-[500px] lg:min-h-0 min-w-0">
-        <div class="flex items-center justify-between gap-3 border-b border-zinc-800/80 pb-3 shrink-0 min-w-0">
+      <section class="page-card bg-white dark:bg-[#0e131d] border border-slate-200 dark:border-zinc-800/90 rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5 shadow-sm min-w-0 transition-colors duration-200">
+        <div class="flex items-center justify-between gap-3 border-b border-slate-100 dark:border-zinc-800/80 pb-3 shrink-0 min-w-0">
           <div class="flex items-center gap-2.5 min-w-0">
-            <span class="flex items-center justify-center w-7 h-7 shrink-0 rounded-lg bg-cyan-500/10 text-cyan-400 font-semibold text-xs border border-cyan-500/20">02</span>
+            <span class="flex items-center justify-center w-7 h-7 shrink-0 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-bold text-xs border border-cyan-500/20">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+            </span>
 
             <div class="min-w-0">
-              <h2 class="text-lg font-semibold text-white tracking-wide truncate">REVISI WEB</h2>
-              <p class="text-xs text-zinc-500 mt-0.5 truncate">Untuk memodifikasi kode yang ada</p>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5 truncate">
+                <span>REVISI WEB</span>
+                <span class="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400">02</span>
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-zinc-400 truncate">Modifikasi & perbaiki kode yang ada</p>
             </div>
           </div>
 
-          <button type="button" onclick="resetRevForm()" class="reset-btn h-8 px-2.5 inline-flex items-center justify-center gap-1.5 rounded-lg border border-zinc-700 bg-zinc-800 text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-400 active:scale-[0.98] transition-colors text-xs font-medium shrink-0">
-            Reset
+          <button type="button" onclick="resetRevForm()" class="reset-btn h-8 px-2.5 inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-600 dark:hover:text-cyan-400 active:scale-95 transition-colors text-xs font-medium shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+            <span>Reset</span>
           </button>
         </div>
 
-        <div class="flex flex-col flex-1 gap-4 min-h-0 min-w-0">
-          <div class="flex flex-col gap-4 flex-1 min-h-0 min-w-0">
-            <div class="flex flex-col flex-1 min-h-[160px] lg:min-h-0 min-w-0">
-              <label for="rev-changes" class="block text-xs font-medium text-zinc-400 mb-1.5 shrink-0">
-                Perubahan Yang Diinginkan <span class="text-cyan-400">*</span>
+        <div class="flex flex-col flex-1 gap-3.5 min-h-0 min-w-0">
+          <div class="flex flex-col gap-3 flex-1 min-h-0 min-w-0">
+            <div class="flex flex-col flex-1 min-h-0 min-w-0">
+              <label for="rev-changes" class="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0">
+                <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 11 3 3L22 4"></path>
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+                <span>Perubahan Yang Diinginkan</span>
+                <span class="text-cyan-600 dark:text-cyan-400 font-bold">*</span>
               </label>
 
               <textarea
                 id="rev-changes"
-                placeholder="Jelaskan bagian mana yang ingin diubah..."
-                class="rev-changes w-full flex-1 min-h-[140px] lg:min-h-0 bg-[#080b10] border border-zinc-800 rounded-xl px-3 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-colors custom-scrollbar"
+                placeholder="Jelaskan bagian mana yang ingin diubah, ditambah, atau diperbaiki..."
+                class="rev-changes w-full flex-1 bg-slate-50/80 dark:bg-[#080b11] border border-slate-200 dark:border-zinc-800 rounded-xl p-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:bg-white dark:focus:bg-[#080b11] focus:ring-1 focus:ring-cyan-500/30 transition-colors"
               ></textarea>
             </div>
 
-            <div class="flex flex-col flex-1 min-h-[200px] lg:min-h-0 min-w-0">
-              <label for="rev-code" class="block text-xs font-medium text-zinc-400 mb-1.5 shrink-0">
-                Source Code HTML <span class="text-zinc-600 font-normal">(Opsional)</span>
+            <div class="flex flex-col flex-1 min-h-0 min-w-0">
+              <label for="rev-code" class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0">
+                <span class="flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                  <span>Source Code HTML</span>
+                </span>
+                <span class="text-slate-400 dark:text-zinc-500 font-normal text-[11px]">(Opsional)</span>
               </label>
 
               <textarea
                 id="rev-code"
-                placeholder="Tempelkan source code di sini..."
-                class="rev-code w-full flex-1 min-h-[180px] lg:min-h-0 bg-[#080b10] border border-zinc-800 rounded-xl px-3 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-colors custom-scrollbar"
+                placeholder="Tempelkan source code HTML yang ingin direvisi di sini..."
+                class="rev-code w-full flex-1 bg-slate-50/80 dark:bg-[#080b11] border border-slate-200 dark:border-zinc-800 rounded-xl p-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:bg-white dark:focus:bg-[#080b11] focus:ring-1 focus:ring-cyan-500/30 transition-colors"
               ></textarea>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-auto shrink-0">
-            <button type="button" onclick="generateRevisionPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-medium transition-colors shadow-sm shrink-0">
-              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1M8 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M8 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m0 0h2a2 2 0 0 1 2 2v3m2 4H10m0 0 3-3m-3 3 3 3"/>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-auto shrink-0">
+            <button type="button" onclick="generateRevisionPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-semibold transition-colors shadow-sm shrink-0">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
               </svg>
               <span class="truncate">Generate & Salin</span>
             </button>
 
-            <button type="button" onclick="openSplitterFromRevision()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 active:scale-[0.99] text-cyan-300 hover:text-cyan-200 text-sm font-medium transition-colors shadow-sm shrink-0">
+            <button type="button" onclick="openSplitterFromRevision()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 active:scale-[0.99] text-cyan-700 dark:text-cyan-300 text-sm font-semibold transition-colors shadow-sm shrink-0">
               <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 7h7M4 17h7M13 12h7M11 4l3 3-3 3M13 9l-3 3 3 3M13 15l-3 3 3 3"/>
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <line x1="12" y1="3" x2="12" y2="21"></line>
               </svg>
-              <span class="truncate">Splitter <span class="text-xs text-cyan-400/70 font-normal">(Opsional)</span></span>
+              <span class="truncate">Splitter <span class="text-xs font-normal opacity-80">(Opsional)</span></span>
             </button>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="page-footer mt-7 sm:mt-8 pt-4 border-t border-zinc-800/80 text-center text-xs text-zinc-600 shrink-0">
-      Generator Prompt &bull; Otomatis Tersalin &bull; Tanpa Refresh
+    <footer class="page-footer mt-5 sm:mt-6 pt-3 border-t border-slate-200/90 dark:border-zinc-800 text-center text-xs text-slate-500 dark:text-zinc-500 flex items-center justify-center gap-2 flex-wrap shrink-0">
+      <span class="inline-flex items-center gap-1">
+        <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        Generator Prompt
+      </span>
+      <span>&bull;</span>
+      <span>Otomatis Tersalin</span>
+      <span>&bull;</span>
+      <span>Tanpa Refresh</span>
     </footer>
   </div>
 
-  <div id="splitterModal" class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 lg:p-6 bg-black/85 opacity-0 pointer-events-none transition-opacity duration-200">
-    <div class="relative w-full max-w-5xl h-[94dvh] sm:h-[88dvh] max-h-[820px] flex flex-col bg-[#0d1117] border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden min-w-0">
-      <div class="flex items-center justify-between gap-3 border-b border-zinc-800/80 px-4 py-3 sm:px-6 shrink-0 bg-[#080b10]/60">
-        <div class="flex items-center gap-3 min-w-0">
-          <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+  <div id="splitterModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 dark:bg-black/85 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="relative w-full max-w-xl sm:max-w-2xl h-[560px] max-h-[90dvh] flex flex-col bg-white dark:bg-[#0e131d] border border-slate-200 dark:border-zinc-800 rounded-2xl shadow-xl overflow-hidden min-w-0">
+      <textarea id="splitterSource" class="hidden"></textarea>
+
+      <div class="flex items-center justify-between gap-3 border-b border-slate-200 dark:border-zinc-800/80 px-4 py-3 shrink-0 bg-slate-50/80 dark:bg-[#080b11]">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/25 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 7h7M4 17h7M13 12h7M11 4l3 3-3 3M13 9l-3 3 3 3M13 15l-3 3 3 3"/>
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <line x1="12" y1="3" x2="12" y2="21"></line>
             </svg>
           </div>
           <div class="min-w-0">
             <div class="flex items-center gap-2">
-              <h3 class="text-sm sm:text-base font-semibold text-white tracking-wide truncate">Prompt Splitter</h3>
-              <span class="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400 shrink-0">CLIENT-SIDE</span>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white tracking-tight truncate">Prompt Splitter</h3>
+              <span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 shrink-0">
+                <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                INSTAN
+              </span>
             </div>
-            <p class="text-xs text-zinc-400 truncate mt-0.5">Pecah prompt panjang menjadi beberapa bagian berurutan</p>
+            <p class="text-xs text-slate-500 dark:text-zinc-400 truncate mt-0.5">Pecah prompt panjang otomatis siap salin</p>
           </div>
         </div>
-        <button type="button" onclick="closeSplitterModal()" class="w-8 h-8 rounded-lg border border-zinc-700 bg-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600 flex items-center justify-center transition-colors shrink-0">
+
+        <button type="button" onclick="closeSplitterModal()" class="w-8 h-8 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-colors shrink-0" aria-label="Tutup">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -395,86 +501,94 @@
         </button>
       </div>
 
-      <div class="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] overflow-y-auto lg:overflow-hidden">
-        <div class="flex flex-col p-4 sm:p-5 border-b lg:border-b-0 lg:border-r border-zinc-800 lg:min-h-0">
-          <div class="flex items-center justify-between gap-3 mb-2 shrink-0">
-            <div>
-              <h4 class="text-xs sm:text-sm font-semibold text-white">Prompt Sumber</h4>
-              <p class="text-[11px] text-zinc-500">Instruksi revisi yang akan dipecah</p>
-            </div>
-            <button type="button" onclick="clearSplitter()" class="h-7 px-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-400 transition-colors text-xs font-medium">Bersihkan</button>
-          </div>
-
-          <textarea id="splitterSource" spellcheck="false" placeholder="Tempelkan atau generate prompt di sini..." class="w-full h-36 sm:h-44 lg:h-auto lg:flex-1 bg-[#080b10] border border-zinc-800 rounded-xl p-3 text-xs sm:text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 custom-scrollbar resize-none"></textarea>
-
-          <div class="flex items-center justify-between gap-3 text-[11px] text-zinc-500 mt-2 shrink-0">
-            <span id="splitterSourceMeta">0 karakter · 0 kata</span>
-            <span class="hidden sm:inline">Ctrl / ⌘ + Enter untuk split</span>
-          </div>
-
-          <div class="mt-4 pt-4 border-t border-zinc-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0">
-            <div class="flex flex-wrap items-center gap-2">
-              <span class="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Bagian:</span>
-              <div class="flex items-center gap-1 rounded-xl border border-zinc-800 bg-[#080b10] p-1">
-                <button type="button" data-mode="2" onclick="setSplitMode('2')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-zinc-400 hover:text-white transition-colors">2 BAGIAN</button>
-                <button type="button" data-mode="3" onclick="setSplitMode('3')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-zinc-400 hover:text-white transition-colors">3 BAGIAN</button>
-                <button type="button" data-mode="custom" onclick="setSplitMode('custom')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-zinc-400 hover:text-white transition-colors">CUSTOM</button>
-              </div>
-              <div id="customCountWrap" class="hidden flex items-center gap-1">
-                <input id="customCount" type="number" min="2" max="12" value="4" class="w-12 h-8 rounded-lg bg-[#080b10] border border-zinc-800 text-center text-xs font-semibold text-white focus:outline-none focus:border-cyan-500">
-                <span class="text-[11px] text-zinc-500">bagian</span>
-              </div>
-            </div>
-
-            <button id="splitActionBtn" type="button" onclick="doSplit()" class="h-10 px-4 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.98] text-white font-medium text-xs sm:text-sm transition-colors shadow-sm shrink-0">
-              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 7h7M4 17h7M13 12h7M11 4l3 3-3 3M13 9l-3 3 3 3M13 15l-3 3 3 3"/>
+      <div class="p-3.5 sm:p-4 border-b border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-[#080b11]/60 shrink-0">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-bold text-slate-600 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1">
+              <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
               </svg>
-              <span>Split Prompt</span>
+              Bagian:
+            </span>
+            <div class="inline-flex items-center gap-1 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#080b11] p-1 shadow-sm">
+              <button type="button" data-mode="2" onclick="setSplitMode('2')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">2 BAGIAN</button>
+              <button type="button" data-mode="3" onclick="setSplitMode('3')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">3 BAGIAN</button>
+              <button type="button" data-mode="custom" onclick="setSplitMode('custom')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">CUSTOM</button>
+            </div>
+            <div id="customCountWrap" class="hidden flex items-center gap-1.5">
+              <input id="customCount" type="number" min="2" max="12" value="4" class="w-12 h-8 rounded-lg bg-white dark:bg-[#080b11] border border-slate-300 dark:border-zinc-800 text-center text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500">
+              <span class="text-xs text-slate-500 dark:text-zinc-500">bagian</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 self-end sm:self-auto">
+            <button type="button" id="saveDefaultBtn" onclick="saveDefaultSplitMode()" class="h-8 px-2.5 inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 active:scale-95 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" title="Simpan pengaturan ini sebagai default">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
+              </svg>
+              <span>Simpan Default</span>
             </button>
           </div>
         </div>
 
-        <div class="flex flex-col p-4 sm:p-5 bg-black/20 min-h-[300px] lg:min-h-0 lg:overflow-hidden">
-          <div class="flex items-center justify-between gap-3 mb-3 shrink-0">
-            <div>
-              <h4 class="text-xs sm:text-sm font-semibold text-white">Hasil Split</h4>
-              <p class="text-[11px] text-zinc-500">Salin tiap bagian berurutan ke AI</p>
-            </div>
-            <span id="splitterResultCount" class="rounded-full border border-zinc-700 bg-zinc-800/80 px-2.5 py-1 text-[11px] font-semibold text-zinc-400 shrink-0">0 BAGIAN</span>
-          </div>
-
-          <div id="splitterEmptyState" class="flex flex-1 flex-col items-center justify-center p-6 text-center">
-            <div class="w-12 h-12 rounded-2xl border border-zinc-800 bg-zinc-900/50 flex items-center justify-center mb-3 text-zinc-500">
-              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M8 6h11M8 10h8M8 14h11M8 18h6"/>
-                <path d="M4 4h.01M4 8h.01M4 12h.01M4 16h.01"/>
-              </svg>
-            </div>
-            <div class="text-sm font-medium text-zinc-300">Belum ada hasil</div>
-            <div class="text-xs text-zinc-500 max-w-xs mt-1">Masukkan atau generate prompt, pilih jumlah bagian, lalu tekan "Split Prompt".</div>
-          </div>
-
-          <div id="splitterResultPanel" class="hidden flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-1">
-            <div id="splitterResultsGrid" class="flex flex-col gap-2.5"></div>
-          </div>
+        <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-zinc-400 mt-2.5">
+          <span id="defaultBadgeText" class="inline-flex items-center gap-1">
+            <svg class="w-3 h-3 text-cyan-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 14 14"></polyline>
+            </svg>
+            Default: 2 Bagian
+          </span>
+          <span id="splitterResultCount" class="font-bold text-cyan-600 dark:text-cyan-400">0 BAGIAN</span>
+          <span id="splitterSourceMeta" class="hidden">0 karakter · 0 kata</span>
+          <button id="splitActionBtn" type="button" onclick="doSplit()" class="hidden"></button>
         </div>
       </div>
 
-      <div class="flex items-center justify-between border-t border-zinc-800/80 px-4 py-2.5 text-[11px] text-zinc-500 shrink-0 bg-[#080b10]/60">
-        <span>Proses instan di browser tanpa server</span>
-        <span>Natural-boundary split</span>
+      <div class="flex-1 min-h-0 overflow-y-auto p-3.5 sm:p-4 flex flex-col">
+        <div id="splitterEmptyState" class="flex flex-1 flex-col items-center justify-center p-6 text-center">
+          <div class="w-12 h-12 rounded-2xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900/50 flex items-center justify-center mb-3 text-slate-400 dark:text-zinc-500">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <div class="text-sm font-semibold text-slate-800 dark:text-zinc-300">Belum ada prompt untuk dipecah</div>
+          <div class="text-xs text-slate-500 dark:text-zinc-500 max-w-xs mt-1">Isi form Buat Web atau Revisi Web terlebih dahulu, lalu klik tombol Splitter.</div>
+        </div>
+
+        <div id="splitterResultPanel" class="hidden flex-1 flex flex-col gap-2.5">
+          <div id="splitterResultsGrid" class="flex flex-col gap-2.5"></div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between border-t border-slate-200 dark:border-zinc-800/80 px-4 py-2.5 text-[11px] text-slate-500 dark:text-zinc-400 shrink-0 bg-slate-50/80 dark:bg-[#080b11]">
+        <span class="inline-flex items-center gap-1">
+          <svg class="w-3 h-3 text-cyan-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 22 4"></polyline>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+          Klik kartu untuk salin tiap bagian berurutan
+        </span>
+        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">Auto Copy</span>
       </div>
     </div>
   </div>
 
-  <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-[#111820] border border-cyan-500/20 text-zinc-100 px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2.5 opacity-0 translate-y-3 pointer-events-none transition-all duration-200 z-50 max-w-[calc(100vw-2rem)]">
+  <div id="toast" class="fixed bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-[70] flex items-center gap-2.5 px-4 py-2.5 rounded-xl border shadow-xl opacity-0 translate-y-3 pointer-events-none transition-all duration-200 max-w-[calc(100vw-2rem)] bg-slate-900 dark:bg-[#111822] text-white border-cyan-500/30">
     <span id="toast-icon" class="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">
-      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
     </span>
-
     <span id="toast-text" class="text-xs sm:text-sm font-medium"></span>
   </div>
 
@@ -488,28 +602,33 @@
       const toastText = document.getElementById('toast-text');
       const toastIcon = document.getElementById('toast-icon');
 
+      if (!toast || !toastText || !toastIcon) return;
+
       toastText.textContent = message;
 
       if (isError) {
-        toast.classList.remove('border-cyan-500/20');
-        toast.classList.add('border-rose-500/30');
+        toast.className = 'fixed bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-[70] flex items-center gap-2.5 px-4 py-2.5 rounded-xl border shadow-xl opacity-100 translate-y-0 transition-all duration-200 max-w-[calc(100vw-2rem)] bg-slate-900 dark:bg-[#111822] text-white border-rose-500/40';
         toastIcon.className = 'flex items-center justify-center w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 shrink-0';
         toastIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M6 6l12 12"></path></svg>';
       } else {
-        toast.classList.remove('border-rose-500/30');
-        toast.classList.add('border-cyan-500/20');
+        toast.className = 'fixed bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-[70] flex items-center gap-2.5 px-4 py-2.5 rounded-xl border shadow-xl opacity-100 translate-y-0 transition-all duration-200 max-w-[calc(100vw-2rem)] bg-slate-900 dark:bg-[#111822] text-white border-cyan-500/30';
         toastIcon.className = 'flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0';
         toastIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
       }
 
-      toast.classList.remove('opacity-0', 'translate-y-3', 'pointer-events-none');
-      toast.classList.add('opacity-100', 'translate-y-0');
-
       toastTimeout = setTimeout(() => {
         toast.classList.remove('opacity-100', 'translate-y-0');
         toast.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
-      }, 2200);
+      }, 2400);
     }
+
+    function showAlert(message, isError = false) {
+      showToast(message, isError);
+    }
+
+    window.alert = function(message) {
+      showToast(String(message));
+    };
 
     async function writeClipboard(text) {
       if (navigator.clipboard && window.isSecureContext) {
@@ -539,12 +658,50 @@
       return success;
     }
 
+    function setTheme(theme) {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('themeToggleIcon');
+      const themeLabel = document.getElementById('themeToggleLabel');
+      if (theme === 'light') {
+        html.classList.remove('dark');
+        localStorage.setItem('tewe_theme', 'light');
+        if (themeIcon) {
+          themeIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+        }
+        if (themeLabel) themeLabel.textContent = 'Light';
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('tewe_theme', 'dark');
+        if (themeIcon) {
+          themeIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>';
+        }
+        if (themeLabel) themeLabel.textContent = 'Dark';
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      setTheme(isDark ? 'light' : 'dark');
+    }
+
+    function initTheme() {
+      const saved = localStorage.getItem('tewe_theme');
+      if (saved) {
+        setTheme(saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        setTheme('light');
+      } else {
+        setTheme('dark');
+      }
+    }
+
     function generateNewPrompt() {
-      const detail = document.getElementById('new-detail').value.trim();
+      const detailInput = document.getElementById('new-detail');
+      const detail = detailInput.value.trim();
 
       if (!detail) {
         showToast('Silakan isi detail web yang diinginkan!', true);
-        document.getElementById('new-detail').focus();
+        detailInput.focus();
         return;
       }
 
@@ -692,12 +849,13 @@ ${code}
     }
 
     function generateRevisionPrompt() {
-      const changes = document.getElementById('rev-changes').value.trim();
+      const changesInput = document.getElementById('rev-changes');
+      const changes = changesInput.value.trim();
       const code = document.getElementById('rev-code').value.trim();
 
       if (!changes) {
         showToast('Silakan isi perubahan yang diinginkan!', true);
-        document.getElementById('rev-changes').focus();
+        changesInput.focus();
         return;
       }
 
@@ -735,15 +893,11 @@ ${code}
     }
 
     function updateSplitterMeta() {
-      const input = document.getElementById('splitterSource');
-      const val = input.value;
+      const val = splitterState.source || document.getElementById('splitterSource')?.value || '';
       const chars = val.length.toLocaleString('id-ID');
       const words = countWords(val).toLocaleString('id-ID');
-      document.getElementById('splitterSourceMeta').textContent = `${chars} karakter · ${words} kata`;
-      const btn = document.getElementById('splitActionBtn');
-      if (btn) {
-        btn.disabled = val.trim().length < 2;
-      }
+      const meta = document.getElementById('splitterSourceMeta');
+      if (meta) meta.textContent = `${chars} karakter · ${words} kata`;
     }
 
     function setSplitMode(mode) {
@@ -752,27 +906,71 @@ ${code}
       buttons.forEach((btn) => {
         const active = btn.dataset.mode === String(mode);
         if (active) {
-          btn.classList.add('bg-cyan-500', 'text-zinc-950');
-          btn.classList.remove('text-zinc-400');
+          btn.classList.add('bg-cyan-500', 'text-white', 'dark:text-zinc-950', 'shadow-sm');
+          btn.classList.remove('text-slate-600', 'dark:text-zinc-400');
         } else {
-          btn.classList.remove('bg-cyan-500', 'text-zinc-950');
-          btn.classList.add('text-zinc-400');
+          btn.classList.remove('bg-cyan-500', 'text-white', 'dark:text-zinc-950', 'shadow-sm');
+          btn.classList.add('text-slate-600', 'dark:text-zinc-400');
         }
       });
 
       const customWrap = document.getElementById('customCountWrap');
-      if (splitterState.mode === 'custom') {
-        customWrap.classList.remove('hidden');
-      } else {
-        customWrap.classList.add('hidden');
+      if (customWrap) {
+        if (splitterState.mode === 'custom') {
+          customWrap.classList.remove('hidden');
+        } else {
+          customWrap.classList.add('hidden');
+        }
       }
+
+      const sourceVal = splitterState.source || document.getElementById('splitterSource')?.value || '';
+      if (sourceVal.trim().length >= 2) {
+        doSplit(false);
+      }
+    }
+
+    function saveDefaultSplitMode() {
+      const currentMode = String(splitterState.mode);
+      localStorage.setItem('tewe_default_split_mode', currentMode);
+      if (currentMode === 'custom') {
+        const customVal = document.getElementById('customCount')?.value || '4';
+        localStorage.setItem('tewe_default_custom_count', customVal);
+      }
+      updateDefaultBadge();
+      const countLabel = currentMode === 'custom' ? (document.getElementById('customCount')?.value || '4') : currentMode;
+      showToast(`Default splitter (${countLabel} Bagian) berhasil disimpan!`);
+    }
+
+    function updateDefaultBadge() {
+      const saved = localStorage.getItem('tewe_default_split_mode') || '2';
+      const badge = document.getElementById('defaultBadgeText');
+      if (badge) {
+        const savedCustom = localStorage.getItem('tewe_default_custom_count') || '4';
+        const label = saved === 'custom' ? `${savedCustom} Bagian` : `${saved} Bagian`;
+        badge.textContent = `Default: ${label}`;
+      }
+    }
+
+    function loadDefaultSplitMode() {
+      const saved = localStorage.getItem('tewe_default_split_mode');
+      const savedCustom = localStorage.getItem('tewe_default_custom_count');
+      if (savedCustom) {
+        const input = document.getElementById('customCount');
+        if (input) input.value = savedCustom;
+      }
+      if (saved) {
+        setSplitMode(saved);
+      } else {
+        setSplitMode('2');
+      }
+      updateDefaultBadge();
     }
 
     function getPartCount() {
       if (splitterState.mode !== 'custom') return splitterState.mode;
       const input = document.getElementById('customCount');
-      const value = Math.max(2, Math.min(12, parseInt(input.value, 10) || 2));
-      input.value = value;
+      const value = Math.max(2, Math.min(12, parseInt(input?.value, 10) || 2));
+      if (input) input.value = value;
       return value;
     }
 
@@ -869,55 +1067,64 @@ ${code}
       const fragment = document.createDocumentFragment();
 
       parts.forEach((part, index) => {
-        const row = document.createElement('div');
-        row.className = 'flex items-center gap-3 p-3 rounded-xl border border-zinc-800 bg-[#080b10] hover:border-zinc-700 transition-colors';
+        const isLast = index === parts.length - 1;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'w-full text-left flex items-center justify-between gap-3 p-3 sm:p-3.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#080b11] hover:border-cyan-500/50 hover:bg-cyan-50/40 dark:hover:bg-cyan-950/20 active:scale-[0.99] transition-all cursor-pointer group shadow-sm';
+        btn.setAttribute('aria-label', `Salin splitter ${index + 1}`);
+
+        const left = document.createElement('div');
+        left.className = 'flex items-center gap-3 min-w-0';
 
         const num = document.createElement('div');
-        num.className = 'w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-xs font-bold text-cyan-400 shrink-0';
+        num.className = 'w-8 h-8 rounded-lg bg-cyan-500/10 dark:bg-zinc-900 border border-cyan-500/20 dark:border-zinc-800 flex items-center justify-center text-xs font-bold text-cyan-600 dark:text-cyan-400 shrink-0 group-hover:scale-105 transition-transform';
         num.textContent = String(index + 1).padStart(2, '0');
 
         const info = document.createElement('div');
-        info.className = 'min-w-0 flex-1';
+        info.className = 'min-w-0';
 
         const title = document.createElement('div');
-        title.className = 'text-xs sm:text-sm font-semibold text-zinc-200';
-        title.textContent = `Splitter ${index + 1}`;
+        title.className = 'text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors flex items-center gap-2';
+        title.innerHTML = `<span>Splitter ${index + 1}</span><span class="text-[10px] font-normal px-1.5 py-0.5 rounded ${isLast ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' : 'bg-slate-100 dark:bg-zinc-800 text-slate-500 dark:text-zinc-400'}">${isLast ? 'Bagian Akhir' : 'Lanjut'}</span>`;
 
         const subtitle = document.createElement('div');
-        subtitle.className = 'text-[11px] text-zinc-500 truncate mt-0.5';
-        subtitle.textContent = index === parts.length - 1 ? 'Bagian terakhir · siap dikirim' : 'Tahan respons · lanjut ke bagian berikutnya';
+        subtitle.className = 'text-[11px] text-slate-500 dark:text-zinc-500 truncate mt-0.5';
+        subtitle.textContent = isLast ? 'Bagian terakhir · siap dieksekusi oleh AI' : 'Tahan respons · simpan sebagai konteks';
 
         info.appendChild(title);
         info.appendChild(subtitle);
+        left.appendChild(num);
+        left.appendChild(info);
 
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'w-9 h-9 rounded-lg border border-zinc-700 bg-zinc-800 hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-cyan-300 text-zinc-400 flex items-center justify-center transition-colors active:scale-95 shrink-0';
-        btn.setAttribute('aria-label', `Salin splitter ${index + 1}`);
-        btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+        const right = document.createElement('div');
+        right.className = 'copy-icon-wrap w-8 h-8 rounded-lg border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-800 text-slate-500 dark:text-zinc-400 group-hover:border-cyan-500/50 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 flex items-center justify-center shrink-0 transition-colors';
+        right.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+
+        btn.appendChild(left);
+        btn.appendChild(right);
         btn.addEventListener('click', () => copySplitPart(index, btn), { passive: true });
 
-        row.appendChild(num);
-        row.appendChild(info);
-        row.appendChild(btn);
-        fragment.appendChild(row);
+        fragment.appendChild(btn);
       });
 
       grid.appendChild(fragment);
-      countBadge.textContent = `${parts.length} BAGIAN`;
-      empty.classList.add('hidden');
-      panel.classList.remove('hidden');
+      if (countBadge) countBadge.textContent = `${parts.length} BAGIAN`;
+      if (empty) empty.classList.add('hidden');
+      if (panel) panel.classList.remove('hidden');
     }
 
     function copySplitPart(index, btn) {
       const text = splitterState.parts[index];
       writeClipboard(text).then((copied) => {
         if (copied) {
-          showToast(`Splitter ${index + 1} tersalin!`);
-          const originalHTML = btn.innerHTML;
-          btn.innerHTML = '<svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+          showToast(`Splitter ${index + 1} berhasil disalin!`);
+          const iconWrap = btn.querySelector('.copy-icon-wrap') || btn;
+          const originalHTML = iconWrap.innerHTML;
+          iconWrap.innerHTML = '<svg class="w-4 h-4 text-emerald-500 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+          btn.classList.add('border-emerald-500/40', 'bg-emerald-50/50', 'dark:bg-emerald-950/20');
           setTimeout(() => {
-            btn.innerHTML = originalHTML;
+            iconWrap.innerHTML = originalHTML;
+            btn.classList.remove('border-emerald-500/40', 'bg-emerald-50/50', 'dark:bg-emerald-950/20');
           }, 1200);
         } else {
           showToast('Gagal menyalin splitter', true);
@@ -925,24 +1132,28 @@ ${code}
       });
     }
 
-    function doSplit() {
-      const source = document.getElementById('splitterSource').value.trim();
-      if (source.length < 2) {
-        showToast('Masukkan prompt terlebih dahulu!', true);
-        document.getElementById('splitterSource').focus();
+    function doSplit(notify = true) {
+      const sourceInput = document.getElementById('splitterSource');
+      const source = (sourceInput ? sourceInput.value : '') || splitterState.source || '';
+      if (source.trim().length < 2) {
+        if (notify) {
+          showToast('Belum ada prompt untuk dipecah!', true);
+        }
         return;
       }
-      splitterState.source = source;
+      splitterState.source = source.trim();
       const count = getPartCount();
-      const rawParts = splitText(source, count);
+      const rawParts = splitText(splitterState.source, count);
       splitterState.parts = rawParts.map((part, index) => wrapPart(part, index + 1, rawParts.length));
       renderSplitResults(splitterState.parts);
-      showToast(`${splitterState.parts.length} splitter siap disalin!`);
+      if (notify) {
+        showToast(`${splitterState.parts.length} splitter siap disalin!`);
+      }
     }
 
     function clearSplitter() {
       const sourceInput = document.getElementById('splitterSource');
-      sourceInput.value = '';
+      if (sourceInput) sourceInput.value = '';
       splitterState.source = '';
       splitterState.parts = [];
       document.getElementById('splitterResultsGrid').innerHTML = '';
@@ -950,7 +1161,6 @@ ${code}
       document.getElementById('splitterEmptyState').classList.remove('hidden');
       document.getElementById('splitterResultCount').textContent = '0 BAGIAN';
       updateSplitterMeta();
-      sourceInput.focus();
     }
 
     function openSplitterModal() {
@@ -970,32 +1180,78 @@ ${code}
     function openSplitterFromRevision() {
       const changes = document.getElementById('rev-changes').value.trim();
       const code = document.getElementById('rev-code').value.trim();
+      const newDetail = document.getElementById('new-detail').value.trim();
 
       if (changes) {
         const prompt = buildRevisionPrompt(changes, code);
-        document.getElementById('splitterSource').value = prompt;
+        splitterState.source = prompt;
+        const sourceEl = document.getElementById('splitterSource');
+        if (sourceEl) sourceEl.value = prompt;
         updateSplitterMeta();
-        doSplit();
+        doSplit(false);
+      } else if (newDetail) {
+        const prompt = `Buat website dari nol menggunakan HTML + Tailwind CSS + JavaScript dalam SATU file \`index.html\`. 
+
+DETAIL WEB YANG DI INGINKAN :
+${newDetail}
+
+PRIORITAS UTAMA:
+
+* Mobile-first
+* Sangat smooth, ringan, responsif
+* Optimalkan khusus perangkat mobile
+* Jangan gunakan efek yang menyebabkan lag/jank saat scrolling
+
+WAJIB:
+
+* Minimalkan \`backdrop-filter\`, blur, shadow besar, dan animasi berat di mobile
+* Gunakan animasi seperlunya dan utamakan \`transform\` + \`opacity\`
+* Hindari animasi yang terus berjalan pada banyak elemen sekaligus
+* Optimalkan background/image agar tidak menyebabkan repaint berat
+* Gunakan \`requestAnimationFrame\` untuk proses yang berjalan saat scroll
+* Gunakan passive event listener untuk scroll/touch
+* Hindari layout reflow/recalculation berulang
+* Jangan melakukan manipulasi DOM berlebihan saat scrolling
+* Optimalkan pergantian background agar smooth
+* Gunakan ukuran viewport mobile yang stabil (\`svh\`/\`dvh\`) sesuai kebutuhan
+* Lazy-load gambar yang tidak langsung terlihat
+* Hormati \`prefers-reduced-motion\`
+* Pastikan scrolling touch tetap natural dan tidak patah-patah
+* Desktop tetap bagus, tetapi performa mobile adalah prioritas utama
+
+FUNGSI DAN FITUR:
+Semua fungsi harus tetap lengkap sesuai kebutuhan website.
+
+OUTPUT:
+
+* Full source code
+* Hanya satu file \`index.html\`
+* HTML + Tailwind CSS + JavaScript menjadi satu
+* JANGAN beri komentar di dalam source code
+* Jangan membuat file terpisah
+* Jangan mengurangi fungsi yang sudah ditentukan`;
+        splitterState.source = prompt;
+        const sourceEl = document.getElementById('splitterSource');
+        if (sourceEl) sourceEl.value = prompt;
+        updateSplitterMeta();
+        doSplit(false);
       } else {
         updateSplitterMeta();
       }
       openSplitterModal();
     }
 
-    document.getElementById('splitterSource').addEventListener('input', updateSplitterMeta, { passive: true });
-
     document.getElementById('customCount').addEventListener('change', () => {
       const input = document.getElementById('customCount');
       const val = Math.max(2, Math.min(12, parseInt(input.value, 10) || 2));
       input.value = val;
-    }, { passive: true });
-
-    document.getElementById('splitterSource').addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-        e.preventDefault();
-        doSplit();
+      if (splitterState.mode === 'custom') {
+        const sourceVal = splitterState.source || document.getElementById('splitterSource')?.value || '';
+        if (sourceVal.trim().length >= 2) {
+          doSplit(false);
+        }
       }
-    });
+    }, { passive: true });
 
     document.getElementById('splitterModal').addEventListener('click', (e) => {
       if (e.target.id === 'splitterModal') {
@@ -1005,14 +1261,15 @@ ${code}
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        const modal = document.getElementById('splitterModal');
-        if (modal && !modal.classList.contains('pointer-events-none')) {
+        const splitterModal = document.getElementById('splitterModal');
+        if (splitterModal && !splitterModal.classList.contains('pointer-events-none')) {
           closeSplitterModal();
         }
       }
     }, { passive: true });
 
-    setSplitMode('2');
+    initTheme();
+    loadDefaultSplitMode();
     updateSplitterMeta();
   </script>
 </body>
