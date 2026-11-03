@@ -135,6 +135,78 @@
       background-size: 32px 32px;
     }
 
+    .pro-scroll {
+      min-width: 0;
+      overscroll-behavior: contain;
+    }
+
+    .pro-input {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      background: rgba(248, 250, 252, 0.85);
+      padding: 0.65rem 0.75rem;
+      color: #0f172a;
+      font-size: 0.8125rem;
+      line-height: 1.4rem;
+      outline: none;
+      transition: border-color 120ms ease, background-color 120ms ease;
+    }
+
+    .pro-input:focus {
+      border-color: #06b6d4;
+      background: #fff;
+    }
+
+    .pro-input::placeholder {
+      color: #94a3b8;
+    }
+
+    html.dark .pro-input {
+      border-color: #27272a;
+      background: #080b11;
+      color: #f4f4f5;
+    }
+
+    html.dark .pro-input:focus {
+      border-color: #06b6d4;
+      background: #080b11;
+    }
+
+    html.dark .pro-input::placeholder {
+      color: #52525b;
+    }
+
+    .pro-mode-btn[aria-pressed="true"] {
+      border-color: rgba(6, 182, 212, 0.45);
+      background: rgba(6, 182, 212, 0.12);
+      color: #0e7490;
+    }
+
+    html.dark .pro-mode-btn[aria-pressed="true"] {
+      color: #67e8f9;
+    }
+
+    @media (min-width: 1024px) {
+      .pro-scroll {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      .pro-scroll {
+        overflow: visible;
+        flex: 0 0 auto;
+        min-height: auto;
+      }
+
+      #newProPanel {
+        flex: 1 0 auto;
+      }
+    }
+
     .page-shell,
     .page-main,
     .page-card,
@@ -338,6 +410,11 @@
         </div>
 
         <div class="flex flex-col flex-1 gap-3.5 min-h-0 min-w-0">
+          <div class="grid grid-cols-2 gap-2 shrink-0" role="group" aria-label="Mode pembuatan prompt">
+            <button type="button" id="newModeBasicBtn" class="pro-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true" onclick="setNewMode('basic')">Mode Basic</button>
+            <button type="button" id="newModeProBtn" class="pro-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false" onclick="setNewMode('pro')">Mode Pro</button>
+          </div>
+          <div id="newBasicPanel" class="flex flex-col flex-1 gap-3.5 min-h-0 min-w-0">
           <div class="flex flex-col flex-1 min-h-0 min-w-0">
             <label for="new-detail" class="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0">
               <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -363,6 +440,87 @@
             <span class="truncate">Generate & Salin</span>
           </button>
         </div>
+        <div id="newProPanel" class="hidden flex-col flex-1 min-h-0 gap-3 min-w-0">
+          <div class="pro-scroll flex-1 min-h-0 grid grid-cols-1 sm:grid-cols-2 gap-3.5 content-start pr-1">
+            <div class="sm:col-span-2">
+              <label for="pro-website-name" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Nama Website <span class="text-cyan-600 dark:text-cyan-400">*</span></label>
+              <input id="pro-website-name" type="text" class="pro-input" maxlength="120" placeholder="Contoh: Tewe Store">
+            </div>
+            <div class="sm:col-span-2">
+              <label for="pro-website-function" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Fungsi Web <span class="text-cyan-600 dark:text-cyan-400">*</span></label>
+              <textarea id="pro-website-function" rows="3" class="pro-input" placeholder="Jelaskan tujuan website, target pengguna, dan cara kerjanya..."></textarea>
+            </div>
+            <div>
+              <label for="pro-theme" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Tema</label>
+              <select id="pro-theme" class="pro-input" onchange="updateProThemeFields()">
+                <option value="MODERN">Modern</option>
+                <option value="CLEAN">Clean</option>
+                <option value="TECH">Tech</option>
+                <option value="MINIMAL">Minimal</option>
+                <option value="ELEGANT">Elegant</option>
+                <option value="CUSTOM">Custom</option>
+              </select>
+              <div id="proThemeCustomWrap" class="hidden mt-2">
+                <input id="pro-theme-custom" type="text" class="pro-input" placeholder="Tuliskan tema custom">
+              </div>
+            </div>
+            <div>
+              <label for="pro-main-color" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Warna Utama</label>
+              <input id="pro-main-color" type="text" class="pro-input" placeholder="Contoh: Cyan #06B6D4, navy, putih">
+            </div>
+            <div class="sm:col-span-2">
+              <label for="pro-main-features" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Fitur Utama <span class="text-cyan-600 dark:text-cyan-400">*</span></label>
+              <textarea id="pro-main-features" rows="4" class="pro-input" placeholder="Tuliskan fitur utama, satu fitur per baris atau dalam bentuk daftar..."></textarea>
+            </div>
+            <div class="sm:col-span-2 rounded-xl border border-slate-200 dark:border-zinc-800 p-3">
+              <div class="text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-2">Pilihan Storage</div>
+              <div class="grid grid-cols-2 gap-2">
+                <button id="proStorageServerBtn" type="button" onclick="setProStorage('SERVER')" class="h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true">Server Storage</button>
+                <button id="proStorageLocalBtn" type="button" onclick="setProStorage('LOCAL')" class="h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false">Local Storage</button>
+              </div>
+              <p id="proStorageDescription" class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 mt-2">Data dikelola melalui Google Apps Script Web App. Pilih database yang akan digunakan.</p>
+              <div id="proServerOptions" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                <div class="sm:col-span-2">
+                  <label for="pro-db-option" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Database Server</label>
+                  <select id="pro-db-option" class="pro-input" onchange="updateProDatabaseFields()">
+                    <option value="JSON Drive otomatis">Opsi 1 — JSON Drive otomatis (satu folder dengan script)</option>
+                    <option value="Spreadsheet + ID">Opsi 2 — Spreadsheet + ID</option>
+                    <option value="Spreadsheet via ekstensi GAS">Opsi 3 — Spreadsheet via ekstensi GAS</option>
+                  </select>
+                </div>
+                <div id="proSpreadsheetIdWrap" class="hidden sm:col-span-2">
+                  <label for="pro-spreadsheet-id" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Spreadsheet ID</label>
+                  <input id="pro-spreadsheet-id" type="text" class="pro-input" placeholder="Masukkan ID Google Spreadsheet">
+                </div>
+                <div class="sm:col-span-2">
+                  <label for="pro-gas-url" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">URL Google Apps Script Web App</label>
+                  <input id="pro-gas-url" type="url" class="pro-input" placeholder="https://script.google.com/macros/s/.../exec">
+                </div>
+              </div>
+              <p id="proLocalNote" class="hidden text-[11px] leading-relaxed text-emerald-600 dark:text-emerald-400 mt-3">Semua data, pengaturan, dan CRUD berjalan di browser menggunakan localStorage tanpa koneksi server/backend. Fitur dan alur kerja harus sama dengan Server Storage.</p>
+            </div>
+            <div>
+              <label for="pro-admin-user" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Username Admin</label>
+              <input id="pro-admin-user" type="text" class="pro-input" autocomplete="off" placeholder="Contoh: admin">
+            </div>
+            <div>
+              <label for="pro-admin-pass" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Password Admin</label>
+              <input id="pro-admin-pass" type="password" class="pro-input" autocomplete="new-password" placeholder="Masukkan password admin">
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 shrink-0">
+            <button type="button" onclick="generateProPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-semibold transition-colors shadow-sm">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Generate Pro & Salin</span>
+            </button>
+            <button type="button" onclick="openSplitterFromRevision()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 active:scale-[0.99] text-cyan-700 dark:text-cyan-300 text-sm font-semibold transition-colors shadow-sm">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg>
+              <span>Splitter <span class="text-xs font-normal opacity-80">(Opsional)</span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       </section>
 
       <section class="page-card bg-white dark:bg-[#0e131d] border border-slate-200 dark:border-zinc-800/90 rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5 shadow-sm min-w-0 transition-colors duration-200">
@@ -695,6 +853,183 @@
       }
     }
 
+    let newPromptMode = 'basic';
+    let proStorageMode = 'SERVER';
+
+    function setNewMode(mode) {
+      newPromptMode = mode === 'pro' ? 'pro' : 'basic';
+      const basicPanel = document.getElementById('newBasicPanel');
+      const proPanel = document.getElementById('newProPanel');
+      const basicButton = document.getElementById('newModeBasicBtn');
+      const proButton = document.getElementById('newModeProBtn');
+      if (!basicPanel || !proPanel || !basicButton || !proButton) return;
+
+      basicPanel.classList.toggle('hidden', newPromptMode !== 'basic');
+      proPanel.classList.toggle('hidden', newPromptMode !== 'pro');
+      proPanel.classList.toggle('flex', newPromptMode === 'pro');
+      basicButton.setAttribute('aria-pressed', String(newPromptMode === 'basic'));
+      proButton.setAttribute('aria-pressed', String(newPromptMode === 'pro'));
+
+      basicButton.className = newPromptMode === 'basic'
+        ? 'pro-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
+        : 'pro-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      proButton.className = newPromptMode === 'pro'
+        ? 'pro-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
+        : 'pro-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+    }
+
+    function setProStorage(mode) {
+      proStorageMode = mode === 'LOCAL' ? 'LOCAL' : 'SERVER';
+      const serverButton = document.getElementById('proStorageServerBtn');
+      const localButton = document.getElementById('proStorageLocalBtn');
+      const serverOptions = document.getElementById('proServerOptions');
+      const localNote = document.getElementById('proLocalNote');
+      const description = document.getElementById('proStorageDescription');
+      if (!serverButton || !localButton || !serverOptions || !localNote) return;
+
+      const serverActive = proStorageMode === 'SERVER';
+      serverButton.setAttribute('aria-pressed', String(serverActive));
+      localButton.setAttribute('aria-pressed', String(!serverActive));
+      serverButton.className = serverActive
+        ? 'h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
+        : 'h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      localButton.className = !serverActive
+        ? 'h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
+        : 'h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      serverOptions.classList.toggle('hidden', !serverActive);
+      localNote.classList.toggle('hidden', serverActive);
+      if (description) {
+        description.textContent = serverActive
+          ? 'Data dikelola melalui Google Apps Script Web App. Pilih database yang akan digunakan.'
+          : 'Data dikelola sepenuhnya oleh browser tanpa koneksi server. Fitur dan alur CRUD harus sama dengan Server Storage.';
+      }
+    }
+
+    function updateProDatabaseFields() {
+      const option = document.getElementById('pro-db-option')?.value || '';
+      const spreadsheetWrap = document.getElementById('proSpreadsheetIdWrap');
+      if (spreadsheetWrap) spreadsheetWrap.classList.toggle('hidden', option !== 'Spreadsheet + ID');
+    }
+
+    function updateProThemeFields() {
+      const theme = document.getElementById('pro-theme')?.value || '';
+      const customWrap = document.getElementById('proThemeCustomWrap');
+      if (customWrap) customWrap.classList.toggle('hidden', theme !== 'CUSTOM');
+    }
+
+    function buildProPrompt() {
+      const websiteName = document.getElementById('pro-website-name').value.trim();
+      const websiteFunction = document.getElementById('pro-website-function').value.trim();
+      const selectedTheme = document.getElementById('pro-theme').value;
+      const customTheme = document.getElementById('pro-theme-custom').value.trim();
+      const theme = selectedTheme === 'CUSTOM' ? (customTheme || 'CUSTOM') : selectedTheme;
+      const mainColor = document.getElementById('pro-main-color').value.trim() || 'Tentukan palet warna yang paling sesuai dengan fungsi dan tema website';
+      const features = document.getElementById('pro-main-features').value.trim();
+      const dbOption = document.getElementById('pro-db-option').value;
+      const spreadsheetId = document.getElementById('pro-spreadsheet-id').value.trim();
+      const gasUrl = document.getElementById('pro-gas-url').value.trim() || '[GANTI_URL_GAS]';
+      const adminUser = document.getElementById('pro-admin-user').value.trim() || '[USER]';
+      const adminPass = document.getElementById('pro-admin-pass').value || '[PASS]';
+      const storageInstruction = proStorageMode === 'SERVER'
+        ? `- **[SERVER STORAGE]:** Data dikelola melalui backend Google Apps Script Web App.
+  - Database terpilih: **${dbOption}**.
+  - Jika memilih Spreadsheet + ID, gunakan Spreadsheet ID: **${spreadsheetId || '[SPREADSHEET_ID]'}**.
+  - Frontend wajib memiliki variabel koneksi: \`const gasUrl = "${gasUrl}";\`
+  - Sediakan konfigurasi frontend: \`const STORAGE_MODE = "SERVER";\`
+  - Seluruh operasi baca/tulis wajib melalui backend dan perubahan hanya dianggap berhasil bila response backend mengembalikan \`ok: true\`.`
+        : `- **[LOCAL STORAGE]:** Seluruh data, pengaturan, login, backup, restore, reset, dan CRUD berjalan penuh menggunakan browser \`localStorage\` tanpa koneksi server/backend.
+  - Sediakan konfigurasi frontend: \`const STORAGE_MODE = "LOCAL";\`.
+  - Jangan melakukan request ke Google Apps Script dalam mode LOCAL.
+  - File \`code.gs\` tetap dibuat sesuai output dua-file, tetapi tidak dipanggil atau dibutuhkan oleh frontend saat mode LOCAL.`;
+
+      return `Buat web **${websiteName}** (*mobile-first*) dalam 2 file terpisah: **\`index.html\`** (Frontend: Single-file HTML + Tailwind CSS + JS) dan **\`code.gs\`** (Backend: Google Apps Script Web App).
+
+## 1. Spesifikasi Utama & Pilihan Storage
+- **Nama Website:** ${websiteName}
+- **Fungsi Web:** ${websiteFunction}
+- **Tema & Warna:** Tema **${theme}**, Warna utama **${mainColor}**
+- **Fitur Utama:**
+${features.split(/\r?\n/u).map((item) => item.trim()).filter(Boolean).map((item) => `  - ${item}`).join('\n')}
+- **Pilih Opsi Storage (Fitur fungsionalitas sama persis di kedua mode):**
+${storageInstruction}
+- **Pilihan database Server Storage:**
+  - Opsi 1: JSON Drive otomatis (satu folder dengan script).
+  - Opsi 2: Spreadsheet + ID.
+  - Opsi 3: Spreadsheet via ekstensi GAS.
+  - Gunakan hanya opsi yang dipilih pada konfigurasi.
+- **Frontend (\`index.html\`):** Sediakan konfigurasi mode storage (**SERVER** / **LOCAL**) di sisi frontend. Pastikan implementasi kedua mode memiliki tampilan, fitur, struktur data, validasi, dan alur CRUD yang sama.
+- **Default Data:** Sediakan objek **\`DEFAULT_DATA\`** lengkap sebagai initial state di awal. Pastikan semua bagian data website, pengaturan, akun, dan metadata yang dibutuhkan memiliki struktur awal yang konsisten.
+
+## 2. Sistem Admin & API (CRUD Menyeluruh)
+- **Login Admin:** Username **${adminUser}**, Password **${adminPass}**. Gunakan validasi yang aman tanpa batasan minimal karakter (*no minimum character length*). Jangan memaksakan minimum panjang username atau password.
+- **CRUD Universal (Berlaku sama di Server / Local):** Admin dapat mengelola seluruh data website, meliputi:
+  - Kelola konten/data utama website.
+  - Pengaturan tampilan, nama website, logo, dan icon/favicon.
+  - Pengaturan akun (ubah username dan password).
+  - Backup, restore, dan reset data.
+- **Integritas:** Pada Server Storage, seluruh perubahan wajib benar-benar tersimpan ke backend dan UI hanya menampilkan status berhasil jika response mengembalikan **\`ok: true\`**. Pada Local Storage, perubahan tersimpan otomatis di **\`localStorage\`**. Sediakan penanganan error yang jelas dan jangan menampilkan sukses palsu.
+- **Standar API JSON (Untuk Server Storage):**
+  - **GET:** \`?action=getData\`
+  - **POST action:** \`login\`, \`getData\`, \`saveData\`, \`restoreData\`, dan \`resetData\`.
+  - **Format sukses:** \`{"ok": true, "data": {}}\`
+  - **Format gagal:** \`{"ok": false, "error": "pesan"}\`
+  - Konsistenkan nama action, nama field, dan struktur data antara frontend dan backend. Implementasikan seluruh action di **\`code.gs\`**.
+
+## 3. Performa & Aturan Koding
+- Ringan, smooth, mobile-first, dan responsif dengan prioritas performa perangkat mobile.
+- Hindari reflow berlebihan dan animasi berat. Gunakan animasi ringan berbasis **\`transform\`** dan **\`opacity\`** seperlunya.
+- Optimalkan scrolling, gunakan passive event listener dan **\`requestAnimationFrame\`** hanya untuk proses scroll yang memang diperlukan.
+- Gunakan lazy-loading untuk gambar yang tidak langsung terlihat dan hormati **\`prefers-reduced-motion\`**.
+- Pastikan tidak ada listener, observer, interval, atau animasi redundant.
+- Jaga konsistensi struktur data dan integritas sinkronisasi antara UI, localStorage, dan backend.
+
+## 4. Output
+Berikan FULL SOURCE CODE lengkap dan siap pakai tanpa komentar di dalam kode untuk:
+1. **\`index.html\`** — seluruh HTML, Tailwind CSS, dan JavaScript frontend dalam satu file.
+2. **\`code.gs\`** — backend Google Apps Script Web App dengan action API sesuai spesifikasi.
+
+Jangan memberikan potongan kode, placeholder implementasi, atau menghilangkan fungsi yang diperlukan. Pastikan kedua file saling kompatibel dan siap dikonfigurasi serta digunakan.`;
+    }
+
+    function generateProPrompt() {
+      const nameInput = document.getElementById('pro-website-name');
+      const functionInput = document.getElementById('pro-website-function');
+      const featuresInput = document.getElementById('pro-main-features');
+      if (!nameInput.value.trim()) {
+        showToast('Silakan isi nama website terlebih dahulu!', true);
+        nameInput.focus();
+        return;
+      }
+      if (!functionInput.value.trim()) {
+        showToast('Silakan isi fungsi website terlebih dahulu!', true);
+        functionInput.focus();
+        return;
+      }
+      if (!featuresInput.value.trim()) {
+        showToast('Silakan isi fitur utama website terlebih dahulu!', true);
+        featuresInput.focus();
+        return;
+      }
+      if (proStorageMode === 'SERVER' && document.getElementById('pro-db-option').value === 'Spreadsheet + ID' && !document.getElementById('pro-spreadsheet-id').value.trim()) {
+        showToast('Silakan isi Spreadsheet ID untuk opsi database ini!', true);
+        document.getElementById('pro-spreadsheet-id').focus();
+        return;
+      }
+      if (document.getElementById('pro-theme').value === 'CUSTOM' && !document.getElementById('pro-theme-custom').value.trim()) {
+        showToast('Silakan isi tema custom!', true);
+        document.getElementById('pro-theme-custom').focus();
+        return;
+      }
+      const prompt = buildProPrompt();
+      writeClipboard(prompt).then((copied) => {
+        if (copied) {
+          showToast('Prompt Pro berhasil digenerate & otomatis disalin!');
+        } else {
+          showToast('Gagal menyalin otomatis. Silakan coba lagi.', true);
+        }
+      });
+    }
+
     function generateNewPrompt() {
       const detailInput = document.getElementById('new-detail');
       const detail = detailInput.value.trim();
@@ -872,6 +1207,21 @@ ${code}
 
     function resetNewForm() {
       document.getElementById('new-detail').value = '';
+      document.getElementById('pro-website-name').value = '';
+      document.getElementById('pro-website-function').value = '';
+      document.getElementById('pro-theme').value = 'MODERN';
+      document.getElementById('pro-theme-custom').value = '';
+      document.getElementById('pro-main-color').value = '';
+      document.getElementById('pro-main-features').value = '';
+      document.getElementById('pro-db-option').value = 'JSON Drive otomatis';
+      document.getElementById('pro-spreadsheet-id').value = '';
+      document.getElementById('pro-gas-url').value = '';
+      document.getElementById('pro-admin-user').value = '';
+      document.getElementById('pro-admin-pass').value = '';
+      updateProThemeFields();
+      updateProDatabaseFields();
+      setProStorage('SERVER');
+      setNewMode('basic');
       document.getElementById('new-detail').focus();
     }
 
@@ -1181,9 +1531,22 @@ ${code}
       const changes = document.getElementById('rev-changes').value.trim();
       const code = document.getElementById('rev-code').value.trim();
       const newDetail = document.getElementById('new-detail').value.trim();
+      const isProMode = newPromptMode === 'pro';
 
       if (changes) {
         const prompt = buildRevisionPrompt(changes, code);
+        splitterState.source = prompt;
+        const sourceEl = document.getElementById('splitterSource');
+        if (sourceEl) sourceEl.value = prompt;
+        updateSplitterMeta();
+        doSplit(false);
+      } else if (isProMode && document.getElementById('pro-website-name').value.trim() && document.getElementById('pro-website-function').value.trim() && document.getElementById('pro-main-features').value.trim()) {
+        if (proStorageMode === 'SERVER' && document.getElementById('pro-db-option').value === 'Spreadsheet + ID' && !document.getElementById('pro-spreadsheet-id').value.trim()) {
+          showToast('Isi Spreadsheet ID sebelum menggunakan Splitter!', true);
+          document.getElementById('pro-spreadsheet-id').focus();
+          return;
+        }
+        const prompt = buildProPrompt();
         splitterState.source = prompt;
         const sourceEl = document.getElementById('splitterSource');
         if (sourceEl) sourceEl.value = prompt;
@@ -1269,6 +1632,10 @@ OUTPUT:
     }, { passive: true });
 
     initTheme();
+    updateProThemeFields();
+    updateProDatabaseFields();
+    setProStorage('SERVER');
+    setNewMode('basic');
     loadDefaultSplitMode();
     updateSplitterMeta();
   </script>
