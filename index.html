@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="id" class="dark">
 <head>
@@ -606,6 +605,18 @@
       color: var(--app-muted) !important;
     }
 
+    #revMigrationOptions {
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+    }
+
+    @media (min-width: 1024px) {
+      #revMigrationOptions {
+        max-height: 40%;
+        overflow-y: auto;
+      }
+    }
+
     #splitterModal > div {
       border-color: #253950 !important;
       background: #0d1725 !important;
@@ -1075,8 +1086,13 @@
         </div>
 
         <div class="flex flex-col flex-1 gap-3.5 min-h-0 min-w-0">
+          <div class="grid grid-cols-2 gap-2 shrink-0" role="group" aria-label="Mode revisi website">
+            <button type="button" id="revModeStandardBtn" class="pro-mode-btn rev-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true" onclick="setRevisionMode('standard')">Revisi Biasa</button>
+            <button type="button" id="revModeMigrationBtn" onclick="setRevisionMode('migration')" class="pro-mode-btn rev-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false">Migrasi CRUD + Server</button>
+          </div>
+          <p id="revisionModeDescription" class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 -mt-1">Mode revisi biasa mempertahankan alur revisi yang sudah tersedia.</p>
           <div class="flex flex-col gap-3 flex-1 min-h-0 min-w-0">
-            <div class="flex flex-col flex-1 min-h-0 min-w-0">
+            <div id="revChangesWrap" class="flex flex-col flex-1 min-h-0 min-w-0">
               <label for="rev-changes" class="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0">
                 <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="m9 11 3 3L22 4"></path>
@@ -1093,6 +1109,48 @@
               ></textarea>
             </div>
 
+            <div id="revMigrationOptions" class="hidden rounded-xl border border-cyan-500/20 bg-cyan-500/[0.035] p-3 sm:p-3.5 flex-col gap-3 shrink-0">
+              <div class="flex items-start justify-between gap-3">
+                <div class="min-w-0">
+                  <div class="text-xs font-bold text-slate-800 dark:text-zinc-200">Konfigurasi Migrasi CRUD</div>
+                  <p class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 mt-1">Source code lama akan dianalisis untuk menambahkan pengelolaan data lengkap dengan backend Google Apps Script.</p>
+                </div>
+                <span class="inline-flex items-center rounded-md border border-cyan-500/20 bg-cyan-500/10 px-2 py-1 text-[10px] font-semibold text-cyan-700 dark:text-cyan-300 shrink-0">Server Storage</span>
+              </div>
+              <div>
+                <label for="rev-gas-url" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">URL Google Apps Script Web App <span class="font-normal text-slate-400 dark:text-zinc-500">(Opsional)</span></label>
+                <input id="rev-gas-url" type="url" class="pro-input" placeholder="https://script.google.com/macros/s/.../exec" autocomplete="url">
+                <p class="text-[11px] text-slate-500 dark:text-zinc-400 mt-1.5">Kosongkan bila URL akan diisi setelah backend dibuat. Prompt tetap meminta konfigurasi URL yang jelas di frontend.</p>
+              </div>
+              <div class="rounded-lg border border-slate-200 dark:border-zinc-800 p-3">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <div>
+                    <div class="text-xs font-semibold text-slate-700 dark:text-zinc-300">Sistem Admin</div>
+                    <p class="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">Admin mengelola data melalui dashboard CRUD.</p>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2 sm:w-56">
+                    <button id="revAdminEnabledBtn" type="button" onclick="setRevisionAdmin(true)" class="pro-admin-btn rev-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true">Dengan Admin</button>
+                    <button id="revAdminDisabledBtn" type="button" onclick="setRevisionAdmin(false)" class="pro-admin-btn rev-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false">Tanpa Admin</button>
+                  </div>
+                </div>
+                <div id="revMigrationAdminFields" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                  <div>
+                    <label for="rev-admin-user" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Username Admin</label>
+                    <input id="rev-admin-user" type="text" class="pro-input" autocomplete="off" placeholder="Contoh: admin">
+                  </div>
+                  <div>
+                    <label for="rev-admin-pass" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Password Admin</label>
+                    <input id="rev-admin-pass" type="password" class="pro-input" autocomplete="new-password" placeholder="Masukkan password admin">
+                  </div>
+                </div>
+                <p id="revAdminDescription" class="text-[11px] text-slate-500 dark:text-zinc-400 mt-2">Website dilengkapi login admin dan dashboard untuk mengelola seluruh data.</p>
+              </div>
+              <div class="rounded-lg border border-emerald-500/15 bg-emerald-500/[0.045] p-3">
+                <div class="text-xs font-semibold text-emerald-700 dark:text-emerald-300">Cakupan migrasi otomatis</div>
+                <p class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 mt-1">CRUD Create, Read, Update, Delete, penyimpanan server persisten, integrasi frontend-backend, validasi, penanganan error, serta pemindahan data awal dari source code lama tanpa mengubah desain yang tidak diminta.</p>
+              </div>
+            </div>
+
             <div class="flex flex-col flex-1 min-h-0 min-w-0">
               <label for="rev-code" class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0">
                 <span class="flex items-center gap-1.5">
@@ -1102,7 +1160,7 @@
                   </svg>
                   <span>Source Code HTML</span>
                 </span>
-                <span class="text-slate-400 dark:text-zinc-500 font-normal text-[11px]">(Opsional)</span>
+                <span id="revCodeRequirement" class="text-slate-400 dark:text-zinc-500 font-normal text-[11px]">(Opsional)</span>
               </label>
 
               <textarea
@@ -1119,7 +1177,7 @@
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
               </svg>
-              <span class="truncate">Generate & Salin</span>
+              <span id="revGenerateLabel" class="truncate">Generate & Salin</span>
             </button>
 
             <button type="button" onclick="openSplitterFromRevision()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 active:scale-[0.99] text-cyan-700 dark:text-cyan-300 text-sm font-semibold transition-colors shadow-sm shrink-0">
@@ -1379,6 +1437,8 @@
     let newPromptMode = 'basic';
     let proStorageMode = 'SERVER';
     let proAdminEnabled = true;
+    let revisionMode = 'standard';
+    let revisionAdminEnabled = true;
 
     const PRO_THEME_PRESETS = {
       MODERN_TECH: {
@@ -1845,6 +1905,148 @@ OUTPUT:
       });
     }
 
+    function setRevisionMode(mode) {
+      revisionMode = mode === 'migration' ? 'migration' : 'standard';
+      const standardButton = document.getElementById('revModeStandardBtn');
+      const migrationButton = document.getElementById('revModeMigrationBtn');
+      const changesWrap = document.getElementById('revChangesWrap');
+      const migrationOptions = document.getElementById('revMigrationOptions');
+      const description = document.getElementById('revisionModeDescription');
+      const generateLabel = document.getElementById('revGenerateLabel');
+      const codeRequirement = document.getElementById('revCodeRequirement');
+      const standardActive = revisionMode === 'standard';
+
+      if (standardButton && migrationButton) {
+        standardButton.setAttribute('aria-pressed', String(standardActive));
+        migrationButton.setAttribute('aria-pressed', String(!standardActive));
+        standardButton.className = standardActive
+          ? 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
+          : 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+        migrationButton.className = !standardActive
+          ? 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
+          : 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      }
+
+      if (changesWrap) changesWrap.classList.toggle('hidden', !standardActive);
+      if (migrationOptions) migrationOptions.classList.toggle('hidden', standardActive);
+      if (description) {
+        description.textContent = standardActive
+          ? 'Mode revisi biasa mempertahankan alur revisi yang sudah tersedia.'
+          : 'Tempel source code lama, lalu generate. Instruksi migrasi CRUD lengkap dan Server Storage akan dibuat otomatis.';
+      }
+      if (generateLabel) generateLabel.textContent = standardActive ? 'Generate & Salin' : 'Generate Migrasi CRUD & Salin';
+      if (codeRequirement) codeRequirement.textContent = standardActive ? '(Opsional)' : '(Wajib untuk migrasi)';
+    }
+
+    function setRevisionAdmin(enabled) {
+      revisionAdminEnabled = Boolean(enabled);
+      const enabledButton = document.getElementById('revAdminEnabledBtn');
+      const disabledButton = document.getElementById('revAdminDisabledBtn');
+      const fields = document.getElementById('revMigrationAdminFields');
+      const description = document.getElementById('revAdminDescription');
+      if (!enabledButton || !disabledButton || !fields) return;
+
+      enabledButton.setAttribute('aria-pressed', String(revisionAdminEnabled));
+      disabledButton.setAttribute('aria-pressed', String(!revisionAdminEnabled));
+      enabledButton.className = revisionAdminEnabled
+        ? 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
+        : 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      disabledButton.className = !revisionAdminEnabled
+        ? 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
+        : 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      fields.classList.toggle('hidden', !revisionAdminEnabled);
+      if (description) {
+        description.textContent = revisionAdminEnabled
+          ? 'Website dilengkapi login admin dan dashboard untuk mengelola seluruh data.'
+          : 'Tanpa halaman dan login admin. Batasi operasi tulis sesuai kebutuhan website dan jangan membuka endpoint pengelolaan internal secara bebas.';
+      }
+    }
+
+    function buildCrudMigrationPrompt(code) {
+      const gasUrl = document.getElementById('rev-gas-url').value.trim() || '[GANTI_URL_GAS]';
+      const adminUser = document.getElementById('rev-admin-user').value.trim() || '[USER]';
+      const adminPass = document.getElementById('rev-admin-pass').value || '[PASS]';
+      const adminInstruction = revisionAdminEnabled
+        ? `## 3. Sistem Admin
+- **Status Admin: AKTIF.** Tambahkan halaman/dashboard admin dan sistem login yang terintegrasi dengan website lama tanpa merusak navigasi atau tampilan publik.
+- Username admin awal: **${adminUser}**. Password admin awal: **${adminPass}**. Nilai placeholder harus mudah dikonfigurasi setelah deployment.
+- Admin harus dapat mengelola seluruh entitas/data utama melalui CRUD, mengelola konten yang sudah ada, melihat status data, dan melakukan backup, restore, serta reset data dengan konfirmasi.
+- Autentikasi dan otorisasi wajib divalidasi di backend. Jangan hanya menyembunyikan menu atau tombol pada frontend. Lindungi seluruh endpoint administratif, kelola token/session dengan benar, dan jangan menyimpan password plaintext atau mengekspos kredensial pada source frontend. Sediakan proses inisialisasi/ganti kredensial admin melalui konfigurasi server.`
+        : `## 3. Sistem Admin
+- **Status Admin: NONAKTIF.** Jangan membuat halaman/dashboard admin, login admin, akun admin, username/password admin, maupun endpoint administratif.
+- Website tetap harus menyediakan operasi CRUD yang memang diperlukan oleh alur publik lama. Batasi izin tulis sesuai kebutuhan fitur dan validasi setiap operasi pada backend. Jangan mengekspos endpoint pengelolaan internal, backup, restore, atau reset tanpa otorisasi.`;
+
+      return `Saya akan melampirkan source code website HTML yang sudah ada dan saat ini belum memiliki sistem CRUD lengkap.
+
+TUGAS UTAMA:
+Migrasikan website lama tersebut menjadi website dengan sistem CRUD lengkap (Create, Read, Update, Delete) dan Server Storage menggunakan Google Apps Script Web App, dengan backend pada file **code.gs**. Implementasikan langsung berdasarkan struktur, halaman, konten, komponen, dan kebutuhan data yang ditemukan di source code. Saya hanya ingin menempelkan source code lama lalu mendapatkan implementasi migrasi yang lengkap.
+
+PRIORITAS MIGRASI:
+- Pertahankan seluruh tampilan, tema, warna, layout, tipografi, konten, navigasi, halaman, section, aset, identitas brand, dan responsivitas website lama.
+- Pertahankan seluruh fungsi, fitur, event, ID, class, nama variabel, alur kerja, dan perilaku yang sudah berjalan, kecuali bagian yang memang harus dihubungkan ke sistem CRUD dan Server Storage.
+- Jangan mendesain ulang website, mengganti framework/library, menghapus bagian, atau mengubah konten yang tidak berkaitan dengan migrasi.
+- Identifikasi sendiri seluruh jenis data dan entitas yang sudah digunakan atau ditampilkan oleh website lama. Petakan field, relasi, sumber data statis, form, tombol aksi, dan interaksi yang relevan sebelum mengimplementasikan CRUD.
+- Jika data masih ditulis langsung di HTML/JavaScript, migrasikan sumber data tersebut ke penyimpanan server tanpa menghilangkan data awal. Gunakan data lama sebagai data awal/default hanya ketika penyimpanan server masih kosong. Jangan menimpa data server yang sudah ada setiap kali halaman dimuat.
+
+## 1. Implementasi CRUD Lengkap
+- Implementasikan Create, Read/List/Detail, Update, dan Delete untuk setiap entitas data yang memang relevan dengan fungsi website lama.
+- Hubungkan seluruh form, tombol, tabel, kartu, daftar, detail, dan komponen yang menampilkan atau mengubah data ke operasi CRUD yang sesuai. Jangan membuat tombol CRUD dekoratif atau aksi yang tidak berfungsi.
+- Sediakan form tambah dan edit dengan field yang sesuai struktur data lama, validasi wajib/format/rentang, pesan error, status loading, status kosong, dan notifikasi keberhasilan hanya setelah server benar-benar mengonfirmasi operasi.
+- Sediakan konfirmasi sebelum penghapusan, penanganan data tidak ditemukan, pencegahan submit ganda, dan pembaruan tampilan setelah operasi berhasil.
+- Pertahankan fungsi pencarian, filter, sorting, pagination, upload, atau fitur data lain yang sudah ada. Tambahkan kontrol pendukung hanya bila diperlukan agar CRUD dapat digunakan dengan jelas tanpa mengubah desain secara berlebihan.
+- Gunakan ID unik dan struktur data yang konsisten. Pastikan operasi update/delete hanya memengaruhi record yang dipilih, bukan seluruh data.
+- Tambahkan backup/export dan restore/import JSON tervalidasi serta reset data dengan konfirmasi bila sesuai dengan karakter aplikasi. Operasi administratif harus terlindungi autentikasi.
+- Pastikan semua halaman dan komponen membaca data melalui satu lapisan data/storage terpusat agar tidak ada sumber data lokal dan server yang saling bertentangan.
+
+## 2. Server Storage — Google Apps Script
+- **Wajib menggunakan Server Storage.** Gunakan Google Apps Script Web App sebagai backend dan letakkan seluruh logika server dalam satu file **code.gs**. Jangan mengganti mode menjadi localStorage atau membuat localStorage sebagai penyimpanan utama.
+- Konfigurasi frontend wajib menggunakan \`const STORAGE_MODE = "SERVER";\` dan \`const GAS_WEB_APP_URL = "${gasUrl}";\`. Jika URL masih placeholder, tandai satu lokasi konfigurasi yang jelas agar dapat diisi setelah deployment.
+- Seluruh operasi data harus membaca dan menulis ke penyimpanan server melalui API yang disediakan code.gs. Jangan menganggap data berhasil disimpan hanya karena UI berubah; tampilkan sukses hanya jika respons server menyatakan operasi berhasil.
+- Backend harus membuat dan mengelola penyimpanan server secara otomatis. Gunakan penyimpanan persisten yang sesuai dengan Google Apps Script, misalnya file JSON di Google Drive yang dibuat/dikelola oleh code.gs atau penyimpanan server-native yang sesuai kapasitas. Jangan meminta Spreadsheet ID, database eksternal, atau konfigurasi tambahan yang tidak diperlukan.
+- Buat objek **DEFAULT_DATA** berdasarkan struktur data website lama. Inisialisasikan data awal hanya satu kali ketika storage server belum memiliki data. Sediakan mekanisme migrasi/seed satu kali yang aman agar seluruh data statis lama masuk ke server tanpa duplikasi.
+- Sediakan API yang konsisten untuk mengambil data dan melakukan operasi CRUD. Minimal dukung action yang diperlukan seperti \`getData/listItems\`, \`createItem\`, \`updateItem\`, \`deleteItem\`, serta action admin seperti \`login\`, \`restoreData\`, dan \`resetData\` bila admin aktif. Samakan nama action, parameter, field, dan skema respons antara index.html dan code.gs.
+- Gunakan respons JSON konsisten: sukses \`{"ok": true, "data": {}}\` dan gagal \`{"ok": false, "error": "pesan"}\`. Tangani respons kosong/tidak valid, kegagalan jaringan, timeout, dan error backend dengan pesan yang informatif.
+- Gunakan validasi input di sisi frontend dan backend, pengamanan operasi tulis, penguncian saat penulisan bersamaan dengan LockService bila diperlukan, serta mekanisme ID unik dan konsistensi data. Jangan mengandalkan validasi frontend saja.
+- Implementasikan integrasi request Google Apps Script yang benar-benar kompatibel dengan deployment Web App, termasuk format request/response dan penanganan redirect/CORS yang sesuai. Jangan memakai mode request yang membuat respons tidak dapat dibaca oleh frontend.
+- Simpan konfigurasi sensitif pada sisi server bila memungkinkan. Jangan menanam token rahasia atau password admin dalam JavaScript publik. Jangan menyimpan data utama di localStorage; penyimpanan browser hanya boleh digunakan untuk preferensi non-sensitif atau session sementara bila diperlukan.
+
+## 3. Integrasi Frontend-Backend
+- Buat satu lapisan service/API pada frontend untuk seluruh operasi data agar pemanggilan backend konsisten dan mudah dirawat.
+- Gunakan action dan struktur payload yang eksplisit untuk setiap entitas. Pastikan setiap form dan komponen memanggil operasi yang sesuai, lalu refresh state dari respons server yang valid.
+- Tangani status loading, error jaringan, sesi kedaluwarsa, data kosong, dan konflik perubahan tanpa membuat UI menampilkan data sukses palsu.
+- Jangan biarkan komponen membaca atau menulis salinan data statis lama setelah migrasi selesai, kecuali untuk data awal yang memang hanya digunakan saat proses seed pertama.
+
+${adminInstruction}
+
+## 4. Performa, Kompatibilitas, dan Kualitas
+- Mobile-first, ringan, sangat responsif, dan prioritaskan performa nyata pada perangkat mobile.
+- Pertahankan scrolling natural dan stabil. Minimalkan backdrop-filter, blur, shadow besar, repaint, reflow, dan animasi berat. Utamakan transform dan opacity seperlunya.
+- Gunakan requestAnimationFrame hanya untuk proses yang berkaitan dengan scroll, passive event listener untuk scroll/touch, lazy-loading untuk gambar yang tidak langsung terlihat, serta svh/dvh sesuai kebutuhan.
+- Hormati prefers-reduced-motion. Jangan membuat interval, listener, observer, atau animasi redundant.
+- Pastikan state UI selalu sinkron dengan data server, cegah race condition dan submit berulang, dan berikan fallback error yang jelas saat jaringan/server tidak tersedia.
+- Pertahankan kompatibilitas seluruh fitur lama dan pastikan tidak ada fungsi, tombol, form, atau navigasi yang rusak setelah migrasi.
+
+## 5. Aturan Revisi Source Code
+- Lakukan perubahan seminimal mungkin di luar kebutuhan CRUD dan Server Storage.
+- Jangan menghapus, menyederhanakan, atau mengganti fungsi lama yang masih diperlukan.
+- Jangan mengubah desain, teks, data, atau alur kerja yang tidak diminta.
+- Pertahankan ID, class, event handler, fungsi JavaScript, library, dan mekanisme lama selama masih relevan.
+- Jika ada struktur lama yang perlu disesuaikan, buat kompatibilitas agar perilaku lama tetap berjalan.
+- Jangan mengarang fitur bisnis baru yang tidak didukung website lama. Tentukan CRUD dari entitas/data yang benar-benar ditemukan pada source code.
+
+## 6. Output
+Berikan FULL SOURCE CODE siap pakai untuk dua file yang saling kompatibel:
+1. **\`index.html\`** — seluruh HTML, Tailwind CSS, dan JavaScript frontend dalam satu file, termasuk UI CRUD dan integrasi Server Storage.
+2. **\`code.gs\`** — backend Google Apps Script Web App yang menangani penyimpanan persisten, API CRUD, validasi, autentikasi/otorisasi bila admin aktif, backup/restore/reset yang diperlukan, dan response JSON.
+
+Jangan memberikan potongan kode, pseudocode, placeholder implementasi, atau instruksi yang menggantikan implementasi. Sertakan langkah singkat deployment Google Apps Script dan lokasi pengisian URL Web App setelah kedua source code selesai. Jangan memberi komentar di dalam source code.
+
+SOURCE CODE WEBSITE LAMA YANG AKAN DIMIGRASIKAN:
+\`\`\`html
+${code}
+\`\`\``;
+    }
+
     function buildRevisionPrompt(changes, code) {
       let prompt = `Saya akan melampirkan source code HTML yang sudah ada.
 
@@ -1942,6 +2144,23 @@ ${code}
       const changes = changesInput.value.trim();
       const code = document.getElementById('rev-code').value.trim();
 
+      if (revisionMode === 'migration') {
+        if (!code) {
+          showToast('Tempelkan source code website lama terlebih dahulu!', true);
+          document.getElementById('rev-code').focus();
+          return;
+        }
+        const migrationPrompt = buildCrudMigrationPrompt(code);
+        writeClipboard(migrationPrompt).then((copied) => {
+          if (copied) {
+            showToast('Prompt migrasi CRUD + Server Storage berhasil digenerate & otomatis disalin!');
+          } else {
+            showToast('Gagal menyalin otomatis. Silakan coba lagi.', true);
+          }
+        });
+        return;
+      }
+
       if (!changes) {
         showToast('Silakan isi perubahan yang diinginkan!', true);
         changesInput.focus();
@@ -1979,6 +2198,11 @@ ${code}
     function resetRevForm() {
       document.getElementById('rev-changes').value = '';
       document.getElementById('rev-code').value = '';
+      document.getElementById('rev-gas-url').value = '';
+      document.getElementById('rev-admin-user').value = '';
+      document.getElementById('rev-admin-pass').value = '';
+      setRevisionAdmin(true);
+      setRevisionMode('standard');
       document.getElementById('rev-changes').focus();
     }
 
@@ -2281,6 +2505,21 @@ ${code}
     function openSplitterFromRevision() {
       const changes = document.getElementById('rev-changes').value.trim();
       const code = document.getElementById('rev-code').value.trim();
+      if (revisionMode === 'migration') {
+        if (!code) {
+          showToast('Tempelkan source code website lama terlebih dahulu!', true);
+          document.getElementById('rev-code').focus();
+          return;
+        }
+        const migrationPrompt = buildCrudMigrationPrompt(code);
+        splitterState.source = migrationPrompt;
+        const migrationSourceEl = document.getElementById('splitterSource');
+        if (migrationSourceEl) migrationSourceEl.value = migrationPrompt;
+        updateSplitterMeta();
+        doSplit(false);
+        openSplitterModal();
+        return;
+      }
       const newDetail = document.getElementById('new-detail').value.trim();
       const proDetail = document.getElementById('pro-detail').value.trim();
       const isProMode = newPromptMode === 'pro';
@@ -2389,6 +2628,8 @@ OUTPUT:
     setProStorage('SERVER');
     setProAdmin(true);
     setNewMode('basic');
+    setRevisionMode('standard');
+    setRevisionAdmin(true);
     loadDefaultSplitMode();
     updateSplitterMeta();
   </script>
