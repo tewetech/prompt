@@ -30,352 +30,6 @@
   <style>
     :root {
       color-scheme: dark;
-    }
-
-    html:not(.dark) {
-      color-scheme: light;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: #0891b2 #0b0f17;
-    }
-
-    @media (max-width: 1023px) {
-      html {
-        scroll-behavior: auto;
-      }
-    }
-
-    html:not(.dark) {
-      scrollbar-color: #0284c7 #f1f5f9;
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      scrollbar-width: thin;
-      scrollbar-color: #0891b2 #0b0f17;
-    }
-
-    html:not(.dark) *,
-    html:not(.dark) *::before,
-    html:not(.dark) *::after {
-      scrollbar-color: #0284c7 #f1f5f9;
-    }
-
-    body {
-      overflow-x: hidden;
-      -webkit-tap-highlight-color: transparent;
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-
-    body.modal-open {
-      overflow: hidden !important;
-    }
-
-    ::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #0b0f17;
-    }
-
-    html:not(.dark) ::-webkit-scrollbar-track {
-      background: #f8fafc;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #0891b2;
-      border-radius: 999px;
-    }
-
-    html:not(.dark) ::-webkit-scrollbar-thumb {
-      background: #0284c7;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #06b6d4;
-    }
-
-    html:not(.dark) ::-webkit-scrollbar-thumb:hover {
-      background: #0369a1;
-    }
-
-    textarea,
-    pre,
-    code {
-      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    }
-
-    textarea {
-      resize: vertical;
-      min-width: 0;
-      max-width: 100%;
-      overscroll-behavior: contain;
-    }
-
-    button,
-    textarea,
-    input {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button {
-      touch-action: manipulation;
-    }
-
-    .clean-grid {
-      background-image:
-        linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-
-    html:not(.dark) .clean-grid {
-      background-image:
-        linear-gradient(rgba(2, 132, 199, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-
-    .pro-scroll {
-      min-width: 0;
-      overscroll-behavior: contain;
-    }
-
-    .pro-input {
-      width: 100%;
-      min-width: 0;
-      border: 1px solid #cbd5e1;
-      border-radius: 0.75rem;
-      background: rgba(248, 250, 252, 0.85);
-      padding: 0.65rem 0.75rem;
-      color: #0f172a;
-      font-size: 0.8125rem;
-      line-height: 1.4rem;
-      outline: none;
-      transition: border-color 120ms ease, background-color 120ms ease;
-    }
-
-    .pro-input:focus {
-      border-color: #06b6d4;
-      background: #fff;
-    }
-
-    .theme-preview {
-      background: var(--theme-preview-bg, #0b1220);
-      color: var(--theme-preview-text, #f1f5f9);
-      border-color: var(--theme-preview-border, #334155);
-    }
-
-    .theme-preview-surface {
-      background: var(--theme-preview-surface, #111827);
-      border-color: var(--theme-preview-border, #334155);
-    }
-
-    .theme-preview-accent {
-      background: var(--theme-preview-primary, #06b6d4);
-      color: var(--theme-preview-button-text, #082f49);
-    }
-
-    .theme-preview-muted {
-      color: var(--theme-preview-muted, #94a3b8);
-    }
-
-    .theme-swatch {
-      width: 1.25rem;
-      height: 1.25rem;
-      border-radius: 9999px;
-      border: 2px solid rgba(255, 255, 255, 0.65);
-      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.18);
-      flex: 0 0 auto;
-    }
-
-    .pro-admin-btn[aria-pressed="true"] {
-      border-color: rgba(6, 182, 212, 0.45);
-      background: rgba(6, 182, 212, 0.12);
-      color: #0e7490;
-    }
-
-    html.dark .pro-admin-btn[aria-pressed="true"] {
-      color: #67e8f9;
-    }
-
-    .pro-input::placeholder {
-      color: #94a3b8;
-    }
-
-    html.dark .pro-input {
-      border-color: #27272a;
-      background: #080b11;
-      color: #f4f4f5;
-    }
-
-    html.dark .pro-input:focus {
-      border-color: #06b6d4;
-      background: #080b11;
-    }
-
-    html.dark .pro-input::placeholder {
-      color: #52525b;
-    }
-
-    .pro-mode-btn[aria-pressed="true"] {
-      border-color: rgba(6, 182, 212, 0.45);
-      background: rgba(6, 182, 212, 0.12);
-      color: #0e7490;
-    }
-
-    html.dark .pro-mode-btn[aria-pressed="true"] {
-      color: #67e8f9;
-    }
-
-    @media (min-width: 1024px) {
-      .pro-scroll {
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-    }
-
-    @media (max-width: 1023px) {
-      .pro-scroll {
-        overflow: visible;
-        flex: 0 0 auto;
-        min-height: auto;
-      }
-
-      #newProPanel {
-        flex: 1 0 auto;
-      }
-    }
-
-    .page-shell,
-    .page-main,
-    .page-card,
-    .page-card > div,
-    .new-detail,
-    .rev-changes,
-    .rev-code {
-      min-width: 0;
-    }
-
-    .page-card {
-      width: 100%;
-    }
-
-    .new-detail,
-    .rev-changes,
-    .rev-code {
-      max-width: 100%;
-      display: block;
-    }
-
-    @media (min-width: 1024px) {
-      html,
-      body {
-        height: 100%;
-        overflow: hidden;
-      }
-
-      body {
-        min-height: 100dvh;
-      }
-
-      .page-shell {
-        height: 100dvh;
-        min-height: 0;
-        overflow: hidden;
-        padding-top: 1rem !important;
-        padding-bottom: 0.85rem !important;
-      }
-
-      .page-header {
-        margin-bottom: 0.75rem !important;
-        padding-bottom: 0.65rem !important;
-      }
-
-      .page-main {
-        min-height: 0 !important;
-        height: 0;
-        width: 100%;
-      }
-
-      .page-card {
-        min-height: 0 !important;
-        height: 100%;
-      }
-
-      .page-card > div {
-        min-height: 0;
-      }
-
-      .new-detail,
-      .rev-changes,
-      .rev-code {
-        min-height: 0 !important;
-        height: 100%;
-      }
-
-      .page-footer {
-        margin-top: 0.65rem !important;
-        padding-top: 0.45rem !important;
-      }
-
-      .new-detail {
-        flex: 1 1 auto;
-      }
-
-      .rev-changes,
-      .rev-code {
-        flex: 1 1 auto;
-      }
-
-      .rev-changes {
-        min-height: 0 !important;
-      }
-
-      .rev-code {
-        min-height: 0 !important;
-      }
-    }
-
-    @media (max-width: 1023px) {
-      .page-card {
-        min-height: auto;
-      }
-
-      .new-detail {
-        min-height: 180px;
-      }
-
-      .rev-changes {
-        min-height: 130px;
-      }
-
-      .rev-code {
-        min-height: 150px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-
-    :root {
-      color-scheme: dark;
       --app-bg: #080d16;
       --app-surface: #0d1624;
       --app-surface-raised: #111d2d;
@@ -402,13 +56,36 @@
 
     html {
       scroll-behavior: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #0891b2 #0b0f17;
       scrollbar-gutter: stable;
       -webkit-text-size-adjust: 100%;
     }
 
+    @media (max-width: 1023px) {
+      html { scroll-behavior: auto; }
+    }
+
+    html:not(.dark) { scrollbar-color: #0284c7 #f1f5f9; }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: #0891b2 #0b0f17;
+    }
+
+    html:not(.dark) *,
+    html:not(.dark) *::before,
+    html:not(.dark) *::after { scrollbar-color: #0284c7 #f1f5f9; }
+
     body {
       min-height: 100svh;
       min-height: 100dvh;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--app-bg);
       color: var(--app-text);
       background-image:
@@ -427,9 +104,121 @@
         linear-gradient(90deg, rgba(30, 100, 150, .035) 1px, transparent 1px);
     }
 
-    .clean-grid {
-      background-image: none;
+    body.modal-open { overflow: hidden !important; }
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #0b0f17; }
+    html:not(.dark) ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #0891b2; border-radius: 999px; }
+    html:not(.dark) ::-webkit-scrollbar-thumb { background: #0284c7; }
+    ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+    html:not(.dark) ::-webkit-scrollbar-thumb:hover { background: #0369a1; }
+
+    textarea,
+    pre,
+    code { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+
+    textarea {
+      resize: vertical;
+      min-width: 0;
+      max-width: 100%;
+      overscroll-behavior: contain;
     }
+
+    button,
+    textarea,
+    input { -webkit-tap-highlight-color: transparent; }
+    button { touch-action: manipulation; }
+    .clean-grid { background-image: none; }
+    .pro-scroll { min-width: 0; overscroll-behavior: contain; }
+
+    .pro-input {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid #293b51;
+      border-radius: .85rem;
+      background: #09121f;
+      padding: .65rem .75rem;
+      color: #e7eef8;
+      font-size: .8125rem;
+      line-height: 1.4rem;
+      outline: none;
+      box-shadow: none;
+      transition: border-color 120ms ease, background-color 120ms ease;
+    }
+
+    .pro-input:focus {
+      border-color: #22b9d4;
+      background: #09121f;
+      outline: none;
+      box-shadow: 0 0 0 3px var(--app-focus);
+    }
+
+    .pro-input::placeholder { color: #70839a; opacity: 1; }
+
+    html:not(.dark) .pro-input {
+      border-color: #d7e1ed;
+      background: #f8fafd;
+      color: #172338;
+    }
+
+    html:not(.dark) .pro-input:focus {
+      border-color: #1293b6;
+      background: #ffffff;
+    }
+
+    html:not(.dark) .pro-input::placeholder { color: #8998aa; }
+
+    .theme-preview {
+      background: var(--theme-preview-bg, #0b1220);
+      color: var(--theme-preview-text, #f1f5f9);
+      border-color: var(--theme-preview-border, #334155);
+      border-radius: 1rem;
+    }
+
+    .theme-preview-surface {
+      background: var(--theme-preview-surface, #111827);
+      border-color: var(--theme-preview-border, #334155);
+      border-radius: .8rem;
+    }
+
+    .theme-preview-accent {
+      background: var(--theme-preview-primary, #06b6d4);
+      color: var(--theme-preview-button-text, #082f49);
+    }
+
+    .theme-preview-muted { color: var(--theme-preview-muted, #94a3b8); }
+
+    .theme-swatch {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 9999px;
+      border: 2px solid rgba(255, 255, 255, .65);
+      box-shadow: 0 0 0 1px rgba(7, 17, 31, .3);
+      flex: 0 0 auto;
+    }
+
+    .pro-admin-btn[aria-pressed="true"],
+    .pro-mode-btn[aria-pressed="true"] {
+      border-color: rgba(34, 199, 223, .48) !important;
+      background: rgba(34, 199, 223, .11) !important;
+      color: #67e8f9 !important;
+    }
+
+    html:not(.dark) .pro-admin-btn[aria-pressed="true"],
+    html:not(.dark) .pro-mode-btn[aria-pressed="true"] {
+      color: #08718f !important;
+      background: #e8f8fb !important;
+      border-color: #a6dce7 !important;
+    }
+
+    .page-shell,
+    .page-main,
+    .page-card,
+    .page-card > div,
+    .new-detail,
+    .rev-changes,
+    .rev-code { min-width: 0; }
 
     .page-shell {
       max-width: 86rem;
@@ -437,87 +226,49 @@
       padding-bottom: max(.85rem, env(safe-area-inset-bottom));
     }
 
-    .page-header {
-      border-color: var(--app-border) !important;
-    }
-
-    .page-header > div:first-child > div:first-child {
-      border-radius: 14px;
-      background: rgba(34, 199, 223, .09);
-      border-color: rgba(34, 199, 223, .22);
-    }
-
-    .page-header h1 {
-      letter-spacing: -.045em;
-    }
-
     .page-card {
+      width: 100%;
       background: linear-gradient(155deg, #101b2b 0%, #0c1522 74%, #0c1724 100%) !important;
       border: 1px solid #20334a !important;
       border-radius: 1.35rem;
-      box-shadow: 0 8px 24px rgba(1, 8, 18, .13);
+      box-shadow: 0 5px 16px rgba(1, 8, 18, .11);
     }
 
     html:not(.dark) .page-card {
       background: #ffffff !important;
       border-color: #dce5f0 !important;
-      box-shadow: 0 6px 22px rgba(27, 48, 76, .055);
+      box-shadow: 0 4px 16px rgba(27, 48, 76, .045);
     }
 
-    .page-card > div:first-child {
-      border-color: rgba(127, 158, 190, .18) !important;
+    .page-header { border-color: var(--app-border) !important; }
+    .page-header > div:first-child > div:first-child {
+      border-radius: 14px;
+      background: rgba(34, 199, 223, .09);
+      border-color: rgba(34, 199, 223, .22);
     }
-
-    html:not(.dark) .page-card > div:first-child {
-      border-color: #e7edf5 !important;
-    }
+    .page-header h1 { letter-spacing: -.045em; }
+    .page-card > div:first-child { border-color: rgba(127, 158, 190, .18) !important; }
+    html:not(.dark) .page-card > div:first-child { border-color: #e7edf5 !important; }
 
     .page-card button,
     #themeToggleBtn,
     .reset-btn,
-    .splitModeBtn {
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-    }
+    .splitModeBtn { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 
     .page-card button.bg-cyan-600,
     .page-card button[class~="bg-cyan-600"] {
       background: #087f9f !important;
       border: 1px solid rgba(74, 220, 236, .22);
-      box-shadow: 0 3px 10px rgba(3, 105, 132, .16);
+      box-shadow: 0 2px 7px rgba(3, 105, 132, .13);
     }
 
     .page-card button.bg-cyan-600:hover,
-    .page-card button[class~="bg-cyan-600"]:hover {
-      background: #0695b7 !important;
-    }
-
+    .page-card button[class~="bg-cyan-600"]:hover { background: #0695b7 !important; }
     .pro-mode-btn,
     .pro-admin-btn,
     #proStorageServerBtn,
-    #proStorageLocalBtn {
-      border-radius: .8rem;
-    }
+    #proStorageLocalBtn { border-radius: .8rem; }
 
-    .pro-mode-btn[aria-pressed="true"],
-    .pro-admin-btn[aria-pressed="true"],
-    #proStorageServerBtn[aria-pressed="true"],
-    #proStorageLocalBtn[aria-pressed="true"] {
-      border-color: rgba(34, 199, 223, .48) !important;
-      background: rgba(34, 199, 223, .11) !important;
-      color: #67e8f9 !important;
-    }
-
-    html:not(.dark) .pro-mode-btn[aria-pressed="true"],
-    html:not(.dark) .pro-admin-btn[aria-pressed="true"],
-    html:not(.dark) #proStorageServerBtn[aria-pressed="true"],
-    html:not(.dark) #proStorageLocalBtn[aria-pressed="true"] {
-      color: #08718f !important;
-      background: #e8f8fb !important;
-      border-color: #a6dce7 !important;
-    }
-
-    .pro-input,
     .new-detail,
     .rev-changes,
     .rev-code,
@@ -530,7 +281,6 @@
       transition: border-color .14s ease, background-color .14s ease !important;
     }
 
-    .pro-input:focus,
     .new-detail:focus,
     .rev-changes:focus,
     .rev-code:focus,
@@ -540,15 +290,10 @@
       box-shadow: 0 0 0 3px var(--app-focus) !important;
     }
 
-    .pro-input::placeholder,
     .new-detail::placeholder,
     .rev-changes::placeholder,
-    .rev-code::placeholder {
-      color: #70839a !important;
-      opacity: 1;
-    }
+    .rev-code::placeholder { color: #70839a !important; }
 
-    html:not(.dark) .pro-input,
     html:not(.dark) .new-detail,
     html:not(.dark) .rev-changes,
     html:not(.dark) .rev-code,
@@ -558,7 +303,6 @@
       border-color: #d7e1ed !important;
     }
 
-    html:not(.dark) .pro-input:focus,
     html:not(.dark) .new-detail:focus,
     html:not(.dark) .rev-changes:focus,
     html:not(.dark) .rev-code:focus,
@@ -567,317 +311,152 @@
       border-color: #1293b6 !important;
     }
 
-    html:not(.dark) .pro-input::placeholder,
     html:not(.dark) .new-detail::placeholder,
     html:not(.dark) .rev-changes::placeholder,
-    html:not(.dark) .rev-code::placeholder {
-      color: #8998aa !important;
-    }
-
-    .theme-preview {
-      border-radius: 1rem !important;
-    }
-
-    .theme-preview-surface {
-      border-radius: .8rem !important;
-    }
-
-    .theme-swatch {
-      box-shadow: 0 0 0 1px rgba(7, 17, 31, .3);
-    }
+    html:not(.dark) .rev-code::placeholder { color: #8998aa !important; }
 
     .pro-scroll > div,
     #proServerOptions > div,
     #proThemePreview,
-    #proAdminFields > div {
-      border-color: rgba(127, 158, 190, .22) !important;
-    }
+    #proAdminFields > div,
+    #revMigrationOptions > div { border-color: rgba(127, 158, 190, .22) !important; }
 
     html:not(.dark) .pro-scroll > div,
     html:not(.dark) #proServerOptions > div,
     html:not(.dark) #proThemePreview,
-    html:not(.dark) #proAdminFields > div {
-      border-color: #dfe7f0 !important;
-    }
+    html:not(.dark) #proAdminFields > div,
+    html:not(.dark) #revMigrationOptions > div { border-color: #dfe7f0 !important; }
 
-    .page-footer {
-      border-color: var(--app-border) !important;
-      color: var(--app-muted) !important;
-    }
-
-    #revMigrationOptions {
-      overscroll-behavior: contain;
-      scrollbar-width: thin;
-    }
-
-    @media (min-width: 1024px) {
-      #revMigrationOptions {
-        max-height: 40%;
-        overflow-y: auto;
-      }
-    }
+    .page-footer { border-color: var(--app-border) !important; color: var(--app-muted) !important; }
+    #revMigrationOptions { overscroll-behavior: contain; scrollbar-width: thin; }
 
     #splitterModal > div {
       border-color: #253950 !important;
       background: #0d1725 !important;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, .28);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .22);
     }
 
-    html:not(.dark) #splitterModal > div {
-      border-color: #d6e1ed !important;
-      background: #ffffff !important;
-    }
-
+    html:not(.dark) #splitterModal > div { border-color: #d6e1ed !important; background: #ffffff !important; }
     #splitterModal > div > div:first-of-type,
-    #splitterModal > div > div:last-of-type {
-      background: #0a1320 !important;
-      border-color: #20334a !important;
-    }
-
+    #splitterModal > div > div:last-of-type { background: #0a1320 !important; border-color: #20334a !important; }
     html:not(.dark) #splitterModal > div > div:first-of-type,
-    html:not(.dark) #splitterModal > div > div:last-of-type {
-      background: #f6f9fc !important;
-      border-color: #e0e8f1 !important;
+    html:not(.dark) #splitterModal > div > div:last-of-type { background: #f6f9fc !important; border-color: #e0e8f1 !important; }
+    #splitterModal > div > div:nth-of-type(2) { background: #0b1421 !important; border-color: #20334a !important; }
+    html:not(.dark) #splitterModal > div > div:nth-of-type(2) { background: #f9fbfd !important; border-color: #e0e8f1 !important; }
+    #splitterResultsGrid > button { border-color: #273b52 !important; background: #101c2b !important; box-shadow: none !important; transition: border-color .14s ease, background-color .14s ease !important; }
+    html:not(.dark) #splitterResultsGrid > button { border-color: #dce5ef !important; background: #ffffff !important; }
+    #toast { box-shadow: 0 5px 16px rgba(0, 0, 0, .16) !important; }
+
+    #migrationModal > div {
+      border-color: #253950 !important;
+      background: #0d1725 !important;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, .2);
     }
 
-    #splitterModal > div > div:nth-of-type(2) {
-      background: #0b1421 !important;
-      border-color: #20334a !important;
-    }
-
-    html:not(.dark) #splitterModal > div > div:nth-of-type(2) {
-      background: #f9fbfd !important;
-      border-color: #e0e8f1 !important;
-    }
-
-    #splitterResultsGrid > button {
-      border-color: #273b52 !important;
-      background: #101c2b !important;
-      box-shadow: none !important;
-      transition: border-color .14s ease, background-color .14s ease !important;
-    }
-
-    html:not(.dark) #splitterResultsGrid > button {
-      border-color: #dce5ef !important;
-      background: #ffffff !important;
-    }
-
-    #toast {
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .2) !important;
-    }
+    html:not(.dark) #migrationModal > div { border-color: #d6e1ed !important; background: #ffffff !important; }
+    #migrationModalHeader { background: #0a1320; border-color: #20334a; }
+    html:not(.dark) #migrationModalHeader { background: #f6f9fc; border-color: #e0e8f1; }
+    #migrationModalContent { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+    #migrationModalContent #revMigrationOptions { max-height: none; overflow: visible; }
 
     button:focus-visible,
     select:focus-visible,
     input:focus-visible,
-    textarea:focus-visible {
-      outline: 2px solid rgba(34, 199, 223, .7);
-      outline-offset: 2px;
+    textarea:focus-visible { outline: 2px solid rgba(34, 199, 223, .7); outline-offset: 2px; }
+
+    @media (min-width: 1024px) {
+      html,
+      body { height: 100%; overflow: hidden; }
+      body { min-height: 100dvh; }
+      .page-shell { height: 100dvh; min-height: 0; overflow: hidden; padding-top: 1rem !important; padding-bottom: .85rem !important; }
+      .page-header { margin-bottom: .75rem !important; padding-bottom: .65rem !important; }
+      .page-main { min-height: 0 !important; height: 0; width: 100%; }
+      .page-card { min-height: 0 !important; height: 100%; overflow: hidden; }
+      .page-card > div { min-height: 0; }
+      .new-detail,
+      .rev-changes,
+      .rev-code { min-height: 0 !important; height: 100%; display: block; }
+      .page-footer { margin-top: .65rem !important; padding-top: .45rem !important; }
+      .new-detail { flex: 1 1 auto; }
+      .rev-changes,
+      .rev-code { flex: 1 1 auto; }
+      .pro-scroll { overflow-y: auto; -webkit-overflow-scrolling: touch; scrollbar-gutter: stable; scrollbar-width: thin; }
+      #splitterModal > div { max-height: min(90dvh, 760px); }
+      #migrationModal > div { max-height: min(92dvh, 840px); }
     }
 
     @media (max-width: 1023px) {
       html,
-      body {
-        height: auto;
-        overflow-x: hidden;
-        overflow-y: auto;
-      }
-
-      body {
-        min-height: 100svh;
-        min-height: 100dvh;
-      }
-
-      .page-shell {
-        min-height: 100svh;
-        min-height: 100dvh;
-        height: auto;
-        overflow: visible;
-        padding-left: max(.875rem, env(safe-area-inset-left));
-        padding-right: max(.875rem, env(safe-area-inset-right));
-      }
-
-      .page-main {
-        height: auto;
-        flex: 0 0 auto;
-        gap: 1rem;
-      }
-
-      .page-card {
-        min-height: auto;
-        padding: 1rem;
-        gap: 1rem;
-      }
-
+      body { height: auto; overflow-x: hidden; overflow-y: auto; }
+      body { min-height: 100svh; min-height: 100dvh; }
+      .page-shell { min-height: 100svh; min-height: 100dvh; height: auto; overflow: visible; padding-left: max(.875rem, env(safe-area-inset-left)); padding-right: max(.875rem, env(safe-area-inset-right)); }
+      .page-main { height: auto; flex: 0 0 auto; gap: 1rem; }
+      .page-card { min-height: auto; padding: 1rem; gap: 1rem; }
       .new-detail,
       .rev-changes,
-      .rev-code {
-        font-size: 16px !important;
-        line-height: 1.6;
-        overscroll-behavior-y: contain;
-      }
-
-      .new-detail {
-        min-height: 190px;
-      }
-
-      .rev-changes {
-        min-height: 145px;
-      }
-
-      .rev-code {
-        min-height: 175px;
-      }
-
-      .pro-input {
-        font-size: 16px;
-        min-height: 44px;
-      }
-
-      #newProPanel {
-        flex: 0 0 auto;
-      }
-
-      .pro-scroll {
-        overflow: visible;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: auto;
-      }
-
-      #splitterModal {
-        align-items: flex-end;
-        padding: .6rem;
-        padding-bottom: max(.6rem, env(safe-area-inset-bottom));
-      }
-
-      #splitterModal > div {
-        height: min(88svh, 620px) !important;
-        max-height: 88dvh;
-        border-radius: 1.15rem;
-      }
-
+      .rev-code { font-size: 16px !important; line-height: 1.6; overscroll-behavior-y: contain; }
+      .new-detail { min-height: 190px; }
+      .rev-changes { min-height: 145px; }
+      .rev-code { min-height: 175px; }
+      .pro-input { font-size: 16px; min-height: 44px; }
+      #newProPanel { flex: 0 0 auto; }
+      .pro-scroll { overflow: visible; flex: 0 0 auto; min-height: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: auto; }
+      #newProPanel { flex: 1 0 auto; }
+      #splitterModal { align-items: flex-end; padding: .6rem; padding-bottom: max(.6rem, env(safe-area-inset-bottom)); }
+      #splitterModal > div { height: min(88svh, 620px) !important; max-height: 88dvh; border-radius: 1.15rem; }
       #splitterModal > div > div.overflow-y-auto,
-      #splitterModal .overflow-y-auto {
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
-      }
-
-      #toast {
-        bottom: max(1rem, env(safe-area-inset-bottom));
-      }
+      #splitterModal .overflow-y-auto { -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+      #migrationModal { align-items: flex-end; padding: .6rem; padding-bottom: max(.6rem, env(safe-area-inset-bottom)); }
+      #migrationModal > div { width: 100%; max-height: 90dvh; border-radius: 1.15rem; }
+      #toast { bottom: max(1rem, env(safe-area-inset-bottom)); }
     }
 
     @media (max-width: 639px) {
-      .page-header {
-        gap: .85rem;
-        padding-bottom: .9rem;
-      }
-
-      .page-header h1 {
-        font-size: 1.12rem;
-      }
-
-      .page-card {
-        border-radius: 1.1rem;
-      }
-
-      #splitterModal > div {
-        height: min(88svh, 620px) !important;
-        max-height: 88dvh;
-      }
-
-      #splitterModal > div > div:nth-of-type(2) > div:first-child {
-        gap: .4rem;
-      }
-
-      #splitterModal .text-xs {
-        line-height: 1.4;
-      }
-
-      #splitterModal > div > div:last-of-type {
-        gap: .5rem;
-        align-items: flex-start;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .page-card {
-        overflow: hidden;
-      }
-
-      .pro-scroll {
-        scrollbar-gutter: stable;
-        scrollbar-width: thin;
-      }
-
-      #splitterModal > div {
-        max-height: min(90dvh, 760px);
-      }
+      .page-header { gap: .85rem; padding-bottom: .9rem; }
+      .page-header h1 { font-size: 1.12rem; }
+      .page-card { border-radius: 1.1rem; }
+      #splitterModal > div { height: min(88svh, 620px) !important; max-height: 88dvh; }
+      #splitterModal > div > div:nth-of-type(2) > div:first-child { gap: .4rem; }
+      #splitterModal .text-xs { line-height: 1.4; }
+      #splitterModal > div > div:last-of-type { gap: .5rem; align-items: flex-start; }
+      #migrationModal > div { max-height: 90dvh; }
+      #migrationModalContent { padding-left: .85rem; padding-right: .85rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
       *::after {
-        scroll-behavior: auto !important;
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
       }
     }
-
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body class="min-h-dvh bg-slate-100 dark:bg-[#080b11] text-slate-800 dark:text-zinc-100 antialiased selection:bg-cyan-500 selection:text-white flex flex-col clean-grid transition-colors duration-200">
 
   <div class="page-shell relative z-10 w-full max-w-7xl mx-auto px-3.5 py-4 sm:px-6 sm:py-5 lg:px-8 flex-1 flex flex-col">
     <header class="page-header mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-200/90 dark:border-zinc-800 pb-4">
       <div class="flex items-center gap-3 min-w-0">
         <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="16 18 22 12 16 6"></polyline>
-            <polyline points="8 6 2 12 8 18"></polyline>
-            <line x1="12" y1="3" x2="12" y2="21"></line>
-          </svg>
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><line x1="12" y1="3" x2="12" y2="21"></line></svg>
         </div>
-
         <div class="min-w-0">
           <div class="flex items-center gap-2">
-            <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white truncate">
-              WEB TEWE TECH
-            </h1>
-            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-700 dark:text-cyan-300 text-[11px] font-semibold shrink-0">
-              <svg class="w-3 h-3 text-cyan-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"></path>
-              </svg>
-              PROMPT
-            </span>
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white truncate">WEB TEWE TECH</h1>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-700 dark:text-cyan-300 text-[11px] font-semibold shrink-0"><svg class="w-3 h-3 text-cyan-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9-1.3-1.3z"></path></svg>PROMPT</span>
           </div>
-
-          <p class="text-xs text-slate-500 dark:text-zinc-400 mt-0.5 truncate">
-            Generator prompt terstruktur untuk pembuatan & revisi website
-          </p>
+          <p class="text-xs text-slate-500 dark:text-zinc-400 mt-0.5 truncate">Generator prompt terstruktur untuk pembuatan & revisi website</p>
         </div>
       </div>
-
       <div class="flex items-center justify-between sm:justify-end gap-2.5 shrink-0 pt-1 sm:pt-0">
-        <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-xs font-medium text-slate-600 dark:text-zinc-400">
-          <svg class="w-3.5 h-3.5 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-          <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-          <span>Auto Copy Aktif</span>
-        </div>
-
-        <button type="button" id="themeToggleBtn" onclick="toggleTheme()" class="h-8 px-2.5 inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:border-cyan-500/50 hover:text-cyan-600 dark:hover:text-cyan-400 active:scale-95 transition-colors text-xs font-medium shrink-0 shadow-sm" aria-label="Ganti Tema">
-          <span id="themeToggleIcon" class="flex items-center justify-center">
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
-          </span>
-          <span id="themeToggleLabel">Dark</span>
-        </button>
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-xs font-medium text-slate-600 dark:text-zinc-400"><svg class="w-3.5 h-3.5 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>Auto Copy Aktif</span></div>
+        <button type="button" id="themeToggleBtn" onclick="toggleTheme()" class="h-8 px-2.5 inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:border-cyan-500/50 hover:text-cyan-600 dark:hover:text-cyan-400 active:scale-95 transition-colors text-xs font-medium shrink-0 shadow-sm" aria-label="Ganti Tema"><span id="themeToggleIcon" class="flex items-center justify-center"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41-1.41"></path></svg></span><span id="themeToggleLabel">Dark</span></button>
       </div>
     </header>
 
@@ -885,28 +464,10 @@
       <section class="page-card bg-white dark:bg-[#0e131d] border border-slate-200 dark:border-zinc-800/90 rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5 shadow-sm min-w-0 transition-colors duration-200">
         <div class="flex items-center justify-between gap-3 border-b border-slate-100 dark:border-zinc-800/80 pb-3 shrink-0 min-w-0">
           <div class="flex items-center gap-2.5 min-w-0">
-            <span class="flex items-center justify-center w-7 h-7 shrink-0 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-bold text-xs border border-cyan-500/20">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 5v14M5 12h14"></path>
-              </svg>
-            </span>
-
-            <div class="min-w-0">
-              <h2 class="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5 truncate">
-                <span>BUAT WEB</span>
-                <span class="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400">01</span>
-              </h2>
-              <p class="text-xs text-slate-500 dark:text-zinc-400 truncate">Project website baru dari nol</p>
-            </div>
+            <span class="flex items-center justify-center w-7 h-7 shrink-0 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-bold text-xs border border-cyan-500/20"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+            <div class="min-w-0"><h2 class="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5 truncate"><span>BUAT WEB</span><span class="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400">01</span></h2><p class="text-xs text-slate-500 dark:text-zinc-400 truncate">Project website baru dari nol</p></div>
           </div>
-
-          <button type="button" onclick="resetNewForm()" class="reset-btn h-8 px-2.5 inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-600 dark:hover:text-cyan-400 active:scale-95 transition-colors text-xs font-medium shrink-0">
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-              <path d="M3 3v5h5"></path>
-            </svg>
-            <span>Reset</span>
-          </button>
+          <button type="button" onclick="resetNewForm()" class="reset-btn h-8 px-2.5 inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-600 dark:hover:text-cyan-400 active:scale-95 transition-colors text-xs font-medium shrink-0"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg><span>Reset</span></button>
         </div>
 
         <div class="flex flex-col flex-1 gap-3.5 min-h-0 min-w-0">
@@ -915,459 +476,136 @@
             <button type="button" id="newModeProBtn" class="pro-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false" onclick="setNewMode('pro')">Mode Pro</button>
           </div>
           <div id="newBasicPanel" class="flex flex-col flex-1 gap-3.5 min-h-0 min-w-0">
-          <div class="flex flex-col flex-1 min-h-0 min-w-0">
-            <label for="new-detail" class="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0">
-              <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-              </svg>
-              <span>Detail Web Yang Diinginkan</span>
-              <span class="text-cyan-600 dark:text-cyan-400 font-bold">*</span>
-            </label>
-
-            <textarea
-              id="new-detail"
-              placeholder="Jelaskan secara detail website yang ingin dibuat (tujuan, fitur, susunan section, gaya)..."
-              class="new-detail w-full flex-1 bg-slate-50/80 dark:bg-[#080b11] border border-slate-200 dark:border-zinc-800 rounded-xl p-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:bg-white dark:focus:bg-[#080b11] focus:ring-1 focus:ring-cyan-500/30 transition-colors"
-            ></textarea>
+            <div class="flex flex-col flex-1 min-h-0 min-w-0">
+              <label for="new-detail" class="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0"><svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg><span>Detail Web Yang Diinginkan</span><span class="text-cyan-600 dark:text-cyan-400 font-bold">*</span></label>
+              <textarea id="new-detail" placeholder="Jelaskan secara detail website yang ingin dibuat (tujuan, fitur, susunan section, gaya)..." class="new-detail w-full flex-1 bg-slate-50/80 dark:bg-[#080b11] border border-slate-200 dark:border-zinc-800 rounded-xl p-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:bg-white dark:focus:bg-[#080b11] focus:ring-1 focus:ring-cyan-500/30 transition-colors"></textarea>
+            </div>
+            <button type="button" onclick="generateNewPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-semibold transition-colors shadow-sm shrink-0"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="truncate">Generate & Salin</span></button>
           </div>
 
-          <button type="button" onclick="generateNewPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-semibold transition-colors shadow-sm shrink-0">
-            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            <span class="truncate">Generate & Salin</span>
-          </button>
-        </div>
-        <div id="newProPanel" class="hidden flex-col flex-1 min-h-0 gap-3 min-w-0">
-          <div class="pro-scroll flex-1 min-h-0 grid grid-cols-1 sm:grid-cols-2 gap-3.5 content-start pr-1">
-            <div class="sm:col-span-2">
-              <label for="pro-detail" class="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Detail Web Yang Diinginkan <span class="text-cyan-600 dark:text-cyan-400">*</span></label>
-              <textarea id="pro-detail" rows="5" class="pro-input min-h-32" placeholder="Jelaskan website yang ingin dibuat: tujuan, target pengguna, halaman, section, alur kerja, konten, fitur, dan kebutuhan khusus..."></textarea>
-            </div>
-            <div class="sm:col-span-2 rounded-xl border border-slate-200 dark:border-zinc-800 p-3 sm:p-3.5">
-              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                <div>
-                  <div class="text-xs font-bold text-slate-800 dark:text-zinc-200">Template Tema & Visual</div>
-                  <p class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 mt-0.5">Pilih kombinasi warna siap pakai dengan hierarki visual yang konsisten.</p>
+          <div id="newProPanel" class="hidden flex-col flex-1 min-h-0 gap-3 min-w-0">
+            <div class="pro-scroll flex-1 min-h-0 grid grid-cols-1 sm:grid-cols-2 gap-3.5 content-start pr-1">
+              <div class="sm:col-span-2"><label for="pro-detail" class="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Detail Web Yang Diinginkan <span class="text-cyan-600 dark:text-cyan-400">*</span></label><textarea id="pro-detail" rows="5" class="pro-input min-h-32" placeholder="Jelaskan website yang ingin dibuat: tujuan, target pengguna, halaman, section, alur kerja, konten, fitur, dan kebutuhan khusus..."></textarea></div>
+              <div class="sm:col-span-2 rounded-xl border border-slate-200 dark:border-zinc-800 p-3 sm:p-3.5">
+                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3"><div><div class="text-xs font-bold text-slate-800 dark:text-zinc-200">Template Tema & Visual</div><p class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 mt-0.5">Pilih kombinasi warna siap pakai dengan hierarki visual yang konsisten.</p></div><span class="inline-flex self-start items-center rounded-md border border-cyan-500/20 bg-cyan-500/10 px-2 py-1 text-[10px] font-semibold text-cyan-700 dark:text-cyan-300">Preset desain</span></div>
+                <label for="pro-theme" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Pilih Template</label>
+                <select id="pro-theme" class="pro-input" onchange="updateProThemeFields()"><option value="MODERN_TECH">Modern Tech — Navy, Cyan & Blue</option><option value="CLEAN_PROFESSIONAL">Clean Professional — Putih, Blue & Slate</option><option value="ELEGANT_LUXURY">Elegant Luxury — Charcoal, Gold & Ivory</option><option value="SOFT_FRIENDLY">Soft Friendly — Cream, Coral & Teal</option><option value="NATURE_ORGANIC">Nature Organic — Sage, Forest & Sand</option><option value="BOLD_CREATIVE">Bold Creative — Charcoal, Lime & Violet</option><option value="MINIMAL_MONO">Minimal Mono — White, Black & Gray</option><option value="FUTURE_MINIMAL">Future Minimal — Graphite, Ice & Electric Blue</option><option value="SAAS_DASHBOARD">SaaS Dashboard — Cloud, Indigo & Teal</option><option value="AI_PRODUCT">AI Product — Midnight, Violet & Cyan</option><option value="CYBER_MINIMAL">Cyber Minimal — Obsidian, Mint & Blue</option><option value="CUSTOM">Custom</option></select>
+                <div id="proThemeCustomWrap" class="hidden mt-2"><input id="pro-theme-custom" type="text" class="pro-input" placeholder="Tuliskan nama atau arahan tema custom"></div>
+                <div id="proThemePreview" class="theme-preview mt-3 rounded-xl border p-3 sm:p-4" aria-live="polite">
+                  <div class="flex items-center justify-between gap-3"><span class="text-[9px] sm:text-[10px] font-bold tracking-[0.16em] opacity-75">PRATINJAU HIERARKI VISUAL</span><div class="flex items-center gap-1.5" aria-label="Palet warna template"><span id="proSwatchBg" class="theme-swatch"></span><span id="proSwatchPrimary" class="theme-swatch"></span><span id="proSwatchAccent" class="theme-swatch"></span><span id="proSwatchSurface" class="theme-swatch"></span></div></div>
+                  <div class="theme-preview-surface mt-3 rounded-lg border p-3 sm:p-4"><div class="text-[9px] font-bold tracking-[0.14em] opacity-70">01 / HEADING UTAMA</div><div id="proPreviewHeading" class="mt-1 text-lg sm:text-xl font-extrabold leading-tight tracking-tight">Judul Utama Website</div><div id="proPreviewSubheading" class="theme-preview-muted mt-1 text-xs sm:text-sm font-semibold">Subjudul sebagai penjelas fokus halaman</div><p id="proPreviewBody" class="theme-preview-muted mt-2 max-w-xl text-[10px] sm:text-xs leading-relaxed">Teks pendukung memiliki kontras dan ukuran yang lebih rendah agar informasi utama tetap menjadi pusat perhatian.</p><span id="proPreviewButton" class="theme-preview-accent mt-3 inline-flex rounded-lg px-3 py-2 text-[10px] font-bold">Aksi Utama</span></div>
+                  <p id="proThemeDescription" class="theme-preview-muted mt-2 text-[10px] leading-relaxed">Kontras tegas dengan aksen cyan dan biru untuk produk digital.</p>
                 </div>
-                <span class="inline-flex self-start items-center rounded-md border border-cyan-500/20 bg-cyan-500/10 px-2 py-1 text-[10px] font-semibold text-cyan-700 dark:text-cyan-300">Preset desain</span>
+                <div class="mt-3"><label for="pro-main-color" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Override Warna Utama <span class="font-normal text-slate-400 dark:text-zinc-500">(Opsional)</span></label><input id="pro-main-color" type="text" class="pro-input" oninput="updateProThemeFields()" placeholder="Kosongkan untuk memakai palet template"></div>
               </div>
-              <label for="pro-theme" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Pilih Template</label>
-              <select id="pro-theme" class="pro-input" onchange="updateProThemeFields()">
-                <option value="MODERN_TECH">Modern Tech — Navy, Cyan & Blue</option>
-                <option value="CLEAN_PROFESSIONAL">Clean Professional — Putih, Blue & Slate</option>
-                <option value="ELEGANT_LUXURY">Elegant Luxury — Charcoal, Gold & Ivory</option>
-                <option value="SOFT_FRIENDLY">Soft Friendly — Cream, Coral & Teal</option>
-                <option value="NATURE_ORGANIC">Nature Organic — Sage, Forest & Sand</option>
-                <option value="BOLD_CREATIVE">Bold Creative — Charcoal, Lime & Violet</option>
-                <option value="MINIMAL_MONO">Minimal Mono — White, Black & Gray</option>
-                <option value="FUTURE_MINIMAL">Future Minimal — Graphite, Ice & Electric Blue</option>
-                <option value="SAAS_DASHBOARD">SaaS Dashboard — Cloud, Indigo & Teal</option>
-                <option value="AI_PRODUCT">AI Product — Midnight, Violet & Cyan</option>
-                <option value="CYBER_MINIMAL">Cyber Minimal — Obsidian, Mint & Blue</option>
-                <option value="CUSTOM">Custom</option>
-              </select>
-              <div id="proThemeCustomWrap" class="hidden mt-2">
-                <input id="pro-theme-custom" type="text" class="pro-input" placeholder="Tuliskan nama atau arahan tema custom">
+              <div class="sm:col-span-2 rounded-xl border border-slate-200 dark:border-zinc-800 p-3">
+                <div class="text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-2">Pilihan Storage</div>
+                <div class="grid grid-cols-2 gap-2"><button id="proStorageServerBtn" type="button" onclick="setProStorage('SERVER')" class="h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true">Server Storage</button><button id="proStorageLocalBtn" type="button" onclick="setProStorage('LOCAL')" class="h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false">Local Storage</button></div>
+                <p id="proStorageDescription" class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 mt-2">Mode Server menggunakan Google Apps Script Web App dengan backend pada file code.gs.</p>
+                <div id="proServerOptions" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3"><div class="sm:col-span-2 rounded-lg border border-cyan-500/20 bg-cyan-500/5 p-3"><div class="flex items-center gap-2 text-xs font-bold text-slate-800 dark:text-zinc-200"><span class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">GS</span>Database Server: Google Apps Script</div><p class="mt-1 text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400">Penyimpanan server menggunakan backend <strong class="text-cyan-700 dark:text-cyan-300">code.gs</strong>. Seluruh operasi data diproses melalui Google Apps Script Web App.</p></div><div class="sm:col-span-2"><label for="pro-gas-url" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">URL Google Apps Script Web App</label><input id="pro-gas-url" type="url" class="pro-input" placeholder="GANTI_DISINI"></div></div>
+                <p id="proLocalNote" class="hidden text-[11px] leading-relaxed text-emerald-600 dark:text-emerald-400 mt-3"></p>
               </div>
-              <div id="proThemePreview" class="theme-preview mt-3 rounded-xl border p-3 sm:p-4" aria-live="polite">
-                <div class="flex items-center justify-between gap-3">
-                  <span class="text-[9px] sm:text-[10px] font-bold tracking-[0.16em] opacity-75">PRATINJAU HIERARKI VISUAL</span>
-                  <div class="flex items-center gap-1.5" aria-label="Palet warna template">
-                    <span id="proSwatchBg" class="theme-swatch"></span>
-                    <span id="proSwatchPrimary" class="theme-swatch"></span>
-                    <span id="proSwatchAccent" class="theme-swatch"></span>
-                    <span id="proSwatchSurface" class="theme-swatch"></span>
-                  </div>
-                </div>
-                <div class="theme-preview-surface mt-3 rounded-lg border p-3 sm:p-4">
-                  <div class="text-[9px] font-bold tracking-[0.14em] opacity-70">01 / HEADING UTAMA</div>
-                  <div id="proPreviewHeading" class="mt-1 text-lg sm:text-xl font-extrabold leading-tight tracking-tight">Judul Utama Website</div>
-                  <div id="proPreviewSubheading" class="theme-preview-muted mt-1 text-xs sm:text-sm font-semibold">Subjudul sebagai penjelas fokus halaman</div>
-                  <p id="proPreviewBody" class="theme-preview-muted mt-2 max-w-xl text-[10px] sm:text-xs leading-relaxed">Teks pendukung memiliki kontras dan ukuran yang lebih rendah agar informasi utama tetap menjadi pusat perhatian.</p>
-                  <span id="proPreviewButton" class="theme-preview-accent mt-3 inline-flex rounded-lg px-3 py-2 text-[10px] font-bold">Aksi Utama</span>
-                </div>
-                <p id="proThemeDescription" class="theme-preview-muted mt-2 text-[10px] leading-relaxed">Kontras tegas dengan aksen cyan dan biru untuk produk digital.</p>
-              </div>
-              <div class="mt-3">
-                <label for="pro-main-color" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Override Warna Utama <span class="font-normal text-slate-400 dark:text-zinc-500">(Opsional)</span></label>
-                <input id="pro-main-color" type="text" class="pro-input" oninput="updateProThemeFields()" placeholder="Kosongkan untuk memakai palet template">
+              <div class="sm:col-span-2 rounded-xl border border-slate-200 dark:border-zinc-800 p-3">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"><div><div class="text-xs font-semibold text-slate-700 dark:text-zinc-300">Sistem Admin</div><p class="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">Tentukan apakah website memerlukan halaman dan login admin.</p></div><div class="grid grid-cols-2 gap-2 sm:w-56"><button id="proAdminEnabledBtn" type="button" onclick="setProAdmin(true)" class="pro-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true">Dengan Admin</button><button id="proAdminDisabledBtn" type="button" onclick="setProAdmin(false)" class="pro-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false">Tanpa Admin</button></div></div>
+                <div id="proAdminFields" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3"><div><label for="pro-admin-user" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Username Admin</label><input id="pro-admin-user" type="text" class="pro-input" autocomplete="off" placeholder="Contoh: admin"></div><div><label for="pro-admin-pass" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Password Admin</label><input id="pro-admin-pass" type="password" class="pro-input" autocomplete="new-password" placeholder="Masukkan password admin"></div></div>
+                <p id="proAdminDescription" class="text-[11px] text-slate-500 dark:text-zinc-400 mt-2">Website akan dilengkapi halaman admin, login, dan pengelolaan data.</p>
               </div>
             </div>
-            <div class="sm:col-span-2 rounded-xl border border-slate-200 dark:border-zinc-800 p-3">
-              <div class="text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-2">Pilihan Storage</div>
-              <div class="grid grid-cols-2 gap-2">
-                <button id="proStorageServerBtn" type="button" onclick="setProStorage('SERVER')" class="h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true">Server Storage</button>
-                <button id="proStorageLocalBtn" type="button" onclick="setProStorage('LOCAL')" class="h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false">Local Storage</button>
-              </div>
-              <p id="proStorageDescription" class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 mt-2">Mode Server menggunakan Google Apps Script Web App dengan backend pada file code.gs.</p>
-              <div id="proServerOptions" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                <div class="sm:col-span-2 rounded-lg border border-cyan-500/20 bg-cyan-500/5 p-3">
-                  <div class="flex items-center gap-2 text-xs font-bold text-slate-800 dark:text-zinc-200">
-                    <span class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">GS</span>
-                    Database Server: Google Apps Script
-                  </div>
-                  <p class="mt-1 text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400">Penyimpanan server menggunakan backend <strong class="text-cyan-700 dark:text-cyan-300">code.gs</strong>. Seluruh operasi data diproses melalui Google Apps Script Web App.</p>
-                </div>
-                <div class="sm:col-span-2">
-                  <label for="pro-gas-url" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">URL Google Apps Script Web App</label>
-                  <input id="pro-gas-url" type="url" class="pro-input" placeholder="GANTI_DISINI">
-                </div>
-              </div>
-              <p id="proLocalNote" class="hidden text-[11px] leading-relaxed text-emerald-600 dark:text-emerald-400 mt-3"></p>
-            </div>
-            <div class="sm:col-span-2 rounded-xl border border-slate-200 dark:border-zinc-800 p-3">
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                <div>
-                  <div class="text-xs font-semibold text-slate-700 dark:text-zinc-300">Sistem Admin</div>
-                  <p class="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">Tentukan apakah website memerlukan halaman dan login admin.</p>
-                </div>
-                <div class="grid grid-cols-2 gap-2 sm:w-56">
-                  <button id="proAdminEnabledBtn" type="button" onclick="setProAdmin(true)" class="pro-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true">Dengan Admin</button>
-                  <button id="proAdminDisabledBtn" type="button" onclick="setProAdmin(false)" class="pro-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false">Tanpa Admin</button>
-                </div>
-              </div>
-              <div id="proAdminFields" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                <div>
-                  <label for="pro-admin-user" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Username Admin</label>
-                  <input id="pro-admin-user" type="text" class="pro-input" autocomplete="off" placeholder="Contoh: admin">
-                </div>
-                <div>
-                  <label for="pro-admin-pass" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Password Admin</label>
-                  <input id="pro-admin-pass" type="password" class="pro-input" autocomplete="new-password" placeholder="Masukkan password admin">
-                </div>
-              </div>
-              <p id="proAdminDescription" class="text-[11px] text-slate-500 dark:text-zinc-400 mt-2">Website akan dilengkapi halaman admin, login, dan pengelolaan data.</p>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 shrink-0">
-            <button type="button" onclick="generateProPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-semibold transition-colors shadow-sm">
-              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span>Generate Pro & Salin</span>
-            </button>
-            <button type="button" onclick="openSplitterFromRevision()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 active:scale-[0.99] text-cyan-700 dark:text-cyan-300 text-sm font-semibold transition-colors shadow-sm">
-              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg>
-              <span>Splitter <span class="text-xs font-normal opacity-80">(Opsional)</span></span>
-            </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 shrink-0"><button type="button" onclick="generateProPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-semibold transition-colors shadow-sm"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Generate Pro & Salin</span></button><button type="button" onclick="openSplitterFromRevision()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 active:scale-[0.99] text-cyan-700 dark:text-cyan-300 text-sm font-semibold transition-colors shadow-sm"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg><span>Splitter <span class="text-xs font-normal opacity-80">(Opsional)</span></span></button></div>
           </div>
         </div>
-      </div>
-
       </section>
 
       <section class="page-card bg-white dark:bg-[#0e131d] border border-slate-200 dark:border-zinc-800/90 rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5 shadow-sm min-w-0 transition-colors duration-200">
         <div class="flex items-center justify-between gap-3 border-b border-slate-100 dark:border-zinc-800/80 pb-3 shrink-0 min-w-0">
-          <div class="flex items-center gap-2.5 min-w-0">
-            <span class="flex items-center justify-center w-7 h-7 shrink-0 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-bold text-xs border border-cyan-500/20">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 20h9"></path>
-                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-              </svg>
-            </span>
-
-            <div class="min-w-0">
-              <h2 class="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5 truncate">
-                <span>REVISI WEB</span>
-                <span class="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400">02</span>
-              </h2>
-              <p class="text-xs text-slate-500 dark:text-zinc-400 truncate">Modifikasi & perbaiki kode yang ada</p>
-            </div>
-          </div>
-
-          <button type="button" onclick="resetRevForm()" class="reset-btn h-8 px-2.5 inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-600 dark:hover:text-cyan-400 active:scale-95 transition-colors text-xs font-medium shrink-0">
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-              <path d="M3 3v5h5"></path>
-            </svg>
-            <span>Reset</span>
-          </button>
+          <div class="flex items-center gap-2.5 min-w-0"><span class="flex items-center justify-center w-7 h-7 shrink-0 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-bold text-xs border border-cyan-500/20"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></span><div class="min-w-0"><h2 class="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5 truncate"><span>REVISI WEB</span><span class="text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400">02</span></h2><p class="text-xs text-slate-500 dark:text-zinc-400 truncate">Modifikasi & perbaiki kode yang ada</p></div></div>
+          <button type="button" onclick="resetRevForm()" class="reset-btn h-8 px-2.5 inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-600 dark:hover:text-cyan-400 active:scale-95 transition-colors text-xs font-medium shrink-0"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg><span>Reset</span></button>
         </div>
 
         <div class="flex flex-col flex-1 gap-3.5 min-h-0 min-w-0">
-          <div class="grid grid-cols-2 gap-2 shrink-0" role="group" aria-label="Mode revisi website">
-            <button type="button" id="revModeStandardBtn" class="pro-mode-btn rev-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true" onclick="setRevisionMode('standard')">Revisi Biasa</button>
-            <button type="button" id="revModeMigrationBtn" onclick="setRevisionMode('migration')" class="pro-mode-btn rev-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false">Migrasi CRUD + Server</button>
-          </div>
-          <p id="revisionModeDescription" class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 -mt-1">Mode revisi biasa mempertahankan alur revisi yang sudah tersedia.</p>
+          <div class="grid grid-cols-2 gap-2 shrink-0" role="group" aria-label="Mode revisi website"><button type="button" id="revModeStandardBtn" class="pro-mode-btn rev-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true" onclick="setRevisionMode('standard')">Revisi Biasa</button><button type="button" id="revModeMigrationBtn" onclick="setRevisionMode('migration')" class="pro-mode-btn rev-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false">Migrasi CRUD + Server</button></div>
+          <p id="revisionModeDescription" class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 -mt-1" aria-live="polite">Mode revisi biasa mempertahankan alur revisi yang sudah tersedia.</p>
           <div class="flex flex-col gap-3 flex-1 min-h-0 min-w-0">
             <div id="revChangesWrap" class="flex flex-col flex-1 min-h-0 min-w-0">
-              <label for="rev-changes" class="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0">
-                <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m9 11 3 3L22 4"></path>
-                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                </svg>
-                <span>Perubahan Yang Diinginkan</span>
-                <span class="text-cyan-600 dark:text-cyan-400 font-bold">*</span>
-              </label>
-
-              <textarea
-                id="rev-changes"
-                placeholder="Jelaskan bagian mana yang ingin diubah, ditambah, atau diperbaiki..."
-                class="rev-changes w-full flex-1 bg-slate-50/80 dark:bg-[#080b11] border border-slate-200 dark:border-zinc-800 rounded-xl p-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:bg-white dark:focus:bg-[#080b11] focus:ring-1 focus:ring-cyan-500/30 transition-colors"
-              ></textarea>
+              <label for="rev-changes" class="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0"><svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg><span>Perubahan Yang Diinginkan</span><span class="text-cyan-600 dark:text-cyan-400 font-bold">*</span></label>
+              <textarea id="rev-changes" placeholder="Jelaskan bagian mana yang ingin diubah, ditambah, atau diperbaiki..." class="rev-changes w-full flex-1 bg-slate-50/80 dark:bg-[#080b11] border border-slate-200 dark:border-zinc-800 rounded-xl p-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:bg-white dark:focus:bg-[#080b11] focus:ring-1 focus:ring-cyan-500/30 transition-colors"></textarea>
             </div>
-
-            <div id="revMigrationOptions" class="hidden rounded-xl border border-cyan-500/20 bg-cyan-500/[0.035] p-3 sm:p-3.5 flex-col gap-3 shrink-0">
-              <div class="flex items-start justify-between gap-3">
-                <div class="min-w-0">
-                  <div class="text-xs font-bold text-slate-800 dark:text-zinc-200">Konfigurasi Migrasi CRUD</div>
-                  <p class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 mt-1">Source code lama akan dianalisis untuk menambahkan pengelolaan data lengkap dengan backend Google Apps Script.</p>
-                </div>
-                <span class="inline-flex items-center rounded-md border border-cyan-500/20 bg-cyan-500/10 px-2 py-1 text-[10px] font-semibold text-cyan-700 dark:text-cyan-300 shrink-0">Server Storage</span>
-              </div>
-              <div>
-                <label for="rev-gas-url" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">URL Google Apps Script Web App <span class="font-normal text-slate-400 dark:text-zinc-500">(Opsional)</span></label>
-                <input id="rev-gas-url" type="url" class="pro-input" placeholder="https://script.google.com/macros/s/.../exec" autocomplete="url">
-                <p class="text-[11px] text-slate-500 dark:text-zinc-400 mt-1.5">Kosongkan bila URL akan diisi setelah backend dibuat. Prompt tetap meminta konfigurasi URL yang jelas di frontend.</p>
-              </div>
-              <div class="rounded-lg border border-slate-200 dark:border-zinc-800 p-3">
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                  <div>
-                    <div class="text-xs font-semibold text-slate-700 dark:text-zinc-300">Sistem Admin</div>
-                    <p class="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">Admin mengelola data melalui dashboard CRUD.</p>
-                  </div>
-                  <div class="grid grid-cols-2 gap-2 sm:w-56">
-                    <button id="revAdminEnabledBtn" type="button" onclick="setRevisionAdmin(true)" class="pro-admin-btn rev-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true">Dengan Admin</button>
-                    <button id="revAdminDisabledBtn" type="button" onclick="setRevisionAdmin(false)" class="pro-admin-btn rev-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false">Tanpa Admin</button>
-                  </div>
-                </div>
-                <div id="revMigrationAdminFields" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                  <div>
-                    <label for="rev-admin-user" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Username Admin</label>
-                    <input id="rev-admin-user" type="text" class="pro-input" autocomplete="off" placeholder="Contoh: admin">
-                  </div>
-                  <div>
-                    <label for="rev-admin-pass" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Password Admin</label>
-                    <input id="rev-admin-pass" type="password" class="pro-input" autocomplete="new-password" placeholder="Masukkan password admin">
-                  </div>
-                </div>
-                <p id="revAdminDescription" class="text-[11px] text-slate-500 dark:text-zinc-400 mt-2">Website dilengkapi login admin dan dashboard untuk mengelola seluruh data.</p>
-              </div>
-              <div class="rounded-lg border border-emerald-500/15 bg-emerald-500/[0.045] p-3">
-                <div class="text-xs font-semibold text-emerald-700 dark:text-emerald-300">Cakupan migrasi otomatis</div>
-                <p class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 mt-1">CRUD Create, Read, Update, Delete, penyimpanan server persisten, integrasi frontend-backend, validasi, penanganan error, serta pemindahan data awal dari source code lama tanpa mengubah desain yang tidak diminta.</p>
-              </div>
-            </div>
-
-            <div class="flex flex-col flex-1 min-h-0 min-w-0">
-              <label for="rev-code" class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0">
-                <span class="flex items-center gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="16 18 22 12 16 6"></polyline>
-                    <polyline points="8 6 2 12 8 18"></polyline>
-                  </svg>
-                  <span>Source Code HTML</span>
-                </span>
-                <span id="revCodeRequirement" class="text-slate-400 dark:text-zinc-500 font-normal text-[11px]">(Opsional)</span>
-              </label>
-
-              <textarea
-                id="rev-code"
-                placeholder="Tempelkan source code HTML yang ingin direvisi di sini..."
-                class="rev-code w-full flex-1 bg-slate-50/80 dark:bg-[#080b11] border border-slate-200 dark:border-zinc-800 rounded-xl p-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:bg-white dark:focus:bg-[#080b11] focus:ring-1 focus:ring-cyan-500/30 transition-colors"
-              ></textarea>
-            </div>
+            <div class="flex flex-col flex-1 min-h-0 min-w-0"><label for="rev-code" class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 shrink-0"><span class="flex items-center gap-1.5"><svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg><span>Source Code HTML</span></span><span id="revCodeRequirement" class="text-slate-400 dark:text-zinc-500 font-normal text-[11px]">(Opsional)</span></label><textarea id="rev-code" placeholder="Tempelkan source code HTML yang ingin direvisi di sini..." class="rev-code w-full flex-1 bg-slate-50/80 dark:bg-[#080b11] border border-slate-200 dark:border-zinc-800 rounded-xl p-3 text-sm text-slate-900 dark:text-zinc-100 placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-cyan-500 focus:bg-white dark:focus:bg-[#080b11] focus:ring-1 focus:ring-cyan-500/30 transition-colors"></textarea></div>
           </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-auto shrink-0">
-            <button type="button" onclick="generateRevisionPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-semibold transition-colors shadow-sm shrink-0">
-              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
-              <span id="revGenerateLabel" class="truncate">Generate & Salin</span>
-            </button>
-
-            <button type="button" onclick="openSplitterFromRevision()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 active:scale-[0.99] text-cyan-700 dark:text-cyan-300 text-sm font-semibold transition-colors shadow-sm shrink-0">
-              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                <line x1="12" y1="3" x2="12" y2="21"></line>
-              </svg>
-              <span class="truncate">Splitter <span class="text-xs font-normal opacity-80">(Opsional)</span></span>
-            </button>
-          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-auto shrink-0"><button type="button" onclick="generateRevisionPrompt()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 active:scale-[0.99] text-white text-sm font-semibold transition-colors shadow-sm shrink-0"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span id="revGenerateLabel" class="truncate">Generate & Salin</span></button><button type="button" onclick="openSplitterFromRevision()" class="w-full h-11 inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 active:scale-[0.99] text-cyan-700 dark:text-cyan-300 text-sm font-semibold transition-colors shadow-sm shrink-0"><svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg><span class="truncate">Splitter <span class="text-xs font-normal opacity-80">(Opsional)</span></span></button></div>
         </div>
       </section>
     </main>
 
-    <footer class="page-footer mt-5 sm:mt-6 pt-3 border-t border-slate-200/90 dark:border-zinc-800 text-center text-xs text-slate-500 dark:text-zinc-500 flex items-center justify-center gap-2 flex-wrap shrink-0">
-      <span class="inline-flex items-center gap-1">
-        <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        Generator Prompt
-      </span>
-      <span>&bull;</span>
-      <span>Otomatis Tersalin</span>
-      <span>&bull;</span>
-      <span>Tanpa Refresh</span>
-    </footer>
+    <footer class="page-footer mt-5 sm:mt-6 pt-3 border-t border-slate-200/90 dark:border-zinc-800 text-center text-xs text-slate-500 dark:text-zinc-500 flex items-center justify-center gap-2 flex-wrap shrink-0"><span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Generator Prompt</span><span>&bull;</span><span>Otomatis Tersalin</span><span>&bull;</span><span>Tanpa Refresh</span></footer>
+  </div>
+
+  <div id="migrationModal" class="fixed inset-0 z-[55] flex items-center justify-center p-3 sm:p-4 bg-slate-900/65 dark:bg-black/85 opacity-0 pointer-events-none transition-opacity duration-150" role="dialog" aria-modal="true" aria-labelledby="migrationModalTitle" aria-hidden="true" inert>
+    <div class="relative w-full max-w-2xl max-h-[92dvh] flex flex-col border rounded-2xl overflow-hidden min-w-0">
+      <div id="migrationModalHeader" class="flex items-center justify-between gap-3 border-b px-4 py-3 shrink-0">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/25 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"></path><path d="m7 7 10 10M17 7 7 17"></path></svg></div>
+          <div class="min-w-0"><h3 id="migrationModalTitle" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white truncate">Migrasi CRUD + Server Storage</h3><p class="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">Konfigurasi migrasi website lama ke Google Apps Script</p></div>
+        </div>
+        <button type="button" onclick="closeMigrationModal()" id="migrationModalCloseBtn" class="w-9 h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-colors shrink-0" aria-label="Tutup popup migrasi"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div id="migrationModalContent" class="flex-1 min-h-0 overflow-y-auto p-3.5 sm:p-4">
+        <div id="revMigrationOptions" class="rounded-xl border border-cyan-500/20 bg-cyan-500/[0.035] p-3 sm:p-3.5 flex flex-col gap-3">
+          <div class="flex items-start justify-between gap-3"><div class="min-w-0"><div class="text-xs font-bold text-slate-800 dark:text-zinc-200">Migrasi Website ke CRUD + Server Storage</div><p class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 mt-1">Tempel source code website lama. Prompt akan meminta AI mengidentifikasi data yang ada, membangun CRUD sesuai entitas website, dan memindahkan penyimpanan ke Google Apps Script.</p></div><span class="inline-flex items-center rounded-md border border-cyan-500/20 bg-cyan-500/10 px-2 py-1 text-[10px] font-semibold text-cyan-700 dark:text-cyan-300 shrink-0">SERVER</span></div>
+          <div class="rounded-lg border border-cyan-500/20 bg-cyan-500/5 p-3"><div class="flex items-center gap-2 text-xs font-bold text-slate-800 dark:text-zinc-200"><span class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">GS</span>Google Apps Script + Database JSON</div><p class="mt-1 text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400">Penyimpanan wajib menggunakan file JSON di Google Drive, pada folder yang sama dengan project Apps Script yang berisi <strong class="text-cyan-700 dark:text-cyan-300">code.gs</strong>. File JSON dibuat dan dikelola otomatis oleh backend.</p><div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2"><div><label for="rev-json-filename" class="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1">Nama File JSON</label><input id="rev-json-filename" type="text" class="pro-input" value="database.json" placeholder="database.json" autocomplete="off"></div><div><label for="rev-gas-url" class="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1">URL Google Apps Script Web App <span class="font-normal text-slate-400 dark:text-zinc-500">(Opsional)</span></label><input id="rev-gas-url" type="url" class="pro-input" placeholder="https://script.google.com/macros/s/.../exec" autocomplete="url"></div></div><p class="text-[11px] text-slate-500 dark:text-zinc-400 mt-2">Kosongkan URL bila akan diisi setelah deployment. Nama file JSON menjadi konfigurasi backend dan lokasi penyimpanannya tetap satu folder dengan project code.gs.</p></div>
+          <div class="rounded-lg border border-slate-200 dark:border-zinc-800 p-3">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"><div><div class="text-xs font-semibold text-slate-700 dark:text-zinc-300">Sistem Admin</div><p class="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">Admin mengelola data melalui dashboard CRUD.</p></div><div class="grid grid-cols-2 gap-2 sm:w-56"><button id="revAdminEnabledBtn" type="button" onclick="setRevisionAdmin(true)" class="pro-admin-btn rev-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" aria-pressed="true">Dengan Admin</button><button id="revAdminDisabledBtn" type="button" onclick="setRevisionAdmin(false)" class="pro-admin-btn rev-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors" aria-pressed="false">Tanpa Admin</button></div></div>
+            <div id="revMigrationAdminFields" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3"><div><label for="rev-admin-user" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Username Admin</label><input id="rev-admin-user" type="text" class="pro-input" autocomplete="off" placeholder="Contoh: admin"></div><div><label for="rev-admin-pass" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">Password Admin</label><input id="rev-admin-pass" type="password" class="pro-input" autocomplete="new-password" placeholder="Masukkan password admin"></div></div>
+            <p id="revAdminDescription" class="text-[11px] text-slate-500 dark:text-zinc-400 mt-2">Website dilengkapi login admin dan dashboard untuk mengelola seluruh data.</p>
+          </div>
+          <div class="rounded-lg border border-emerald-500/15 bg-emerald-500/[0.045] p-3"><div class="text-xs font-semibold text-emerald-700 dark:text-emerald-300">Yang akan dimigrasikan</div><p class="text-[11px] leading-relaxed text-slate-500 dark:text-zinc-400 mt-1">Seluruh entitas data yang ditemukan pada source code, form dan aksi terkait, data awal, serta tampilan publik tetap dipertahankan. CRUD disesuaikan dengan struktur website, bukan dibuat sebagai contoh terpisah.</p></div>
+        </div>
+      </div>
+      <div class="flex items-center justify-between gap-2 border-t border-slate-200 dark:border-zinc-800 px-4 py-3 shrink-0 bg-slate-50 dark:bg-[#0a1320]">
+        <span class="text-[11px] text-slate-500 dark:text-zinc-400">Pengaturan tersimpan selama halaman ini terbuka</span>
+        <button type="button" onclick="closeMigrationModal()" class="h-9 px-4 rounded-lg bg-cyan-700 hover:bg-cyan-600 text-white text-xs font-semibold transition-colors">Selesai</button>
+      </div>
+    </div>
   </div>
 
   <div id="splitterModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 dark:bg-black/85 opacity-0 pointer-events-none transition-opacity duration-200">
     <div class="relative w-full max-w-xl sm:max-w-2xl h-[560px] max-h-[90dvh] flex flex-col bg-white dark:bg-[#0e131d] border border-slate-200 dark:border-zinc-800 rounded-2xl shadow-xl overflow-hidden min-w-0">
       <textarea id="splitterSource" class="hidden"></textarea>
-
-      <div class="flex items-center justify-between gap-3 border-b border-slate-200 dark:border-zinc-800/80 px-4 py-3 shrink-0 bg-slate-50/80 dark:bg-[#080b11]">
-        <div class="flex items-center gap-2.5 min-w-0">
-          <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/25 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-              <line x1="12" y1="3" x2="12" y2="21"></line>
-            </svg>
-          </div>
-          <div class="min-w-0">
-            <div class="flex items-center gap-2">
-              <h3 class="text-sm font-bold text-slate-900 dark:text-white tracking-tight truncate">Prompt Splitter</h3>
-              <span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 shrink-0">
-                <svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-                INSTAN
-              </span>
-            </div>
-            <p class="text-xs text-slate-500 dark:text-zinc-400 truncate mt-0.5">Pecah prompt panjang otomatis siap salin</p>
-          </div>
-        </div>
-
-        <button type="button" onclick="closeSplitterModal()" class="w-8 h-8 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-colors shrink-0" aria-label="Tutup">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-
-      <div class="p-3.5 sm:p-4 border-b border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-[#080b11]/60 shrink-0">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="text-xs font-bold text-slate-600 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1">
-              <svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-              </svg>
-              Bagian:
-            </span>
-            <div class="inline-flex items-center gap-1 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#080b11] p-1 shadow-sm">
-              <button type="button" data-mode="2" onclick="setSplitMode('2')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">2 BAGIAN</button>
-              <button type="button" data-mode="3" onclick="setSplitMode('3')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">3 BAGIAN</button>
-              <button type="button" data-mode="custom" onclick="setSplitMode('custom')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">CUSTOM</button>
-            </div>
-            <div id="customCountWrap" class="hidden flex items-center gap-1.5">
-              <input id="customCount" type="number" min="2" max="12" value="4" class="w-12 h-8 rounded-lg bg-white dark:bg-[#080b11] border border-slate-300 dark:border-zinc-800 text-center text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500">
-              <span class="text-xs text-slate-500 dark:text-zinc-500">bagian</span>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-2 self-end sm:self-auto">
-            <button type="button" id="saveDefaultBtn" onclick="saveDefaultSplitMode()" class="h-8 px-2.5 inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 active:scale-95 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" title="Simpan pengaturan ini sebagai default">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-                <polyline points="17 21 17 13 7 13 7 21"></polyline>
-                <polyline points="7 3 7 8 15 8"></polyline>
-              </svg>
-              <span>Simpan Default</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-zinc-400 mt-2.5">
-          <span id="defaultBadgeText" class="inline-flex items-center gap-1">
-            <svg class="w-3 h-3 text-cyan-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 14 14"></polyline>
-            </svg>
-            Default: 2 Bagian
-          </span>
-          <span id="splitterResultCount" class="font-bold text-cyan-600 dark:text-cyan-400">0 BAGIAN</span>
-          <span id="splitterSourceMeta" class="hidden">0 karakter · 0 kata</span>
-          <button id="splitActionBtn" type="button" onclick="doSplit()" class="hidden"></button>
-        </div>
-      </div>
-
-      <div class="flex-1 min-h-0 overflow-y-auto p-3.5 sm:p-4 flex flex-col">
-        <div id="splitterEmptyState" class="flex flex-1 flex-col items-center justify-center p-6 text-center">
-          <div class="w-12 h-12 rounded-2xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900/50 flex items-center justify-center mb-3 text-slate-400 dark:text-zinc-500">
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-          </div>
-          <div class="text-sm font-semibold text-slate-800 dark:text-zinc-300">Belum ada prompt untuk dipecah</div>
-          <div class="text-xs text-slate-500 dark:text-zinc-500 max-w-xs mt-1">Isi form Buat Web atau Revisi Web terlebih dahulu, lalu klik tombol Splitter.</div>
-        </div>
-
-        <div id="splitterResultPanel" class="hidden flex-1 flex flex-col gap-2.5">
-          <div id="splitterResultsGrid" class="flex flex-col gap-2.5"></div>
-        </div>
-      </div>
-
-      <div class="flex items-center justify-between border-t border-slate-200 dark:border-zinc-800/80 px-4 py-2.5 text-[11px] text-slate-500 dark:text-zinc-400 shrink-0 bg-slate-50/80 dark:bg-[#080b11]">
-        <span class="inline-flex items-center gap-1">
-          <svg class="w-3 h-3 text-cyan-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 11 12 14 22 4"></polyline>
-            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-          </svg>
-          Klik kartu untuk salin tiap bagian berurutan
-        </span>
-        <span class="text-cyan-600 dark:text-cyan-400 font-semibold">Auto Copy</span>
-      </div>
+      <div class="flex items-center justify-between gap-3 border-b border-slate-200 dark:border-zinc-800/80 px-4 py-3 shrink-0 bg-slate-50/80 dark:bg-[#080b11]"><div class="flex items-center gap-2.5 min-w-0"><div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/25 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg></div><div class="min-w-0"><div class="flex items-center gap-2"><h3 class="text-sm font-bold text-slate-900 dark:text-white tracking-tight truncate">Prompt Splitter</h3><span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 shrink-0"><svg class="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>INSTAN</span></div><p class="text-xs text-slate-500 dark:text-zinc-400 truncate mt-0.5">Pecah prompt panjang otomatis siap salin</p></div></div><button type="button" onclick="closeSplitterModal()" class="w-8 h-8 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-colors shrink-0" aria-label="Tutup"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button></div>
+      <div class="p-3.5 sm:p-4 border-b border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-[#080b11]/60 shrink-0"><div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div class="flex flex-wrap items-center gap-2"><span class="text-xs font-bold text-slate-600 dark:text-zinc-400 uppercase tracking-wider flex items-center gap-1"><svg class="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>Bagian:</span><div class="inline-flex items-center gap-1 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#080b11] p-1 shadow-sm"><button type="button" data-mode="2" onclick="setSplitMode('2')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">2 BAGIAN</button><button type="button" data-mode="3" onclick="setSplitMode('3')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">3 BAGIAN</button><button type="button" data-mode="custom" onclick="setSplitMode('custom')" class="splitModeBtn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">CUSTOM</button></div><div id="customCountWrap" class="hidden flex items-center gap-1.5"><input id="customCount" type="number" min="2" max="12" value="4" class="w-12 h-8 rounded-lg bg-white dark:bg-[#080b11] border border-slate-300 dark:border-zinc-800 text-center text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500"><span class="text-xs text-slate-500 dark:text-zinc-500">bagian</span></div></div><div class="flex items-center gap-2 self-end sm:self-auto"><button type="button" id="saveDefaultBtn" onclick="saveDefaultSplitMode()" class="h-8 px-2.5 inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 active:scale-95 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors" title="Simpan pengaturan ini sebagai default"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg><span>Simpan Default</span></button></div></div><div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-zinc-400 mt-2.5"><span id="defaultBadgeText" class="inline-flex items-center gap-1"><svg class="w-3 h-3 text-cyan-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>Default: 2 Bagian</span><span id="splitterResultCount" class="font-bold text-cyan-600 dark:text-cyan-400">0 BAGIAN</span><span id="splitterSourceMeta" class="hidden">0 karakter · 0 kata</span><button id="splitActionBtn" type="button" onclick="doSplit()" class="hidden"></button></div></div>
+      <div class="flex-1 min-h-0 overflow-y-auto p-3.5 sm:p-4 flex flex-col"><div id="splitterEmptyState" class="flex flex-1 flex-col items-center justify-center p-6 text-center"><div class="w-12 h-12 rounded-2xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900/50 flex items-center justify-center mb-3 text-slate-400 dark:text-zinc-500"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div><div class="text-sm font-semibold text-slate-800 dark:text-zinc-300">Belum ada prompt untuk dipecah</div><div class="text-xs text-slate-500 dark:text-zinc-500 max-w-xs mt-1">Isi form Buat Web atau Revisi Web terlebih dahulu, lalu klik tombol Splitter.</div></div><div id="splitterResultPanel" class="hidden flex-1 flex flex-col gap-2.5"><div id="splitterResultsGrid" class="flex flex-col gap-2.5"></div></div></div>
+      <div class="flex items-center justify-between border-t border-slate-200 dark:border-zinc-800/80 px-4 py-2.5 text-[11px] text-slate-500 dark:text-zinc-400 shrink-0 bg-slate-50/80 dark:bg-[#080b11]"><span class="inline-flex items-center gap-1"><svg class="w-3 h-3 text-cyan-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>Klik kartu untuk salin tiap bagian berurutan</span><span class="text-cyan-600 dark:text-cyan-400 font-semibold">Auto Copy</span></div>
     </div>
   </div>
-
-  <div id="toast" class="fixed bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-[70] flex items-center gap-2.5 px-4 py-2.5 rounded-xl border shadow-xl opacity-0 translate-y-3 pointer-events-none transition-all duration-200 max-w-[calc(100vw-2rem)] bg-slate-900 dark:bg-[#111822] text-white border-cyan-500/30">
-    <span id="toast-icon" class="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">
-      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="20 6 9 17 4 12"></polyline>
-      </svg>
-    </span>
-    <span id="toast-text" class="text-xs sm:text-sm font-medium"></span>
-  </div>
+  <div id="toast" class="fixed bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-[70] flex items-center gap-2.5 px-4 py-2.5 rounded-xl border shadow-xl opacity-0 translate-y-3 pointer-events-none transition-all duration-200 max-w-[calc(100vw-2rem)] bg-slate-900 dark:bg-[#111822] text-white border-cyan-500/30"><span id="toast-icon" class="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span id="toast-text" class="text-xs sm:text-sm font-medium"></span></div>
 
   <script>
     let toastTimeout = null;
 
     function showToast(message, isError = false) {
       clearTimeout(toastTimeout);
-
       const toast = document.getElementById('toast');
       const toastText = document.getElementById('toast-text');
       const toastIcon = document.getElementById('toast-icon');
-
       if (!toast || !toastText || !toastIcon) return;
-
       toastText.textContent = message;
-
       if (isError) {
-        toast.className = 'fixed bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-[70] flex items-center gap-2.5 px-4 py-2.5 rounded-xl border shadow-xl opacity-100 translate-y-0 transition-all duration-200 max-w-[calc(100vw-2rem)] bg-slate-900 dark:bg-[#111822] text-white border-rose-500/40';
+        toast.className = 'fixed bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-[70] flex items-center gap-2.5 px-4 py-2.5 rounded-xl border opacity-100 translate-y-0 transition-all duration-200 max-w-[calc(100vw-2rem)] bg-slate-900 dark:bg-[#111822] text-white border-rose-500/40';
         toastIcon.className = 'flex items-center justify-center w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 shrink-0';
         toastIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M6 6l12 12"></path></svg>';
       } else {
-        toast.className = 'fixed bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-[70] flex items-center gap-2.5 px-4 py-2.5 rounded-xl border shadow-xl opacity-100 translate-y-0 transition-all duration-200 max-w-[calc(100vw-2rem)] bg-slate-900 dark:bg-[#111822] text-white border-cyan-500/30';
+        toast.className = 'fixed bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-[70] flex items-center gap-2.5 px-4 py-2.5 rounded-xl border opacity-100 translate-y-0 transition-all duration-200 max-w-[calc(100vw-2rem)] bg-slate-900 dark:bg-[#111822] text-white border-cyan-500/30';
         toastIcon.className = 'flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0';
         toastIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
       }
-
       toastTimeout = setTimeout(() => {
         toast.classList.remove('opacity-100', 'translate-y-0');
         toast.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
       }, 2400);
     }
 
-    function showAlert(message, isError = false) {
-      showToast(message, isError);
-    }
-
-    window.alert = function(message) {
-      showToast(String(message));
-    };
+    function showAlert(message, isError = false) { showToast(message, isError); }
+    window.alert = function(message) { showToast(String(message)); };
 
     async function writeClipboard(text) {
       if (navigator.clipboard && window.isSecureContext) {
@@ -1376,7 +614,6 @@
           return true;
         } catch (err) {}
       }
-
       const textArea = document.createElement('textarea');
       textArea.value = text;
       textArea.style.position = 'fixed';
@@ -1386,13 +623,8 @@
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
-
       let success = false;
-
-      try {
-        success = document.execCommand('copy');
-      } catch (err) {}
-
+      try { success = document.execCommand('copy'); } catch (err) {}
       textArea.remove();
       return success;
     }
@@ -1404,16 +636,12 @@
       if (theme === 'light') {
         html.classList.remove('dark');
         localStorage.setItem('tewe_theme', 'light');
-        if (themeIcon) {
-          themeIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-        }
+        if (themeIcon) themeIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
         if (themeLabel) themeLabel.textContent = 'Light';
       } else {
         html.classList.add('dark');
         localStorage.setItem('tewe_theme', 'dark');
-        if (themeIcon) {
-          themeIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>';
-        }
+        if (themeIcon) themeIcon.innerHTML = '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41-1.41"></path></svg>';
         if (themeLabel) themeLabel.textContent = 'Dark';
       }
     }
@@ -1425,13 +653,9 @@
 
     function initTheme() {
       const saved = localStorage.getItem('tewe_theme');
-      if (saved) {
-        setTheme(saved);
-      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        setTheme('light');
-      } else {
-        setTheme('dark');
-      }
+      if (saved) setTheme(saved);
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) setTheme('light');
+      else setTheme('dark');
     }
 
     let newPromptMode = 'basic';
@@ -1439,152 +663,21 @@
     let proAdminEnabled = true;
     let revisionMode = 'standard';
     let revisionAdminEnabled = true;
+    let lastMigrationFocus = null;
 
     const PRO_THEME_PRESETS = {
-      MODERN_TECH: {
-        label: 'Modern Tech',
-        background: '#0B1220',
-        surface: '#111827',
-        primary: '#06B6D4',
-        accent: '#3B82F6',
-        text: '#F1F5F9',
-        muted: '#A5B4C8',
-        border: '#334155',
-        buttonText: '#082F49',
-        description: 'Kontras tegas dengan aksen cyan dan biru untuk produk digital, dashboard, serta layanan teknologi.'
-      },
-      CLEAN_PROFESSIONAL: {
-        label: 'Clean Professional',
-        background: '#F8FAFC',
-        surface: '#FFFFFF',
-        primary: '#2563EB',
-        accent: '#0EA5E9',
-        text: '#0F172A',
-        muted: '#64748B',
-        border: '#CBD5E1',
-        buttonText: '#FFFFFF',
-        description: 'Tampilan terang, rapi, dan profesional dengan biru sebagai fokus aksi serta slate untuk teks pendukung.'
-      },
-      ELEGANT_LUXURY: {
-        label: 'Elegant Luxury',
-        background: '#171717',
-        surface: '#262626',
-        primary: '#C6A15B',
-        accent: '#E7D7B2',
-        text: '#FAF7F0',
-        muted: '#C4BBAA',
-        border: '#57534E',
-        buttonText: '#292219',
-        description: 'Charcoal gelap, aksen gold, dan ivory untuk kesan premium, eksklusif, dan elegan.'
-      },
-      SOFT_FRIENDLY: {
-        label: 'Soft Friendly',
-        background: '#FFF7ED',
-        surface: '#FFFFFF',
-        primary: '#F97316',
-        accent: '#0F766E',
-        text: '#292524',
-        muted: '#78716C',
-        border: '#FED7AA',
-        buttonText: '#FFFFFF',
-        description: 'Cream hangat dengan coral dan teal untuk tampilan ramah, santai, dan mudah didekati.'
-      },
-      NATURE_ORGANIC: {
-        label: 'Nature Organic',
-        background: '#F3F7F0',
-        surface: '#FFFFFF',
-        primary: '#3F6B4F',
-        accent: '#C18B52',
-        text: '#26352B',
-        muted: '#68796C',
-        border: '#D5E1D2',
-        buttonText: '#FFFFFF',
-        description: 'Sage dan forest green dipadukan dengan sand untuk nuansa alami, sehat, dan berkelanjutan.'
-      },
-      BOLD_CREATIVE: {
-        label: 'Bold Creative',
-        background: '#18181B',
-        surface: '#27272A',
-        primary: '#A3E635',
-        accent: '#8B5CF6',
-        text: '#FAFAFA',
-        muted: '#D4D4D8',
-        border: '#52525B',
-        buttonText: '#1A2E05',
-        description: 'Lime dan violet memberi kontras kuat untuk portofolio kreatif, campaign, dan brand ekspresif.'
-      },
-      MINIMAL_MONO: {
-        label: 'Minimal Mono',
-        background: '#FAFAFA',
-        surface: '#FFFFFF',
-        primary: '#18181B',
-        accent: '#737373',
-        text: '#18181B',
-        muted: '#737373',
-        border: '#D4D4D8',
-        buttonText: '#FFFFFF',
-        description: 'Palet monokrom dengan sedikit aksen untuk pengalaman minimal, fokus, dan bebas distraksi.'
-      },
-      FUTURE_MINIMAL: {
-        label: 'Future Minimal',
-        background: '#0B1020',
-        surface: '#121A2B',
-        primary: '#38BDF8',
-        accent: '#A78BFA',
-        text: '#F8FAFC',
-        muted: '#A4B2C7',
-        border: '#2B3B55',
-        buttonText: '#07111F',
-        description: 'Graphite gelap dengan ice blue dan violet lembut untuk produk teknologi yang bersih, presisi, dan futuristik.'
-      },
-      SAAS_DASHBOARD: {
-        label: 'SaaS Dashboard',
-        background: '#F4F7FB',
-        surface: '#FFFFFF',
-        primary: '#2563EB',
-        accent: '#0F766E',
-        text: '#111827',
-        muted: '#64748B',
-        border: '#DCE4EE',
-        buttonText: '#FFFFFF',
-        description: 'Palet cloud, indigo, dan teal untuk dashboard SaaS yang rapi, informatif, dan profesional.'
-      },
-      AI_PRODUCT: {
-        label: 'AI Product',
-        background: '#0A1020',
-        surface: '#111C30',
-        primary: '#8B5CF6',
-        accent: '#22D3EE',
-        text: '#F8FAFC',
-        muted: '#B8C3D8',
-        border: '#334155',
-        buttonText: '#FFFFFF',
-        description: 'Midnight navy dengan violet dan cyan untuk produk AI, platform digital, dan antarmuka generatif.'
-      },
-      CYBER_MINIMAL: {
-        label: 'Cyber Minimal',
-        background: '#0B0F14',
-        surface: '#151D26',
-        primary: '#34D399',
-        accent: '#60A5FA',
-        text: '#F0FDF4',
-        muted: '#A7B6B0',
-        border: '#2B3A3A',
-        buttonText: '#052E24',
-        description: 'Obsidian dengan mint dan blue yang terukur untuk tampilan cyber modern tanpa visual berlebihan.'
-      },
-      CUSTOM: {
-        label: 'Custom',
-        background: '#0B1220',
-        surface: '#111827',
-        primary: '#06B6D4',
-        accent: '#3B82F6',
-        text: '#F1F5F9',
-        muted: '#A5B4C8',
-        border: '#334155',
-        buttonText: '#082F49',
-        description: 'Tema khusus mengikuti arahan yang dituliskan. Pertahankan kontras dan keterbacaan semua elemen.'
-      }
+      MODERN_TECH: { label: 'Modern Tech', background: '#0B1220', surface: '#111827', primary: '#06B6D4', accent: '#3B82F6', text: '#F1F5F9', muted: '#A5B4C8', border: '#334155', buttonText: '#082F49', description: 'Kontras tegas dengan aksen cyan dan biru untuk produk digital, dashboard, serta layanan teknologi.' },
+      CLEAN_PROFESSIONAL: { label: 'Clean Professional', background: '#F8FAFC', surface: '#FFFFFF', primary: '#2563EB', accent: '#0EA5E9', text: '#0F172A', muted: '#64748B', border: '#CBD5E1', buttonText: '#FFFFFF', description: 'Tampilan terang, rapi, dan profesional dengan biru sebagai fokus aksi serta slate untuk teks pendukung.' },
+      ELEGANT_LUXURY: { label: 'Elegant Luxury', background: '#171717', surface: '#262626', primary: '#C6A15B', accent: '#E7D7B2', text: '#FAF7F0', muted: '#C4BBAA', border: '#57534E', buttonText: '#292219', description: 'Charcoal gelap, aksen gold, dan ivory untuk kesan premium, eksklusif, dan elegan.' },
+      SOFT_FRIENDLY: { label: 'Soft Friendly', background: '#FFF7ED', surface: '#FFFFFF', primary: '#F97316', accent: '#0F766E', text: '#292524', muted: '#78716C', border: '#FED7AA', buttonText: '#FFFFFF', description: 'Cream hangat dengan coral dan teal untuk tampilan ramah, santai, dan mudah didekati.' },
+      NATURE_ORGANIC: { label: 'Nature Organic', background: '#F3F7F0', surface: '#FFFFFF', primary: '#3F6B4F', accent: '#C18B52', text: '#26352B', muted: '#68796C', border: '#D5E1D2', buttonText: '#FFFFFF', description: 'Sage dan forest green dipadukan dengan sand untuk nuansa alami, sehat, dan berkelanjutan.' },
+      BOLD_CREATIVE: { label: 'Bold Creative', background: '#18181B', surface: '#27272A', primary: '#A3E635', accent: '#8B5CF6', text: '#FAFAFA', muted: '#D4D4D8', border: '#52525B', buttonText: '#1A2E05', description: 'Lime dan violet memberi kontras kuat untuk portofolio kreatif, campaign, dan brand ekspresif.' },
+      MINIMAL_MONO: { label: 'Minimal Mono', background: '#FAFAFA', surface: '#FFFFFF', primary: '#18181B', accent: '#737373', text: '#18181B', muted: '#737373', border: '#D4D4D8', buttonText: '#FFFFFF', description: 'Palet monokrom dengan sedikit aksen untuk pengalaman minimal, fokus, dan bebas distraksi.' },
+      FUTURE_MINIMAL: { label: 'Future Minimal', background: '#0B1020', surface: '#121A2B', primary: '#38BDF8', accent: '#A78BFA', text: '#F8FAFC', muted: '#A4B2C7', border: '#2B3B55', buttonText: '#07111F', description: 'Graphite gelap dengan ice blue dan violet lembut untuk produk teknologi yang bersih, presisi, dan futuristik.' },
+      SAAS_DASHBOARD: { label: 'SaaS Dashboard', background: '#F4F7FB', surface: '#FFFFFF', primary: '#2563EB', accent: '#0F766E', text: '#111827', muted: '#64748B', border: '#DCE4EE', buttonText: '#FFFFFF', description: 'Palet cloud, indigo, dan teal untuk dashboard SaaS yang rapi, informatif, dan profesional.' },
+      AI_PRODUCT: { label: 'AI Product', background: '#0A1020', surface: '#111C30', primary: '#8B5CF6', accent: '#22D3EE', text: '#F8FAFC', muted: '#B8C3D8', border: '#334155', buttonText: '#FFFFFF', description: 'Midnight navy dengan violet dan cyan untuk produk AI, platform digital, dan antarmuka generatif.' },
+      CYBER_MINIMAL: { label: 'Cyber Minimal', background: '#0B0F14', surface: '#151D26', primary: '#34D399', accent: '#60A5FA', text: '#F0FDF4', muted: '#A7B6B0', border: '#2B3A3A', buttonText: '#052E24', description: 'Obsidian dengan mint dan blue yang terukur untuk tampilan cyber modern tanpa visual berlebihan.' },
+      CUSTOM: { label: 'Custom', background: '#0B1220', surface: '#111827', primary: '#06B6D4', accent: '#3B82F6', text: '#F1F5F9', muted: '#A5B4C8', border: '#334155', buttonText: '#082F49', description: 'Tema khusus mengikuti arahan yang dituliskan. Pertahankan kontras dan keterbacaan semua elemen.' }
     };
 
     function setNewMode(mode) {
@@ -1594,19 +687,13 @@
       const basicButton = document.getElementById('newModeBasicBtn');
       const proButton = document.getElementById('newModeProBtn');
       if (!basicPanel || !proPanel || !basicButton || !proButton) return;
-
       basicPanel.classList.toggle('hidden', newPromptMode !== 'basic');
       proPanel.classList.toggle('hidden', newPromptMode !== 'pro');
       proPanel.classList.toggle('flex', newPromptMode === 'pro');
       basicButton.setAttribute('aria-pressed', String(newPromptMode === 'basic'));
       proButton.setAttribute('aria-pressed', String(newPromptMode === 'pro'));
-
-      basicButton.className = newPromptMode === 'basic'
-        ? 'pro-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
-        : 'pro-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
-      proButton.className = newPromptMode === 'pro'
-        ? 'pro-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
-        : 'pro-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      basicButton.className = newPromptMode === 'basic' ? 'pro-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors' : 'pro-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      proButton.className = newPromptMode === 'pro' ? 'pro-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors' : 'pro-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
     }
 
     function setProStorage(mode) {
@@ -1617,30 +704,19 @@
       const localNote = document.getElementById('proLocalNote');
       const description = document.getElementById('proStorageDescription');
       if (!serverButton || !localButton || !serverOptions || !localNote) return;
-
       const serverActive = proStorageMode === 'SERVER';
       serverButton.setAttribute('aria-pressed', String(serverActive));
       localButton.setAttribute('aria-pressed', String(!serverActive));
-      serverButton.className = serverActive
-        ? 'h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
-        : 'h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
-      localButton.className = !serverActive
-        ? 'h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
-        : 'h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      serverButton.className = serverActive ? 'h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors' : 'h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      localButton.className = !serverActive ? 'h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors' : 'h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
       serverOptions.classList.toggle('hidden', !serverActive);
       localNote.classList.toggle('hidden', serverActive);
-      if (description) {
-        description.textContent = serverActive
-          ? 'Mode Server menggunakan Google Apps Script Web App dengan backend pada file code.gs.'
-          : 'Data dikelola sepenuhnya oleh browser menggunakan localStorage tanpa koneksi server/backend. Seluruh pengaturan dan CRUD berjalan lokal dengan alur kerja setara Server Storage.';
-      }
+      if (description) description.textContent = serverActive ? 'Mode Server menggunakan Google Apps Script Web App dengan backend pada file code.gs.' : 'Data dikelola sepenuhnya oleh browser menggunakan localStorage tanpa koneksi server/backend. Seluruh pengaturan dan CRUD berjalan lokal dengan alur kerja setara Server Storage.';
     }
 
     function updateProDatabaseFields() {
       const serverDescription = document.getElementById('proStorageDescription');
-      if (serverDescription && proStorageMode === 'SERVER') {
-        serverDescription.textContent = 'Mode Server menggunakan Google Apps Script Web App dengan backend pada file code.gs.';
-      }
+      if (serverDescription && proStorageMode === 'SERVER') serverDescription.textContent = 'Mode Server menggunakan Google Apps Script Web App dengan backend pada file code.gs.';
     }
 
     function setProAdmin(enabled) {
@@ -1650,21 +726,12 @@
       const fields = document.getElementById('proAdminFields');
       const description = document.getElementById('proAdminDescription');
       if (!enabledButton || !disabledButton || !fields) return;
-
       enabledButton.setAttribute('aria-pressed', String(proAdminEnabled));
       disabledButton.setAttribute('aria-pressed', String(!proAdminEnabled));
-      enabledButton.className = proAdminEnabled
-        ? 'pro-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
-        : 'pro-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
-      disabledButton.className = !proAdminEnabled
-        ? 'pro-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
-        : 'pro-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      enabledButton.className = proAdminEnabled ? 'pro-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors' : 'pro-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      disabledButton.className = !proAdminEnabled ? 'pro-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors' : 'pro-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
       fields.classList.toggle('hidden', !proAdminEnabled);
-      if (description) {
-        description.textContent = proAdminEnabled
-          ? 'Website akan dilengkapi halaman admin, login, dan pengelolaan data.'
-          : 'Website dibuat tanpa halaman admin, tanpa login admin, dan tanpa kolom kredensial admin.';
-      }
+      if (description) description.textContent = proAdminEnabled ? 'Website akan dilengkapi halaman admin, login, dan pengelolaan data.' : 'Website dibuat tanpa halaman admin, tanpa login admin, dan tanpa kolom kredensial admin.';
     }
 
     function updateProThemeFields() {
@@ -1680,7 +747,6 @@
       const previewSubheading = document.getElementById('proPreviewSubheading');
       const previewBody = document.getElementById('proPreviewBody');
       const previewButton = document.getElementById('proPreviewButton');
-
       if (customWrap) customWrap.classList.toggle('hidden', theme !== 'CUSTOM');
       if (preview) {
         preview.style.setProperty('--theme-preview-bg', preset.background);
@@ -1692,21 +758,12 @@
         preview.style.setProperty('--theme-preview-button-text', preset.buttonText);
       }
       const themeLabel = theme === 'CUSTOM' ? (customTheme || 'Custom') : preset.label;
-      if (description) {
-        description.textContent = `${themeLabel}: ${preset.description}${overrideColor ? ` Warna utama diganti menjadi ${overrideColor}.` : ''}`;
-      }
+      if (description) description.textContent = `${themeLabel}: ${preset.description}${overrideColor ? ` Warna utama diganti menjadi ${overrideColor}.` : ''}`;
       if (previewHeading) previewHeading.textContent = theme === 'CUSTOM' ? 'Judul Utama Custom' : `Judul Utama ${preset.label}`;
       if (previewSubheading) previewSubheading.textContent = 'Subjudul sebagai penjelas fokus halaman';
       if (previewBody) previewBody.textContent = 'Teks pendukung memiliki kontras dan ukuran yang lebih rendah agar informasi utama tetap menjadi pusat perhatian.';
       if (previewButton) previewButton.textContent = 'Aksi Utama';
-
-      const swatches = [
-        ['proSwatchBg', preset.background],
-        ['proSwatchPrimary', overrideColor || preset.primary],
-        ['proSwatchAccent', preset.accent],
-        ['proSwatchSurface', preset.surface]
-      ];
-      swatches.forEach(([id, color]) => {
+      [['proSwatchBg', preset.background], ['proSwatchPrimary', overrideColor || preset.primary], ['proSwatchAccent', preset.accent], ['proSwatchSurface', preset.surface]].forEach(([id, color]) => {
         const swatch = document.getElementById(id);
         if (swatch) swatch.style.backgroundColor = color;
       });
@@ -1758,7 +815,6 @@
         : `- **Status Admin: NONAKTIF.** Jangan membuat halaman/dashboard admin, menu admin, login admin, akun admin, username/password admin, maupun kolom kredensial admin.
 - Hilangkan seluruh navigasi, route, tombol, form, dan endpoint khusus admin. Jangan menyisakan UI admin tersembunyi atau akses admin bawaan.
 - Website tetap harus menjalankan seluruh fitur publik sesuai detail kebutuhan. Batasi operasi data sesuai kebutuhan fitur publik dan jangan membuka endpoint pengelolaan data internal secara bebas.`;
-
       const localStorageSections = isLocalStorage
         ? `## 3. Storage & Database Lokal
 ${storageInstruction}
@@ -1784,7 +840,7 @@ Berikan FULL SOURCE CODE lengkap dan siap pakai hanya untuk **satu file \`index.
 ${storageInstruction}
 - **Frontend (\`index.html\`):** Pastikan tampilan, fitur, validasi, struktur data, dan alur kerja konsisten dengan mode storage yang dipilih.
 - **Backend (\`code.gs\`):** Sediakan fungsi server yang dibutuhkan oleh frontend, validasi input, penanganan error, dan response JSON konsisten.
-- **file JSON letakan di directory yang sama dengan code.gs nya (intinya dalam 1 folder dengan code.gs)
+- **File JSON:** Letakkan file JSON database dalam folder Google Drive yang sama dengan project Apps Script yang memuat file \`code.gs\`. File harus dibuat/dikelola otomatis oleh backend, bukan diminta untuk diunggah manual. Jangan menyimpan JSON di folder berbeda.
 - **Default Data:** Sediakan objek **\`DEFAULT_DATA\`** sebagai initial state dengan struktur data yang konsisten dan sesuai kebutuhan website.
 - **Standar response API:** Format sukses **\`{"ok": true, "data": {}}\`** dan format gagal **\`{"ok": false, "error": "pesan"}\`**. Selaraskan nama action, field, dan struktur data antara frontend dan backend.
 
@@ -1807,11 +863,9 @@ Berikan FULL SOURCE CODE lengkap dan siap pakai untuk:
 2. **\`code.gs\`** — backend Google Apps Script Web App yang kompatibel dengan frontend dan mode storage yang dipilih.
 
 Jangan memberikan potongan kode, placeholder implementasi, atau menghilangkan fungsi yang diperlukan. Pastikan kedua file saling kompatibel dan siap dikonfigurasi serta digunakan.`;
-
       const titleInstruction = isLocalStorage
         ? 'Buat website baru berdasarkan spesifikasi berikut dengan pendekatan **mobile-first** dalam satu file saja: **`index.html`** (frontend: seluruh HTML, Tailwind CSS, dan JavaScript dalam satu file, termasuk seluruh logika penyimpanan lokal).'
         : 'Buat website baru berdasarkan spesifikasi berikut dengan pendekatan **mobile-first** dalam 2 file terpisah: **`index.html`** (frontend: seluruh HTML, Tailwind CSS, dan JavaScript dalam satu file) dan **`code.gs`** (backend Google Apps Script Web App).';
-
       return `${titleInstruction}
 
 ## 1. Detail Web Yang Diinginkan
@@ -1825,37 +879,14 @@ ${localStorageSections}`;
 
     function generateProPrompt() {
       const detailInput = document.getElementById('pro-detail');
-      if (!detailInput.value.trim()) {
-        showToast('Silakan isi detail web yang diinginkan!', true);
-        detailInput.focus();
-        return;
-      }
-      if (document.getElementById('pro-theme').value === 'CUSTOM' && !document.getElementById('pro-theme-custom').value.trim()) {
-        showToast('Silakan isi tema custom!', true);
-        document.getElementById('pro-theme-custom').focus();
-        return;
-      }
+      if (!detailInput.value.trim()) { showToast('Silakan isi detail web yang diinginkan!', true); detailInput.focus(); return; }
+      if (document.getElementById('pro-theme').value === 'CUSTOM' && !document.getElementById('pro-theme-custom').value.trim()) { showToast('Silakan isi tema custom!', true); document.getElementById('pro-theme-custom').focus(); return; }
       const prompt = buildProPrompt();
-      writeClipboard(prompt).then((copied) => {
-        if (copied) {
-          showToast('Prompt Pro berhasil digenerate & otomatis disalin!');
-        } else {
-          showToast('Gagal menyalin otomatis. Silakan coba lagi.', true);
-        }
-      });
+      writeClipboard(prompt).then((copied) => copied ? showToast('Prompt Pro berhasil digenerate & otomatis disalin!') : showToast('Gagal menyalin otomatis. Silakan coba lagi.', true));
     }
 
-    function generateNewPrompt() {
-      const detailInput = document.getElementById('new-detail');
-      const detail = detailInput.value.trim();
-
-      if (!detail) {
-        showToast('Silakan isi detail web yang diinginkan!', true);
-        detailInput.focus();
-        return;
-      }
-
-      const prompt = `Buat website dari nol menggunakan HTML + Tailwind CSS + JavaScript dalam SATU file \`index.html\`. 
+    function buildBasicNewPrompt(detail) {
+      return `Buat website dari nol menggunakan HTML + Tailwind CSS + JavaScript dalam SATU file \`index.html\`. 
 
 DETAIL WEB YANG DI INGINKAN :
 ${detail}
@@ -1895,14 +926,39 @@ OUTPUT:
 * JANGAN beri komentar di dalam source code
 * Jangan membuat file terpisah
 * Jangan mengurangi fungsi yang sudah ditentukan`;
+    }
 
-      writeClipboard(prompt).then((copied) => {
-        if (copied) {
-          showToast('Prompt berhasil digenerate & otomatis disalin!');
-        } else {
-          showToast('Gagal menyalin otomatis. Silakan coba lagi.', true);
-        }
-      });
+    function generateNewPrompt() {
+      const detailInput = document.getElementById('new-detail');
+      const detail = detailInput.value.trim();
+      if (!detail) { showToast('Silakan isi detail web yang diinginkan!', true); detailInput.focus(); return; }
+      const prompt = buildBasicNewPrompt(detail);
+      writeClipboard(prompt).then((copied) => copied ? showToast('Prompt berhasil digenerate & otomatis disalin!') : showToast('Gagal menyalin otomatis. Silakan coba lagi.', true));
+    }
+
+    function openMigrationModal() {
+      const modal = document.getElementById('migrationModal');
+      if (!modal || !modal.classList.contains('pointer-events-none')) return;
+      lastMigrationFocus = document.activeElement;
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100');
+      modal.inert = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      const focusTarget = document.getElementById('migrationModalCloseBtn');
+      if (focusTarget) focusTarget.focus({ preventScroll: true });
+    }
+
+    function closeMigrationModal() {
+      const modal = document.getElementById('migrationModal');
+      if (!modal || modal.classList.contains('pointer-events-none')) return;
+      modal.classList.remove('opacity-100');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.setAttribute('aria-hidden', 'true');
+      modal.inert = true;
+      document.body.classList.remove('modal-open');
+      if (lastMigrationFocus && typeof lastMigrationFocus.focus === 'function') lastMigrationFocus.focus({ preventScroll: true });
+      lastMigrationFocus = null;
     }
 
     function setRevisionMode(mode) {
@@ -1910,32 +966,22 @@ OUTPUT:
       const standardButton = document.getElementById('revModeStandardBtn');
       const migrationButton = document.getElementById('revModeMigrationBtn');
       const changesWrap = document.getElementById('revChangesWrap');
-      const migrationOptions = document.getElementById('revMigrationOptions');
       const description = document.getElementById('revisionModeDescription');
       const generateLabel = document.getElementById('revGenerateLabel');
       const codeRequirement = document.getElementById('revCodeRequirement');
       const standardActive = revisionMode === 'standard';
-
       if (standardButton && migrationButton) {
         standardButton.setAttribute('aria-pressed', String(standardActive));
         migrationButton.setAttribute('aria-pressed', String(!standardActive));
-        standardButton.className = standardActive
-          ? 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
-          : 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
-        migrationButton.className = !standardActive
-          ? 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
-          : 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+        standardButton.className = standardActive ? 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors' : 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+        migrationButton.className = !standardActive ? 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors' : 'pro-mode-btn rev-mode-btn h-9 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
       }
-
       if (changesWrap) changesWrap.classList.toggle('hidden', !standardActive);
-      if (migrationOptions) migrationOptions.classList.toggle('hidden', standardActive);
-      if (description) {
-        description.textContent = standardActive
-          ? 'Mode revisi biasa mempertahankan alur revisi yang sudah tersedia.'
-          : 'Tempel source code lama, lalu generate. Instruksi migrasi CRUD lengkap dan Server Storage akan dibuat otomatis.';
-      }
+      if (description) description.textContent = standardActive ? 'Mode revisi biasa mempertahankan alur revisi yang sudah tersedia.' : 'Mode migrasi aktif. Konfigurasikan database JSON dan sistem admin melalui popup Migrasi CRUD + Server.';
       if (generateLabel) generateLabel.textContent = standardActive ? 'Generate & Salin' : 'Generate Migrasi CRUD & Salin';
       if (codeRequirement) codeRequirement.textContent = standardActive ? '(Opsional)' : '(Wajib untuk migrasi)';
+      if (standardActive) closeMigrationModal();
+      else openMigrationModal();
     }
 
     function setRevisionAdmin(enabled) {
@@ -1945,101 +991,114 @@ OUTPUT:
       const fields = document.getElementById('revMigrationAdminFields');
       const description = document.getElementById('revAdminDescription');
       if (!enabledButton || !disabledButton || !fields) return;
-
       enabledButton.setAttribute('aria-pressed', String(revisionAdminEnabled));
       disabledButton.setAttribute('aria-pressed', String(!revisionAdminEnabled));
-      enabledButton.className = revisionAdminEnabled
-        ? 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
-        : 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
-      disabledButton.className = !revisionAdminEnabled
-        ? 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors'
-        : 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      enabledButton.className = revisionAdminEnabled ? 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors' : 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
+      disabledButton.className = !revisionAdminEnabled ? 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-colors' : 'pro-admin-btn rev-admin-btn h-9 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 text-slate-600 dark:text-zinc-400 text-xs font-semibold transition-colors';
       fields.classList.toggle('hidden', !revisionAdminEnabled);
-      if (description) {
-        description.textContent = revisionAdminEnabled
-          ? 'Website dilengkapi login admin dan dashboard untuk mengelola seluruh data.'
-          : 'Tanpa halaman dan login admin. Batasi operasi tulis sesuai kebutuhan website dan jangan membuka endpoint pengelolaan internal secara bebas.';
-      }
+      if (description) description.textContent = revisionAdminEnabled ? 'Website dilengkapi login admin dan dashboard untuk mengelola seluruh data.' : 'Tanpa halaman dan login admin. Batasi operasi tulis sesuai kebutuhan website dan jangan membuka endpoint pengelolaan internal secara bebas.';
     }
 
     function buildCrudMigrationPrompt(code) {
       const gasUrl = document.getElementById('rev-gas-url').value.trim() || '[GANTI_URL_GAS]';
+      const rawFileName = document.getElementById('rev-json-filename').value.trim() || 'database.json';
+      const jsonFileName = rawFileName.replace(/[\\/:*?"<>|]/g, '').trim() || 'database.json';
       const adminUser = document.getElementById('rev-admin-user').value.trim() || '[USER]';
       const adminPass = document.getElementById('rev-admin-pass').value || '[PASS]';
       const adminInstruction = revisionAdminEnabled
-        ? `## 3. Sistem Admin
-- **Status Admin: AKTIF.** Tambahkan halaman/dashboard admin dan sistem login yang terintegrasi dengan website lama tanpa merusak navigasi atau tampilan publik.
-- Username admin awal: **${adminUser}**. Password admin awal: **${adminPass}**. Nilai placeholder harus mudah dikonfigurasi setelah deployment.
-- Admin harus dapat mengelola seluruh entitas/data utama melalui CRUD, mengelola konten yang sudah ada, melihat status data, dan melakukan backup, restore, serta reset data dengan konfirmasi.
-- Autentikasi dan otorisasi wajib divalidasi di backend. Jangan hanya menyembunyikan menu atau tombol pada frontend. Lindungi seluruh endpoint administratif, kelola token/session dengan benar, dan jangan menyimpan password plaintext atau mengekspos kredensial pada source frontend. Sediakan proses inisialisasi/ganti kredensial admin melalui konfigurasi server.`
-        : `## 3. Sistem Admin
-- **Status Admin: NONAKTIF.** Jangan membuat halaman/dashboard admin, login admin, akun admin, username/password admin, maupun endpoint administratif.
-- Website tetap harus menyediakan operasi CRUD yang memang diperlukan oleh alur publik lama. Batasi izin tulis sesuai kebutuhan fitur dan validasi setiap operasi pada backend. Jangan mengekspos endpoint pengelolaan internal, backup, restore, atau reset tanpa otorisasi.`;
+        ? `### Status Sistem Admin: AKTIF
+- Integrasikan halaman/dashboard admin dengan tampilan dan navigasi website lama. Jangan membuat dashboard terpisah yang tidak menyatu dengan desain website.
+- Username admin awal yang diminta: **${adminUser}**. Password admin awal yang diminta: **${adminPass}**. Nilai ini adalah konfigurasi awal backend dan tidak boleh ditanam di JavaScript frontend, HTML publik, atribut data, atau response API.
+- Simpan konfigurasi kredensial pada sisi server. Lakukan inisialisasi satu kali; hash password dengan salt menggunakan mekanisme kriptografi yang tersedia di Google Apps Script. Jangan menyimpan password plaintext.
+- Autentikasi dan otorisasi wajib diperiksa di backend untuk setiap action administratif. Terapkan token/session acak dengan masa berlaku, validasi sesi pada setiap request, logout, dan penanganan sesi kedaluwarsa. Jangan mengandalkan penyembunyian tombol di frontend.
+- Admin dapat mengelola seluruh entitas melalui CRUD, mengelola konten dan pengaturan yang ditemukan pada website lama, serta menjalankan backup/export JSON, restore/import JSON tervalidasi, dan reset data dengan konfirmasi.
+- Jangan mengekspos kredensial, token, data privat, atau informasi internal melalui source frontend maupun log/response. Berikan mekanisme konfigurasi/ganti kredensial awal yang jelas pada sisi server.`
+        : `### Status Sistem Admin: NONAKTIF
+- Jangan membuat halaman/dashboard admin, login, akun admin, username/password, kolom kredensial, session admin, atau action administratif.
+- Jangan menyisakan menu, route, tombol, form, endpoint, maupun UI admin yang tersembunyi.
+- CRUD tetap diterapkan pada alur dan entitas yang memang membutuhkan operasi data publik. Terapkan validasi dan pembatasan akses pada backend; jangan membuka seluruh database atau action reset/restore untuk publik.
+- Jangan membuat autentikasi admin hanya untuk mengaktifkan CRUD publik. Sediakan hanya API yang diperlukan oleh fungsi website dan proteksi operasi sensitif sesuai kebutuhan alur publik.`;
 
-      return `Saya akan melampirkan source code website HTML yang sudah ada dan saat ini belum memiliki sistem CRUD lengkap.
+      return `Saya akan melampirkan source code website HTML yang sudah ada. Website ini belum memiliki sistem CRUD lengkap atau masih menyimpan data secara statis/lokal.
 
 TUGAS UTAMA:
-Migrasikan website lama tersebut menjadi website dengan sistem CRUD lengkap (Create, Read, Update, Delete) dan Server Storage menggunakan Google Apps Script Web App, dengan backend pada file **code.gs**. Implementasikan langsung berdasarkan struktur, halaman, konten, komponen, dan kebutuhan data yang ditemukan di source code. Saya hanya ingin menempelkan source code lama lalu mendapatkan implementasi migrasi yang lengkap.
+Migrasikan website lama tersebut menjadi website yang memiliki sistem CRUD lengkap (Create, Read, Update, Delete) dan **SERVER STORAGE menggunakan Google Apps Script Web App**. Backend seluruhnya berada pada satu project Apps Script dengan file server **code.gs**. Data persisten disimpan dalam satu file JSON di Google Drive yang berada di **folder yang sama dengan project Apps Script yang memuat code.gs**. Implementasikan langsung dengan menganalisis source code yang saya lampirkan. Saya ingin cukup menempelkan source code lama, lalu prompt ini menghasilkan implementasi migrasi lengkap.
 
-PRIORITAS MIGRASI:
-- Pertahankan seluruh tampilan, tema, warna, layout, tipografi, konten, navigasi, halaman, section, aset, identitas brand, dan responsivitas website lama.
-- Pertahankan seluruh fungsi, fitur, event, ID, class, nama variabel, alur kerja, dan perilaku yang sudah berjalan, kecuali bagian yang memang harus dihubungkan ke sistem CRUD dan Server Storage.
-- Jangan mendesain ulang website, mengganti framework/library, menghapus bagian, atau mengubah konten yang tidak berkaitan dengan migrasi.
-- Identifikasi sendiri seluruh jenis data dan entitas yang sudah digunakan atau ditampilkan oleh website lama. Petakan field, relasi, sumber data statis, form, tombol aksi, dan interaksi yang relevan sebelum mengimplementasikan CRUD.
-- Jika data masih ditulis langsung di HTML/JavaScript, migrasikan sumber data tersebut ke penyimpanan server tanpa menghilangkan data awal. Gunakan data lama sebagai data awal/default hanya ketika penyimpanan server masih kosong. Jangan menimpa data server yang sudah ada setiap kali halaman dimuat.
+KONFIGURASI MIGRASI:
+- Frontend: **index.html**.
+- Backend: **code.gs**.
+- Storage: **SERVER**, wajib Google Apps Script + file JSON Google Drive. Jangan mengganti ke localStorage, IndexedDB, Spreadsheet, Firebase, database eksternal, atau layanan lain sebagai penyimpanan utama.
+- Nama file database JSON: **${jsonFileName}**.
+- URL Google Apps Script Web App: **${gasUrl}**. Jika masih placeholder, buat satu konstanta konfigurasi yang jelas di frontend agar URL deployment dapat diisi tanpa mencari-cari kode.
+- File JSON harus dibuat otomatis jika belum ada. Pengguna tidak perlu membuat atau mengunggah file database secara manual.
+- ${revisionAdminEnabled ? 'Dashboard admin dan autentikasi admin diaktifkan.' : 'Dashboard admin dan login admin dinonaktifkan; CRUD publik yang memang dibutuhkan website tetap aktif.'}
 
-## 1. Implementasi CRUD Lengkap
-- Implementasikan Create, Read/List/Detail, Update, dan Delete untuk setiap entitas data yang memang relevan dengan fungsi website lama.
-- Hubungkan seluruh form, tombol, tabel, kartu, daftar, detail, dan komponen yang menampilkan atau mengubah data ke operasi CRUD yang sesuai. Jangan membuat tombol CRUD dekoratif atau aksi yang tidak berfungsi.
-- Sediakan form tambah dan edit dengan field yang sesuai struktur data lama, validasi wajib/format/rentang, pesan error, status loading, status kosong, dan notifikasi keberhasilan hanya setelah server benar-benar mengonfirmasi operasi.
-- Sediakan konfirmasi sebelum penghapusan, penanganan data tidak ditemukan, pencegahan submit ganda, dan pembaruan tampilan setelah operasi berhasil.
-- Pertahankan fungsi pencarian, filter, sorting, pagination, upload, atau fitur data lain yang sudah ada. Tambahkan kontrol pendukung hanya bila diperlukan agar CRUD dapat digunakan dengan jelas tanpa mengubah desain secara berlebihan.
-- Gunakan ID unik dan struktur data yang konsisten. Pastikan operasi update/delete hanya memengaruhi record yang dipilih, bukan seluruh data.
-- Tambahkan backup/export dan restore/import JSON tervalidasi serta reset data dengan konfirmasi bila sesuai dengan karakter aplikasi. Operasi administratif harus terlindungi autentikasi.
-- Pastikan semua halaman dan komponen membaca data melalui satu lapisan data/storage terpusat agar tidak ada sumber data lokal dan server yang saling bertentangan.
+## 1. Analisis Source Code dan Pemetaan Data
+- Baca dan analisis seluruh source code sebelum mengubahnya. Identifikasi halaman, section, komponen, navigasi, form, tabel, kartu, daftar, tombol aksi, event handler, variabel, array/object data, data statis, data dummy, serta sumber data yang sudah digunakan.
+- Temukan semua entitas dan record yang memang relevan dengan fungsi website lama. Petakan nama entitas, ID, field, tipe data, relasi, validasi, status, urutan tampilan, dan hubungan antarentitas.
+- Jika website memiliki data yang masih ditulis langsung di HTML/JavaScript, migrasikan data tersebut menjadi **DEFAULT_DATA** pada backend sesuai struktur aslinya. Data awal hanya boleh di-seed satu kali saat database JSON benar-benar belum ada atau belum pernah diinisialisasi. Jangan mengulang seed, menggandakan record, atau menimpa perubahan yang sudah tersimpan.
+- Jika source code tidak mempunyai objek data yang jelas, identifikasi konten/record yang memang dikelola atau ditampilkan secara dinamis. Jangan mengarang domain bisnis atau entitas yang tidak didukung source code. Jangan membuat CRUD palsu yang tidak berhubungan dengan fitur lama.
+- Buat skema database yang terstruktur dan dapat diperluas, misalnya metadata versi skema, waktu pembuatan/perubahan, serta collection untuk tiap entitas yang ditemukan. Gunakan ID unik stabil untuk setiap record.
 
-## 2. Server Storage — Google Apps Script
-- **Wajib menggunakan Server Storage.** Gunakan Google Apps Script Web App sebagai backend dan letakkan seluruh logika server dalam satu file **code.gs**. Jangan mengganti mode menjadi localStorage atau membuat localStorage sebagai penyimpanan utama.
-- Konfigurasi frontend wajib menggunakan \`const STORAGE_MODE = "SERVER";\` dan \`const GAS_WEB_APP_URL = "${gasUrl}";\`. Jika URL masih placeholder, tandai satu lokasi konfigurasi yang jelas agar dapat diisi setelah deployment.
-- Seluruh operasi data harus membaca dan menulis ke penyimpanan server melalui API yang disediakan code.gs. Jangan menganggap data berhasil disimpan hanya karena UI berubah; tampilkan sukses hanya jika respons server menyatakan operasi berhasil.
-- Backend harus membuat dan mengelola penyimpanan server secara otomatis. Gunakan penyimpanan persisten yang sesuai dengan Google Apps Script, misalnya file JSON di Google Drive yang dibuat/dikelola oleh code.gs atau penyimpanan server-native yang sesuai kapasitas. Jangan meminta Spreadsheet ID, database eksternal, atau konfigurasi tambahan yang tidak diperlukan.
-- Buat objek **DEFAULT_DATA** berdasarkan struktur data website lama. Inisialisasikan data awal hanya satu kali ketika storage server belum memiliki data. Sediakan mekanisme migrasi/seed satu kali yang aman agar seluruh data statis lama masuk ke server tanpa duplikasi.
-- Sediakan API yang konsisten untuk mengambil data dan melakukan operasi CRUD. Minimal dukung action yang diperlukan seperti \`getData/listItems\`, \`createItem\`, \`updateItem\`, \`deleteItem\`, serta action admin seperti \`login\`, \`restoreData\`, dan \`resetData\` bila admin aktif. Samakan nama action, parameter, field, dan skema respons antara index.html dan code.gs.
-- Gunakan respons JSON konsisten: sukses \`{"ok": true, "data": {}}\` dan gagal \`{"ok": false, "error": "pesan"}\`. Tangani respons kosong/tidak valid, kegagalan jaringan, timeout, dan error backend dengan pesan yang informatif.
-- Gunakan validasi input di sisi frontend dan backend, pengamanan operasi tulis, penguncian saat penulisan bersamaan dengan LockService bila diperlukan, serta mekanisme ID unik dan konsistensi data. Jangan mengandalkan validasi frontend saja.
-- Implementasikan integrasi request Google Apps Script yang benar-benar kompatibel dengan deployment Web App, termasuk format request/response dan penanganan redirect/CORS yang sesuai. Jangan memakai mode request yang membuat respons tidak dapat dibaca oleh frontend.
-- Simpan konfigurasi sensitif pada sisi server bila memungkinkan. Jangan menanam token rahasia atau password admin dalam JavaScript publik. Jangan menyimpan data utama di localStorage; penyimpanan browser hanya boleh digunakan untuk preferensi non-sensitif atau session sementara bila diperlukan.
+## 2. Implementasi CRUD Menyeluruh
+- Terapkan Create, Read/List/Detail, Update, dan Delete untuk setiap entitas data yang relevan dengan fungsi website lama.
+- Hubungkan seluruh form, tombol, tabel, kartu, daftar, halaman detail, komponen statistik, pencarian, filter, sorting, pagination, upload, dan interaksi terkait ke sumber data server yang benar. Pertahankan fitur yang sudah ada dan ubah sumber datanya secara terarah.
+- Sediakan form tambah dan edit dengan field yang mengikuti struktur data lama, validasi sisi frontend dan backend, sanitasi input, pesan error, status loading, status kosong, serta notifikasi sukses hanya setelah backend benar-benar mengonfirmasi operasi.
+- Penghapusan harus memiliki konfirmasi. Update/delete hanya memengaruhi record dengan ID yang dipilih. Cegah submit ganda, ID duplikat, data invalid, serta konflik/race condition.
+- Perbarui tampilan dari hasil response server yang sah setelah operasi berhasil. Jika server gagal, pertahankan data/UI sebelumnya dan tampilkan error yang jelas; jangan tampilkan sukses palsu.
+- Jika website memiliki form publik yang membuat atau mengubah data, pertahankan alur publik tersebut dan implementasikan endpoint yang tepat dengan validasi dan pembatasan hak akses. Admin dapat mengelola seluruh data ketika opsi admin aktif.
+- Tambahkan fungsi backup/export dan restore/import JSON yang tervalidasi serta reset database dengan konfirmasi pada area admin bila admin aktif. Backup harus dapat diunduh; restore harus memvalidasi skema dan data sebelum menimpa database. Jangan menghapus data saat restore gagal.
+- Semua komponen harus menggunakan satu lapisan data/service terpusat. Setelah migrasi, jangan biarkan UI membaca array statis lama sebagai sumber utama. Data statis lama hanya boleh digunakan untuk seed awal jika database belum diinisialisasi.
 
-## 3. Integrasi Frontend-Backend
-- Buat satu lapisan service/API pada frontend untuk seluruh operasi data agar pemanggilan backend konsisten dan mudah dirawat.
-- Gunakan action dan struktur payload yang eksplisit untuk setiap entitas. Pastikan setiap form dan komponen memanggil operasi yang sesuai, lalu refresh state dari respons server yang valid.
-- Tangani status loading, error jaringan, sesi kedaluwarsa, data kosong, dan konflik perubahan tanpa membuat UI menampilkan data sukses palsu.
-- Jangan biarkan komponen membaca atau menulis salinan data statis lama setelah migrasi selesai, kecuali untuk data awal yang memang hanya digunakan saat proses seed pertama.
+## 3. Google Apps Script Server Storage dan File JSON
+- Gunakan Google Apps Script Web App. Seluruh fungsi backend, API, penyimpanan, validasi server, autentikasi, dan pengelolaan database harus berada dalam **satu file code.gs**.
+- File database JSON bernama **${jsonFileName}** harus berada pada folder Google Drive yang sama dengan project Apps Script yang memuat code.gs. Maksud lokasi ini adalah parent folder Drive dari file project Apps Script, bukan sekadar folder berbeda atau subfolder yang dibuat sembarang.
+- Gunakan project Google Apps Script **standalone** yang disimpan pada folder Drive target, bukan project container-bound. File \`code.gs\` merupakan file source di dalam project Apps Script; file JSON dibuat sebagai file Drive lain yang berada satu folder dengan file project Apps Script tersebut. Dengan demikian keduanya berada dalam folder Drive yang sama.
+- Untuk menentukan folder tersebut, ambil file project standalone menggunakan \`DriveApp.getFileById(ScriptApp.getScriptId())\`, lalu ambil parent melalui \`.getParents()\`. Gunakan parent folder yang sama sebagai lokasi file JSON. Apabila iterator parent kosong, gunakan root Drive sebagai folder induk project. Jangan membuat folder database terpisah.
+- Pastikan scope Drive yang diperlukan diotorisasi, termasuk \`https://www.googleapis.com/auth/drive\`. Jangan mengasumsikan project container-bound memiliki file project yang dapat diakses langsung melalui DriveApp; deployment harus memakai project standalone agar lokasi folder dapat ditentukan konsisten.
+- Saat pertama berjalan, cari file **${jsonFileName}** di folder tersebut. Jika belum ada, buat file JSON otomatis di folder itu dengan isi awal dari \`DEFAULT_DATA\`. Jika sudah ada, baca dan gunakan file tersebut; jangan membuat duplikat setiap kali request.
+- Simpan file ID database pada ScriptProperties sebagai cache referensi saja, bukan sebagai penyimpanan data utama. Verifikasi bahwa file ID yang tersimpan memang berada di folder project yang benar; cari ulang berdasarkan nama jika referensinya tidak valid.
+- Database JSON wajib menjadi sumber data persisten utama. Lakukan parse/stringify JSON dengan validasi dan penanganan file kosong/rusak. Jangan menimpa file dengan data default ketika file sudah berisi data pengguna. Jika JSON rusak, kembalikan error yang aman dan pertahankan file lama; sediakan prosedur pemulihan yang tidak menghapus backup.
+- Gunakan LockService untuk operasi write agar create/update/delete/restore/reset tidak saling menimpa. Baca data terbaru di dalam lock sebelum mengubah, lalu tulis kembali file JSON secara konsisten. Pastikan lock selalu dilepas melalui \`finally\`.
+- Rancangan backend harus memisahkan fungsi helper seperti pemilihan folder, pencarian/pembuatan file JSON, pembacaan database, validasi skema, penulisan atomik/seaman mungkin, seed awal, dan routing action.
+- Sediakan objek \`DEFAULT_DATA\` berdasarkan isi website lama. Sertakan versi skema dan mekanisme migrasi versi yang aman bila kelak struktur database berkembang. Data lama di-seed tepat satu kali dan tidak boleh menimpa data baru.
+- Minimal sediakan action API yang sesuai kebutuhan source code: \`getData\`/\`listItems\`, \`getItem\`, \`createItem\`, \`updateItem\`, \`deleteItem\`, serta action \`login\`, \`logout\`, \`restoreData\`, \`resetData\`, dan \`exportData\` bila admin aktif. Nama action, nama field, payload, dan hasil harus sama persis antara frontend dan backend.
+- Standar response backend harus konsisten: sukses \`{"ok": true, "data": ...}\` dan gagal \`{"ok": false, "error": "pesan"}\`. Sertakan status/metadata seperlunya tanpa membocorkan data sensitif. Jangan mengirim response sukses jika Drive file gagal ditulis.
+- Buat \`doPost(e)\` untuk menerima request JSON dan \`doGet(e)\` seperlunya untuk health-check atau request baca yang memang diperlukan. Pastikan output menggunakan ContentService JSON dan formatnya konsisten.
+- Integrasi frontend harus benar-benar kompatibel dengan deployment Apps Script Web App. Gunakan request browser yang dapat membaca response (bukan \`no-cors\`), payload dan content-type yang tidak menimbulkan preflight yang tidak perlu, penanganan redirect Web App, timeout, response kosong/tidak valid, kegagalan jaringan, serta error backend. Jangan menganggap request berhasil hanya karena fetch selesai atau status UI berubah.
+- Jangan menggunakan pola request yang membuat browser tidak dapat membaca response JSON. Jelaskan konfigurasi deployment dan izin akses Web App secara singkat. Jangan mengandalkan fitur CORS palsu dengan header yang tidak bisa disetel oleh ContentService.
+- Jangan menggunakan localStorage sebagai database atau fallback data utama. Browser storage hanya boleh dipakai untuk preferensi non-sensitif dan token sesi sementara bila benar-benar diperlukan. Data utama selalu dimuat dan disimpan melalui server.
+
+## 4. Sistem Integrasi Frontend dan Backend
+- Buat satu lapisan service/API terpusat di index.html untuk seluruh operasi data. Gunakan konstanta \`STORAGE_MODE = "SERVER"\` dan \`GAS_WEB_APP_URL = "${gasUrl}"\` pada satu tempat konfigurasi.
+- Semua operasi baca/tulis wajib ke endpoint Web App. Samakan action, entity, ID, payload, struktur field, dan schema antara index.html dan code.gs.
+- Saat halaman dimuat, ambil data server dan render seluruh komponen dari response. Gunakan DEFAULT_DATA hanya untuk seed pertama di server, bukan sebagai pengganti data server pada setiap load.
+- Tangani loading awal, koneksi gagal, timeout, data kosong, response invalid, sesi kedaluwarsa, validasi gagal, konflik write, dan server sedang sibuk. Sediakan tombol retry yang sesuai tanpa menggandakan event listener.
+- Cegah race condition dan submit berulang. Nonaktifkan kontrol yang sedang memproses aksi lalu aktifkan kembali ketika request selesai. Pastikan aksi yang gagal tidak mengubah state seolah-olah sudah tersimpan.
+- Untuk sesi admin, validasi token di backend untuk setiap action privat. Jangan menaruh username/password/token rahasia di source code frontend atau menyertakan kredensial dalam response.
 
 ${adminInstruction}
 
-## 4. Performa, Kompatibilitas, dan Kualitas
-- Mobile-first, ringan, sangat responsif, dan prioritaskan performa nyata pada perangkat mobile.
+## 5. Pertahankan Website Lama
+- Pertahankan seluruh desain, tema, warna, layout, tipografi, konten, navigasi, halaman, section, aset, logo, favicon, identitas brand, responsivitas, dan susunan komponen website lama.
+- Pertahankan semua fungsi, fitur, event, ID, class, nama variabel, fungsi JavaScript, library, mekanisme, dan perilaku yang sudah berjalan kecuali bagian yang memang harus dihubungkan ke CRUD dan Server Storage.
+- Jangan mendesain ulang, mengganti framework/library, menghapus section, mengganti teks, atau mengubah konten yang tidak berkaitan dengan migrasi.
+- Jangan menambahkan fitur bisnis baru yang tidak didukung source code. Tambahkan UI admin/CRUD hanya sebagai integrasi yang menyatu dengan sistem visual lama.
+- Bila perlu memodifikasi fungsi lama, lakukan perubahan sekecil mungkin dan jaga kompatibilitas pemanggilan lama. Jangan meninggalkan tombol, form, route, atau event handler yang tidak berfungsi.
+
+## 6. Performa, Mobile-First, dan Kualitas
+- Prioritaskan performa nyata pada perangkat mobile: ringan, smooth, responsif, dan hemat penggunaan memori/CPU.
 - Pertahankan scrolling natural dan stabil. Minimalkan backdrop-filter, blur, shadow besar, repaint, reflow, dan animasi berat. Utamakan transform dan opacity seperlunya.
 - Gunakan requestAnimationFrame hanya untuk proses yang berkaitan dengan scroll, passive event listener untuk scroll/touch, lazy-loading untuk gambar yang tidak langsung terlihat, serta svh/dvh sesuai kebutuhan.
-- Hormati prefers-reduced-motion. Jangan membuat interval, listener, observer, atau animasi redundant.
-- Pastikan state UI selalu sinkron dengan data server, cegah race condition dan submit berulang, dan berikan fallback error yang jelas saat jaringan/server tidak tersedia.
-- Pertahankan kompatibilitas seluruh fitur lama dan pastikan tidak ada fungsi, tombol, form, atau navigasi yang rusak setelah migrasi.
+- Hormati prefers-reduced-motion. Jangan membuat interval, listener, observer, atau animasi redundant. Hindari JavaScript terus-menerus dan manipulasi DOM berlebihan saat scrolling.
+- Pastikan tidak ada flicker, jumping, layout shifting, glitch, atau submit ganda. Desktop tetap responsif tanpa mengorbankan performa mobile.
 
-## 5. Aturan Revisi Source Code
-- Lakukan perubahan seminimal mungkin di luar kebutuhan CRUD dan Server Storage.
-- Jangan menghapus, menyederhanakan, atau mengganti fungsi lama yang masih diperlukan.
-- Jangan mengubah desain, teks, data, atau alur kerja yang tidak diminta.
-- Pertahankan ID, class, event handler, fungsi JavaScript, library, dan mekanisme lama selama masih relevan.
-- Jika ada struktur lama yang perlu disesuaikan, buat kompatibilitas agar perilaku lama tetap berjalan.
-- Jangan mengarang fitur bisnis baru yang tidak didukung website lama. Tentukan CRUD dari entitas/data yang benar-benar ditemukan pada source code.
+## 7. Output Wajib
+Berikan FULL SOURCE CODE lengkap dan saling kompatibel untuk tepat dua file:
+1. **index.html** — seluruh HTML, Tailwind CSS, dan JavaScript frontend dalam satu file, termasuk integrasi API, UI CRUD, status loading/error, dan autentikasi jika admin aktif.
+2. **code.gs** — seluruh backend Google Apps Script dalam satu file, termasuk API CRUD, validasi, autentikasi/otorisasi sesuai pilihan admin, dan pengelolaan file JSON **${jsonFileName}** di folder Google Drive yang sama dengan project Apps Script.
 
-## 6. Output
-Berikan FULL SOURCE CODE siap pakai untuk dua file yang saling kompatibel:
-1. **\`index.html\`** — seluruh HTML, Tailwind CSS, dan JavaScript frontend dalam satu file, termasuk UI CRUD dan integrasi Server Storage.
-2. **\`code.gs\`** — backend Google Apps Script Web App yang menangani penyimpanan persisten, API CRUD, validasi, autentikasi/otorisasi bila admin aktif, backup/restore/reset yang diperlukan, dan response JSON.
-
-Jangan memberikan potongan kode, pseudocode, placeholder implementasi, atau instruksi yang menggantikan implementasi. Sertakan langkah singkat deployment Google Apps Script dan lokasi pengisian URL Web App setelah kedua source code selesai. Jangan memberi komentar di dalam source code.
+Jangan memberikan potongan kode, pseudocode, placeholder implementasi, atau sekadar instruksi. Kedua file harus benar-benar lengkap, memiliki kontrak API yang sama, dan siap digunakan setelah URL deployment dikonfigurasi. Jangan memberi komentar apa pun di dalam source code. Sertakan langkah singkat membuat project Apps Script standalone langsung di folder Google Drive target, menambahkan code.gs, men-deploy Web App, memberi otorisasi Drive, dan lokasi pengisian URL GAS setelah source code.
 
 SOURCE CODE WEBSITE LAMA YANG AKAN DIMIGRASIKAN:
 \`\`\`html
@@ -2126,16 +1185,11 @@ PERUBAHAN YANG SAYA INGINKAN:
 ${changes}
 
 SOURCE CODE YANG AKAN DIREVISI:`;
-
-      if (code) {
-        prompt += `
+      if (code) prompt += `
 \`\`\`html
 ${code}
 \`\`\``;
-      } else {
-        prompt += ` `;
-      }
-
+      else prompt += ' ';
       return prompt;
     }
 
@@ -2143,7 +1197,6 @@ ${code}
       const changesInput = document.getElementById('rev-changes');
       const changes = changesInput.value.trim();
       const code = document.getElementById('rev-code').value.trim();
-
       if (revisionMode === 'migration') {
         if (!code) {
           showToast('Tempelkan source code website lama terlebih dahulu!', true);
@@ -2151,31 +1204,12 @@ ${code}
           return;
         }
         const migrationPrompt = buildCrudMigrationPrompt(code);
-        writeClipboard(migrationPrompt).then((copied) => {
-          if (copied) {
-            showToast('Prompt migrasi CRUD + Server Storage berhasil digenerate & otomatis disalin!');
-          } else {
-            showToast('Gagal menyalin otomatis. Silakan coba lagi.', true);
-          }
-        });
+        writeClipboard(migrationPrompt).then((copied) => copied ? showToast('Prompt migrasi CRUD + Server Storage berhasil digenerate & otomatis disalin!') : showToast('Gagal menyalin otomatis. Silakan coba lagi.', true));
         return;
       }
-
-      if (!changes) {
-        showToast('Silakan isi perubahan yang diinginkan!', true);
-        changesInput.focus();
-        return;
-      }
-
+      if (!changes) { showToast('Silakan isi perubahan yang diinginkan!', true); changesInput.focus(); return; }
       const prompt = buildRevisionPrompt(changes, code);
-
-      writeClipboard(prompt).then((copied) => {
-        if (copied) {
-          showToast('Prompt revisi berhasil digenerate & otomatis disalin!');
-        } else {
-          showToast('Gagal menyalin otomatis. Silakan coba lagi.', true);
-        }
-      });
+      writeClipboard(prompt).then((copied) => copied ? showToast('Prompt revisi berhasil digenerate & otomatis disalin!') : showToast('Gagal menyalin otomatis. Silakan coba lagi.', true));
     }
 
     function resetNewForm() {
@@ -2196,9 +1230,11 @@ ${code}
     }
 
     function resetRevForm() {
+      closeMigrationModal();
       document.getElementById('rev-changes').value = '';
       document.getElementById('rev-code').value = '';
       document.getElementById('rev-gas-url').value = '';
+      document.getElementById('rev-json-filename').value = 'database.json';
       document.getElementById('rev-admin-user').value = '';
       document.getElementById('rev-admin-pass').value = '';
       setRevisionAdmin(true);
@@ -2206,11 +1242,7 @@ ${code}
       document.getElementById('rev-changes').focus();
     }
 
-    const splitterState = {
-      mode: 2,
-      parts: [],
-      source: ''
-    };
+    const splitterState = { mode: 2, parts: [], source: '' };
 
     function countWords(value) {
       const clean = value.trim();
@@ -2227,40 +1259,23 @@ ${code}
 
     function setSplitMode(mode) {
       splitterState.mode = mode === 'custom' ? 'custom' : Number(mode);
-      const buttons = document.querySelectorAll('.splitModeBtn');
-      buttons.forEach((btn) => {
+      document.querySelectorAll('.splitModeBtn').forEach((btn) => {
         const active = btn.dataset.mode === String(mode);
-        if (active) {
-          btn.classList.add('bg-cyan-500', 'text-white', 'dark:text-zinc-950', 'shadow-sm');
-          btn.classList.remove('text-slate-600', 'dark:text-zinc-400');
-        } else {
-          btn.classList.remove('bg-cyan-500', 'text-white', 'dark:text-zinc-950', 'shadow-sm');
-          btn.classList.add('text-slate-600', 'dark:text-zinc-400');
-        }
+        if (active) btn.classList.add('bg-cyan-500', 'text-white', 'dark:text-zinc-950', 'shadow-sm');
+        else btn.classList.remove('bg-cyan-500', 'text-white', 'dark:text-zinc-950', 'shadow-sm');
+        if (active) btn.classList.remove('text-slate-600', 'dark:text-zinc-400');
+        else btn.classList.add('text-slate-600', 'dark:text-zinc-400');
       });
-
       const customWrap = document.getElementById('customCountWrap');
-      if (customWrap) {
-        if (splitterState.mode === 'custom') {
-          customWrap.classList.remove('hidden');
-        } else {
-          customWrap.classList.add('hidden');
-        }
-      }
-
+      if (customWrap) customWrap.classList.toggle('hidden', splitterState.mode !== 'custom');
       const sourceVal = splitterState.source || document.getElementById('splitterSource')?.value || '';
-      if (sourceVal.trim().length >= 2) {
-        doSplit(false);
-      }
+      if (sourceVal.trim().length >= 2) doSplit(false);
     }
 
     function saveDefaultSplitMode() {
       const currentMode = String(splitterState.mode);
       localStorage.setItem('tewe_default_split_mode', currentMode);
-      if (currentMode === 'custom') {
-        const customVal = document.getElementById('customCount')?.value || '4';
-        localStorage.setItem('tewe_default_custom_count', customVal);
-      }
+      if (currentMode === 'custom') localStorage.setItem('tewe_default_custom_count', document.getElementById('customCount')?.value || '4');
       updateDefaultBadge();
       const countLabel = currentMode === 'custom' ? (document.getElementById('customCount')?.value || '4') : currentMode;
       showToast(`Default splitter (${countLabel} Bagian) berhasil disimpan!`);
@@ -2271,23 +1286,15 @@ ${code}
       const badge = document.getElementById('defaultBadgeText');
       if (badge) {
         const savedCustom = localStorage.getItem('tewe_default_custom_count') || '4';
-        const label = saved === 'custom' ? `${savedCustom} Bagian` : `${saved} Bagian`;
-        badge.textContent = `Default: ${label}`;
+        badge.textContent = `Default: ${saved === 'custom' ? `${savedCustom} Bagian` : `${saved} Bagian`}`;
       }
     }
 
     function loadDefaultSplitMode() {
       const saved = localStorage.getItem('tewe_default_split_mode');
       const savedCustom = localStorage.getItem('tewe_default_custom_count');
-      if (savedCustom) {
-        const input = document.getElementById('customCount');
-        if (input) input.value = savedCustom;
-      }
-      if (saved) {
-        setSplitMode(saved);
-      } else {
-        setSplitMode('2');
-      }
+      if (savedCustom) document.getElementById('customCount').value = savedCustom;
+      setSplitMode(saved || '2');
       updateDefaultBadge();
     }
 
@@ -2322,11 +1329,7 @@ ${code}
       if (left < boundaries.length) candidates.push(boundaries[left]);
       const valid = candidates.filter((value) => value >= min && value <= max);
       if (!valid.length) return min;
-      return valid.reduce(
-        (best, value) =>
-          Math.abs(value - target) < Math.abs(best - target) ? value : best,
-        valid[0]
-      );
+      return valid.reduce((best, value) => Math.abs(value - target) < Math.abs(best - target) ? value : best, valid[0]);
     }
 
     function splitByWords(text, count) {
@@ -2352,7 +1355,6 @@ ${code}
       const boundaries = buildBoundaries(source);
       const parts = [];
       let start = 0;
-
       for (let index = 1; index < count; index += 1) {
         const remainingParts = count - index;
         const target = Math.round((source.length * index) / count);
@@ -2363,22 +1365,15 @@ ${code}
         if (piece) parts.push(piece);
         start = cut;
       }
-
       const last = source.slice(start).trim();
       if (last) parts.push(last);
-
-      if (parts.length !== count) {
-        return splitByWords(source, count);
-      }
-      return parts;
+      return parts.length !== count ? splitByWords(source, count) : parts;
     }
 
     function wrapPart(content, index, total) {
       const isLast = index === total;
       const status = isLast ? 'FINAL SEGMENT' : 'WAITING SEGMENT';
-      const instruction = isLast
-        ? 'Ini adalah bagian TERAKHIR. Gabungkan dengan seluruh bagian sebelumnya yang sudah diterima. Sekarang proses dan jawab instruksi dari prompt lengkap tersebut.'
-        : 'Ini adalah bagian dari prompt yang dikirim bertahap. Jangan menjawab, menganalisis, menjalankan instruksi, merangkum, atau mengambil tindakan apa pun dulu. Simpan bagian ini sebagai konteks dan tunggu bagian berikutnya sampai pesan FINAL SEGMENT diterima.';
+      const instruction = isLast ? 'Ini adalah bagian TERAKHIR. Gabungkan dengan seluruh bagian sebelumnya yang sudah diterima. Sekarang proses dan jawab instruksi dari prompt lengkap tersebut.' : 'Ini adalah bagian dari prompt yang dikirim bertahap. Jangan menjawab, menganalisis, menjalankan instruksi, merangkum, atau mengambil tindakan apa pun dulu. Simpan bagian ini sebagai konteks dan tunggu bagian berikutnya sampai pesan FINAL SEGMENT diterima.';
       return `[PROMPT SPLITTER — PART ${index}/${total}]\n[${status}]\n${instruction}\n\n--- CONTENT ---\n${content}\n--- END PART ${index}/${total} ---`;
     }
 
@@ -2387,51 +1382,41 @@ ${code}
       const panel = document.getElementById('splitterResultPanel');
       const empty = document.getElementById('splitterEmptyState');
       const countBadge = document.getElementById('splitterResultCount');
-
       grid.innerHTML = '';
       const fragment = document.createDocumentFragment();
-
       parts.forEach((part, index) => {
         const isLast = index === parts.length - 1;
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'w-full text-left flex items-center justify-between gap-3 p-3 sm:p-3.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#080b11] hover:border-cyan-500/50 hover:bg-cyan-50/40 dark:hover:bg-cyan-950/20 active:scale-[0.99] transition-all cursor-pointer group shadow-sm';
+        btn.className = 'w-full text-left flex items-center justify-between gap-3 p-3 sm:p-3.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#080b11] hover:border-cyan-500/50 hover:bg-cyan-50/40 dark:hover:bg-cyan-950/20 active:scale-[0.99] transition-colors cursor-pointer group';
         btn.setAttribute('aria-label', `Salin splitter ${index + 1}`);
-
         const left = document.createElement('div');
         left.className = 'flex items-center gap-3 min-w-0';
-
         const num = document.createElement('div');
-        num.className = 'w-8 h-8 rounded-lg bg-cyan-500/10 dark:bg-zinc-900 border border-cyan-500/20 dark:border-zinc-800 flex items-center justify-center text-xs font-bold text-cyan-600 dark:text-cyan-400 shrink-0 group-hover:scale-105 transition-transform';
+        num.className = 'w-8 h-8 rounded-lg bg-cyan-500/10 dark:bg-zinc-900 border border-cyan-500/20 dark:border-zinc-800 flex items-center justify-center text-xs font-bold text-cyan-600 dark:text-cyan-400 shrink-0';
         num.textContent = String(index + 1).padStart(2, '0');
-
         const info = document.createElement('div');
         info.className = 'min-w-0';
-
         const title = document.createElement('div');
-        title.className = 'text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors flex items-center gap-2';
-        title.innerHTML = `<span>Splitter ${index + 1}</span><span class="text-[10px] font-normal px-1.5 py-0.5 rounded ${isLast ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' : 'bg-slate-100 dark:bg-zinc-800 text-slate-500 dark:text-zinc-400'}">${isLast ? 'Bagian Akhir' : 'Lanjut'}</span>`;
-
+        title.className = 'text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-200 flex items-center gap-2';
+        const titleText = document.createElement('span');
+        titleText.textContent = `Splitter ${index + 1}`;
+        const tag = document.createElement('span');
+        tag.className = isLast ? 'text-[10px] font-normal px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' : 'text-[10px] font-normal px-1.5 py-0.5 rounded bg-slate-100 dark:bg-zinc-800 text-slate-500 dark:text-zinc-400';
+        tag.textContent = isLast ? 'Bagian Akhir' : 'Lanjut';
+        title.append(titleText, tag);
         const subtitle = document.createElement('div');
         subtitle.className = 'text-[11px] text-slate-500 dark:text-zinc-500 truncate mt-0.5';
         subtitle.textContent = isLast ? 'Bagian terakhir · siap dieksekusi oleh AI' : 'Tahan respons · simpan sebagai konteks';
-
-        info.appendChild(title);
-        info.appendChild(subtitle);
-        left.appendChild(num);
-        left.appendChild(info);
-
+        info.append(title, subtitle);
+        left.append(num, info);
         const right = document.createElement('div');
-        right.className = 'copy-icon-wrap w-8 h-8 rounded-lg border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-800 text-slate-500 dark:text-zinc-400 group-hover:border-cyan-500/50 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 flex items-center justify-center shrink-0 transition-colors';
+        right.className = 'copy-icon-wrap w-8 h-8 rounded-lg border border-slate-200 dark:border-zinc-700 bg-slate-50 dark:bg-zinc-800 text-slate-500 dark:text-zinc-400 flex items-center justify-center shrink-0';
         right.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
-
-        btn.appendChild(left);
-        btn.appendChild(right);
-        btn.addEventListener('click', () => copySplitPart(index, btn), { passive: true });
-
+        btn.append(left, right);
+        btn.addEventListener('click', () => copySplitPart(index, btn));
         fragment.appendChild(btn);
       });
-
       grid.appendChild(fragment);
       if (countBadge) countBadge.textContent = `${parts.length} BAGIAN`;
       if (empty) empty.classList.add('hidden');
@@ -2448,12 +1433,11 @@ ${code}
           iconWrap.innerHTML = '<svg class="w-4 h-4 text-emerald-500 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
           btn.classList.add('border-emerald-500/40', 'bg-emerald-50/50', 'dark:bg-emerald-950/20');
           setTimeout(() => {
+            if (!iconWrap.isConnected) return;
             iconWrap.innerHTML = originalHTML;
             btn.classList.remove('border-emerald-500/40', 'bg-emerald-50/50', 'dark:bg-emerald-950/20');
           }, 1200);
-        } else {
-          showToast('Gagal menyalin splitter', true);
-        }
+        } else showToast('Gagal menyalin splitter', true);
       });
     }
 
@@ -2461,19 +1445,14 @@ ${code}
       const sourceInput = document.getElementById('splitterSource');
       const source = (sourceInput ? sourceInput.value : '') || splitterState.source || '';
       if (source.trim().length < 2) {
-        if (notify) {
-          showToast('Belum ada prompt untuk dipecah!', true);
-        }
+        if (notify) showToast('Belum ada prompt untuk dipecah!', true);
         return;
       }
       splitterState.source = source.trim();
-      const count = getPartCount();
-      const rawParts = splitText(splitterState.source, count);
+      const rawParts = splitText(splitterState.source, getPartCount());
       splitterState.parts = rawParts.map((part, index) => wrapPart(part, index + 1, rawParts.length));
       renderSplitResults(splitterState.parts);
-      if (notify) {
-        showToast(`${splitterState.parts.length} splitter siap disalin!`);
-      }
+      if (notify) showToast(`${splitterState.parts.length} splitter siap disalin!`);
     }
 
     function clearSplitter() {
@@ -2513,85 +1492,32 @@ ${code}
         }
         const migrationPrompt = buildCrudMigrationPrompt(code);
         splitterState.source = migrationPrompt;
-        const migrationSourceEl = document.getElementById('splitterSource');
-        if (migrationSourceEl) migrationSourceEl.value = migrationPrompt;
+        document.getElementById('splitterSource').value = migrationPrompt;
         updateSplitterMeta();
         doSplit(false);
+        closeMigrationModal();
         openSplitterModal();
         return;
       }
       const newDetail = document.getElementById('new-detail').value.trim();
       const proDetail = document.getElementById('pro-detail').value.trim();
       const isProMode = newPromptMode === 'pro';
-
-      if (changes) {
-        const prompt = buildRevisionPrompt(changes, code);
-        splitterState.source = prompt;
-        const sourceEl = document.getElementById('splitterSource');
-        if (sourceEl) sourceEl.value = prompt;
-        updateSplitterMeta();
-        doSplit(false);
-      } else if (isProMode && proDetail) {
+      let prompt = '';
+      if (changes) prompt = buildRevisionPrompt(changes, code);
+      else if (isProMode && proDetail) {
         if (document.getElementById('pro-theme').value === 'CUSTOM' && !document.getElementById('pro-theme-custom').value.trim()) {
           showToast('Isi tema custom sebelum menggunakan Splitter!', true);
           document.getElementById('pro-theme-custom').focus();
           return;
         }
-        const prompt = buildProPrompt();
+        prompt = buildProPrompt();
+      } else if (newDetail) prompt = buildBasicNewPrompt(newDetail);
+      if (prompt) {
         splitterState.source = prompt;
-        const sourceEl = document.getElementById('splitterSource');
-        if (sourceEl) sourceEl.value = prompt;
+        document.getElementById('splitterSource').value = prompt;
         updateSplitterMeta();
         doSplit(false);
-      } else if (newDetail) {
-        const prompt = `Buat website dari nol menggunakan HTML + Tailwind CSS + JavaScript dalam SATU file \`index.html\`. 
-
-DETAIL WEB YANG DI INGINKAN :
-${newDetail}
-
-PRIORITAS UTAMA:
-
-* Mobile-first
-* Sangat smooth, ringan, responsif
-* Optimalkan khusus perangkat mobile
-* Jangan gunakan efek yang menyebabkan lag/jank saat scrolling
-
-WAJIB:
-
-* Minimalkan \`backdrop-filter\`, blur, shadow besar, dan animasi berat di mobile
-* Gunakan animasi seperlunya dan utamakan \`transform\` + \`opacity\`
-* Hindari animasi yang terus berjalan pada banyak elemen sekaligus
-* Optimalkan background/image agar tidak menyebabkan repaint berat
-* Gunakan \`requestAnimationFrame\` untuk proses yang berjalan saat scroll
-* Gunakan passive event listener untuk scroll/touch
-* Hindari layout reflow/recalculation berulang
-* Jangan melakukan manipulasi DOM berlebihan saat scrolling
-* Optimalkan pergantian background agar smooth
-* Gunakan ukuran viewport mobile yang stabil (\`svh\`/\`dvh\`) sesuai kebutuhan
-* Lazy-load gambar yang tidak langsung terlihat
-* Hormati \`prefers-reduced-motion\`
-* Pastikan scrolling touch tetap natural dan tidak patah-patah
-* Desktop tetap bagus, tetapi performa mobile adalah prioritas utama
-
-FUNGSI DAN FITUR:
-Semua fungsi harus tetap lengkap sesuai kebutuhan website.
-
-OUTPUT:
-
-* Full source code
-* Hanya satu file \`index.html\`
-* HTML + Tailwind CSS + JavaScript menjadi satu
-* JANGAN beri komentar di dalam source code
-* Jangan membuat file terpisah
-* Jangan mengurangi fungsi yang sudah ditentukan`;
-        splitterState.source = prompt;
-        const sourceEl = document.getElementById('splitterSource');
-        if (sourceEl) sourceEl.value = prompt;
-        updateSplitterMeta();
-        doSplit(false);
-      } else {
-        updateSplitterMeta();
-      }
+      } else updateSplitterMeta();
       openSplitterModal();
     }
 
@@ -2601,26 +1527,26 @@ OUTPUT:
       input.value = val;
       if (splitterState.mode === 'custom') {
         const sourceVal = splitterState.source || document.getElementById('splitterSource')?.value || '';
-        if (sourceVal.trim().length >= 2) {
-          doSplit(false);
-        }
-      }
-    }, { passive: true });
-
-    document.getElementById('splitterModal').addEventListener('click', (e) => {
-      if (e.target.id === 'splitterModal') {
-        closeSplitterModal();
+        if (sourceVal.trim().length >= 2) doSplit(false);
       }
     });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
+    document.getElementById('splitterModal').addEventListener('click', (event) => {
+      if (event.target.id === 'splitterModal') closeSplitterModal();
+    });
+
+    document.getElementById('migrationModal').addEventListener('click', (event) => {
+      if (event.target.id === 'migrationModal') closeMigrationModal();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        const migrationModal = document.getElementById('migrationModal');
         const splitterModal = document.getElementById('splitterModal');
-        if (splitterModal && !splitterModal.classList.contains('pointer-events-none')) {
-          closeSplitterModal();
-        }
+        if (migrationModal && !migrationModal.classList.contains('pointer-events-none')) closeMigrationModal();
+        else if (splitterModal && !splitterModal.classList.contains('pointer-events-none')) closeSplitterModal();
       }
-    }, { passive: true });
+    });
 
     initTheme();
     updateProThemeFields();
