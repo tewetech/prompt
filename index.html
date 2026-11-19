@@ -1,9 +1,11 @@
 
+
 <!DOCTYPE html>
 <html lang="id" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#080d16">
   <title>Tewe Web Prompt</title>
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/tewetech/favicon/refs/heads/main/prompt.png">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -371,6 +373,447 @@
         scroll-behavior: auto !important;
       }
     }
+
+
+    :root {
+      color-scheme: dark;
+      --app-bg: #080d16;
+      --app-surface: #0d1624;
+      --app-surface-raised: #111d2d;
+      --app-border: #1e3045;
+      --app-text: #e7eef8;
+      --app-muted: #92a4ba;
+      --app-accent: #22c7df;
+      --app-accent-strong: #0891b2;
+      --app-focus: rgba(34, 199, 223, .24);
+    }
+
+    html:not(.dark) {
+      color-scheme: light;
+      --app-bg: #f3f6fb;
+      --app-surface: #ffffff;
+      --app-surface-raised: #f8fafd;
+      --app-border: #dce5f0;
+      --app-text: #172338;
+      --app-muted: #61738c;
+      --app-accent: #087fa5;
+      --app-accent-strong: #036b91;
+      --app-focus: rgba(8, 127, 165, .16);
+    }
+
+    html {
+      scroll-behavior: auto;
+      scrollbar-gutter: stable;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100svh;
+      min-height: 100dvh;
+      background-color: var(--app-bg);
+      color: var(--app-text);
+      background-image:
+        radial-gradient(ellipse at 12% 0%, rgba(8, 145, 178, .13), transparent 34%),
+        linear-gradient(rgba(100, 190, 220, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(100, 190, 220, .025) 1px, transparent 1px);
+      background-size: auto, 30px 30px, 30px 30px;
+      background-attachment: scroll;
+    }
+
+    html:not(.dark) body {
+      background-color: var(--app-bg);
+      background-image:
+        radial-gradient(ellipse at 12% 0%, rgba(14, 165, 233, .075), transparent 36%),
+        linear-gradient(rgba(30, 100, 150, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 100, 150, .035) 1px, transparent 1px);
+    }
+
+    .clean-grid {
+      background-image: none;
+    }
+
+    .page-shell {
+      max-width: 86rem;
+      padding-top: max(.9rem, env(safe-area-inset-top));
+      padding-bottom: max(.85rem, env(safe-area-inset-bottom));
+    }
+
+    .page-header {
+      border-color: var(--app-border) !important;
+    }
+
+    .page-header > div:first-child > div:first-child {
+      border-radius: 14px;
+      background: rgba(34, 199, 223, .09);
+      border-color: rgba(34, 199, 223, .22);
+    }
+
+    .page-header h1 {
+      letter-spacing: -.045em;
+    }
+
+    .page-card {
+      background: linear-gradient(155deg, #101b2b 0%, #0c1522 74%, #0c1724 100%) !important;
+      border: 1px solid #20334a !important;
+      border-radius: 1.35rem;
+      box-shadow: 0 8px 24px rgba(1, 8, 18, .13);
+    }
+
+    html:not(.dark) .page-card {
+      background: #ffffff !important;
+      border-color: #dce5f0 !important;
+      box-shadow: 0 6px 22px rgba(27, 48, 76, .055);
+    }
+
+    .page-card > div:first-child {
+      border-color: rgba(127, 158, 190, .18) !important;
+    }
+
+    html:not(.dark) .page-card > div:first-child {
+      border-color: #e7edf5 !important;
+    }
+
+    .page-card button,
+    #themeToggleBtn,
+    .reset-btn,
+    .splitModeBtn {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .page-card button.bg-cyan-600,
+    .page-card button[class~="bg-cyan-600"] {
+      background: #087f9f !important;
+      border: 1px solid rgba(74, 220, 236, .22);
+      box-shadow: 0 3px 10px rgba(3, 105, 132, .16);
+    }
+
+    .page-card button.bg-cyan-600:hover,
+    .page-card button[class~="bg-cyan-600"]:hover {
+      background: #0695b7 !important;
+    }
+
+    .pro-mode-btn,
+    .pro-admin-btn,
+    #proStorageServerBtn,
+    #proStorageLocalBtn {
+      border-radius: .8rem;
+    }
+
+    .pro-mode-btn[aria-pressed="true"],
+    .pro-admin-btn[aria-pressed="true"],
+    #proStorageServerBtn[aria-pressed="true"],
+    #proStorageLocalBtn[aria-pressed="true"] {
+      border-color: rgba(34, 199, 223, .48) !important;
+      background: rgba(34, 199, 223, .11) !important;
+      color: #67e8f9 !important;
+    }
+
+    html:not(.dark) .pro-mode-btn[aria-pressed="true"],
+    html:not(.dark) .pro-admin-btn[aria-pressed="true"],
+    html:not(.dark) #proStorageServerBtn[aria-pressed="true"],
+    html:not(.dark) #proStorageLocalBtn[aria-pressed="true"] {
+      color: #08718f !important;
+      background: #e8f8fb !important;
+      border-color: #a6dce7 !important;
+    }
+
+    .pro-input,
+    .new-detail,
+    .rev-changes,
+    .rev-code,
+    #customCount {
+      border-color: #293b51 !important;
+      background-color: #09121f !important;
+      color: #e7eef8 !important;
+      border-radius: .85rem !important;
+      box-shadow: none !important;
+      transition: border-color .14s ease, background-color .14s ease !important;
+    }
+
+    .pro-input:focus,
+    .new-detail:focus,
+    .rev-changes:focus,
+    .rev-code:focus,
+    #customCount:focus {
+      border-color: #22b9d4 !important;
+      outline: none;
+      box-shadow: 0 0 0 3px var(--app-focus) !important;
+    }
+
+    .pro-input::placeholder,
+    .new-detail::placeholder,
+    .rev-changes::placeholder,
+    .rev-code::placeholder {
+      color: #70839a !important;
+      opacity: 1;
+    }
+
+    html:not(.dark) .pro-input,
+    html:not(.dark) .new-detail,
+    html:not(.dark) .rev-changes,
+    html:not(.dark) .rev-code,
+    html:not(.dark) #customCount {
+      background-color: #f8fafd !important;
+      color: #172338 !important;
+      border-color: #d7e1ed !important;
+    }
+
+    html:not(.dark) .pro-input:focus,
+    html:not(.dark) .new-detail:focus,
+    html:not(.dark) .rev-changes:focus,
+    html:not(.dark) .rev-code:focus,
+    html:not(.dark) #customCount:focus {
+      background-color: #ffffff !important;
+      border-color: #1293b6 !important;
+    }
+
+    html:not(.dark) .pro-input::placeholder,
+    html:not(.dark) .new-detail::placeholder,
+    html:not(.dark) .rev-changes::placeholder,
+    html:not(.dark) .rev-code::placeholder {
+      color: #8998aa !important;
+    }
+
+    .theme-preview {
+      border-radius: 1rem !important;
+    }
+
+    .theme-preview-surface {
+      border-radius: .8rem !important;
+    }
+
+    .theme-swatch {
+      box-shadow: 0 0 0 1px rgba(7, 17, 31, .3);
+    }
+
+    .pro-scroll > div,
+    #proServerOptions > div,
+    #proThemePreview,
+    #proAdminFields > div {
+      border-color: rgba(127, 158, 190, .22) !important;
+    }
+
+    html:not(.dark) .pro-scroll > div,
+    html:not(.dark) #proServerOptions > div,
+    html:not(.dark) #proThemePreview,
+    html:not(.dark) #proAdminFields > div {
+      border-color: #dfe7f0 !important;
+    }
+
+    .page-footer {
+      border-color: var(--app-border) !important;
+      color: var(--app-muted) !important;
+    }
+
+    #splitterModal > div {
+      border-color: #253950 !important;
+      background: #0d1725 !important;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, .28);
+    }
+
+    html:not(.dark) #splitterModal > div {
+      border-color: #d6e1ed !important;
+      background: #ffffff !important;
+    }
+
+    #splitterModal > div > div:first-of-type,
+    #splitterModal > div > div:last-of-type {
+      background: #0a1320 !important;
+      border-color: #20334a !important;
+    }
+
+    html:not(.dark) #splitterModal > div > div:first-of-type,
+    html:not(.dark) #splitterModal > div > div:last-of-type {
+      background: #f6f9fc !important;
+      border-color: #e0e8f1 !important;
+    }
+
+    #splitterModal > div > div:nth-of-type(2) {
+      background: #0b1421 !important;
+      border-color: #20334a !important;
+    }
+
+    html:not(.dark) #splitterModal > div > div:nth-of-type(2) {
+      background: #f9fbfd !important;
+      border-color: #e0e8f1 !important;
+    }
+
+    #splitterResultsGrid > button {
+      border-color: #273b52 !important;
+      background: #101c2b !important;
+      box-shadow: none !important;
+      transition: border-color .14s ease, background-color .14s ease !important;
+    }
+
+    html:not(.dark) #splitterResultsGrid > button {
+      border-color: #dce5ef !important;
+      background: #ffffff !important;
+    }
+
+    #toast {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .2) !important;
+    }
+
+    button:focus-visible,
+    select:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid rgba(34, 199, 223, .7);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 1023px) {
+      html,
+      body {
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      body {
+        min-height: 100svh;
+        min-height: 100dvh;
+      }
+
+      .page-shell {
+        min-height: 100svh;
+        min-height: 100dvh;
+        height: auto;
+        overflow: visible;
+        padding-left: max(.875rem, env(safe-area-inset-left));
+        padding-right: max(.875rem, env(safe-area-inset-right));
+      }
+
+      .page-main {
+        height: auto;
+        flex: 0 0 auto;
+        gap: 1rem;
+      }
+
+      .page-card {
+        min-height: auto;
+        padding: 1rem;
+        gap: 1rem;
+      }
+
+      .new-detail,
+      .rev-changes,
+      .rev-code {
+        font-size: 16px !important;
+        line-height: 1.6;
+        overscroll-behavior-y: contain;
+      }
+
+      .new-detail {
+        min-height: 190px;
+      }
+
+      .rev-changes {
+        min-height: 145px;
+      }
+
+      .rev-code {
+        min-height: 175px;
+      }
+
+      .pro-input {
+        font-size: 16px;
+        min-height: 44px;
+      }
+
+      #newProPanel {
+        flex: 0 0 auto;
+      }
+
+      .pro-scroll {
+        overflow: visible;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: auto;
+      }
+
+      #splitterModal {
+        align-items: flex-end;
+        padding: .6rem;
+        padding-bottom: max(.6rem, env(safe-area-inset-bottom));
+      }
+
+      #splitterModal > div {
+        height: min(88svh, 620px) !important;
+        max-height: 88dvh;
+        border-radius: 1.15rem;
+      }
+
+      #splitterModal > div > div.overflow-y-auto,
+      #splitterModal .overflow-y-auto {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+      }
+
+      #toast {
+        bottom: max(1rem, env(safe-area-inset-bottom));
+      }
+    }
+
+    @media (max-width: 639px) {
+      .page-header {
+        gap: .85rem;
+        padding-bottom: .9rem;
+      }
+
+      .page-header h1 {
+        font-size: 1.12rem;
+      }
+
+      .page-card {
+        border-radius: 1.1rem;
+      }
+
+      #splitterModal > div {
+        height: min(88svh, 620px) !important;
+        max-height: 88dvh;
+      }
+
+      #splitterModal > div > div:nth-of-type(2) > div:first-child {
+        gap: .4rem;
+      }
+
+      #splitterModal .text-xs {
+        line-height: 1.4;
+      }
+
+      #splitterModal > div > div:last-of-type {
+        gap: .5rem;
+        align-items: flex-start;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .page-card {
+        overflow: hidden;
+      }
+
+      .pro-scroll {
+        scrollbar-gutter: stable;
+        scrollbar-width: thin;
+      }
+
+      #splitterModal > div {
+        max-height: min(90dvh, 760px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -509,6 +952,10 @@
                 <option value="NATURE_ORGANIC">Nature Organic — Sage, Forest & Sand</option>
                 <option value="BOLD_CREATIVE">Bold Creative — Charcoal, Lime & Violet</option>
                 <option value="MINIMAL_MONO">Minimal Mono — White, Black & Gray</option>
+                <option value="FUTURE_MINIMAL">Future Minimal — Graphite, Ice & Electric Blue</option>
+                <option value="SAAS_DASHBOARD">SaaS Dashboard — Cloud, Indigo & Teal</option>
+                <option value="AI_PRODUCT">AI Product — Midnight, Violet & Cyan</option>
+                <option value="CYBER_MINIMAL">Cyber Minimal — Obsidian, Mint & Blue</option>
                 <option value="CUSTOM">Custom</option>
               </select>
               <div id="proThemeCustomWrap" class="hidden mt-2">
@@ -555,7 +1002,7 @@
                 </div>
                 <div class="sm:col-span-2">
                   <label for="pro-gas-url" class="block text-xs font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">URL Google Apps Script Web App</label>
-                  <input id="pro-gas-url" type="url" class="pro-input" placeholder="https://script.google.com/macros/s/.../exec">
+                  <input id="pro-gas-url" type="url" class="pro-input" placeholder="GANTI_DISINI">
                 </div>
               </div>
               <p id="proLocalNote" class="hidden text-[11px] leading-relaxed text-emerald-600 dark:text-emerald-400 mt-3"></p>
@@ -1018,6 +1465,54 @@
         buttonText: '#FFFFFF',
         description: 'Palet monokrom dengan sedikit aksen untuk pengalaman minimal, fokus, dan bebas distraksi.'
       },
+      FUTURE_MINIMAL: {
+        label: 'Future Minimal',
+        background: '#0B1020',
+        surface: '#121A2B',
+        primary: '#38BDF8',
+        accent: '#A78BFA',
+        text: '#F8FAFC',
+        muted: '#A4B2C7',
+        border: '#2B3B55',
+        buttonText: '#07111F',
+        description: 'Graphite gelap dengan ice blue dan violet lembut untuk produk teknologi yang bersih, presisi, dan futuristik.'
+      },
+      SAAS_DASHBOARD: {
+        label: 'SaaS Dashboard',
+        background: '#F4F7FB',
+        surface: '#FFFFFF',
+        primary: '#2563EB',
+        accent: '#0F766E',
+        text: '#111827',
+        muted: '#64748B',
+        border: '#DCE4EE',
+        buttonText: '#FFFFFF',
+        description: 'Palet cloud, indigo, dan teal untuk dashboard SaaS yang rapi, informatif, dan profesional.'
+      },
+      AI_PRODUCT: {
+        label: 'AI Product',
+        background: '#0A1020',
+        surface: '#111C30',
+        primary: '#8B5CF6',
+        accent: '#22D3EE',
+        text: '#F8FAFC',
+        muted: '#B8C3D8',
+        border: '#334155',
+        buttonText: '#FFFFFF',
+        description: 'Midnight navy dengan violet dan cyan untuk produk AI, platform digital, dan antarmuka generatif.'
+      },
+      CYBER_MINIMAL: {
+        label: 'Cyber Minimal',
+        background: '#0B0F14',
+        surface: '#151D26',
+        primary: '#34D399',
+        accent: '#60A5FA',
+        text: '#F0FDF4',
+        muted: '#A7B6B0',
+        border: '#2B3A3A',
+        buttonText: '#052E24',
+        description: 'Obsidian dengan mint dan blue yang terukur untuk tampilan cyber modern tanpa visual berlebihan.'
+      },
       CUSTOM: {
         label: 'Custom',
         background: '#0B1220',
@@ -1229,6 +1724,7 @@ Berikan FULL SOURCE CODE lengkap dan siap pakai hanya untuk **satu file \`index.
 ${storageInstruction}
 - **Frontend (\`index.html\`):** Pastikan tampilan, fitur, validasi, struktur data, dan alur kerja konsisten dengan mode storage yang dipilih.
 - **Backend (\`code.gs\`):** Sediakan fungsi server yang dibutuhkan oleh frontend, validasi input, penanganan error, dan response JSON konsisten.
+- **file JSON letakan di directory yang sama dengan code.gs nya (intinya dalam 1 folder dengan code.gs)
 - **Default Data:** Sediakan objek **\`DEFAULT_DATA\`** sebagai initial state dengan struktur data yang konsisten dan sesuai kebutuhan website.
 - **Standar response API:** Format sukses **\`{"ok": true, "data": {}}\`** dan format gagal **\`{"ok": false, "error": "pesan"}\`**. Selaraskan nama action, field, dan struktur data antara frontend dan backend.
 
