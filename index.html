@@ -14,7 +14,7 @@
 html:not(.dark){color-scheme:light;--app-bg:#f3f6fb;--app-border:#dce5f0;--app-text:#172338;--app-muted:#61738c;--app-focus:rgba(8,127,165,.16);--app-surface:#fff;--app-surface-soft:#f7f9fc;--app-input:#f8fafd;--app-scroll-track:#edf2f7;--app-scroll-thumb:#0284c7}
 html{scroll-behavior:auto;scrollbar-width:thin;scrollbar-color:var(--app-scroll-thumb) var(--app-scroll-track);scrollbar-gutter:stable;-webkit-text-size-adjust:100%}
 *,*::before,*::after{box-sizing:border-box;scrollbar-width:thin;scrollbar-color:var(--app-scroll-thumb) var(--app-scroll-track)}
-body{min-height:100svh;min-height:100dvh;overflow-x:hidden;-webkit-tap-highlight-color:transparent;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:var(--app-bg);color:var(--app-text);background-image:radial-gradient(ellipse at 12% 0%,rgba(8,145,178,.13),transparent 34%),linear-gradient(rgba(100,190,220,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(100,190,220,.025) 1px,transparent 1px);background-size:auto,30px 30px,30px 30px;background-attachment:scroll}
+body{min-height:100svh;min-height:100dvh;overflow-x:hidden;-webkit-tap-highlight-color:transparent;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:var(--app-bg);color:var(--app-text);background-image:radial-gradient(ellipse at 12% 0%,rgba(8,145,178,.13),transparent 34%),linear-gradient(rgba(100,190,220,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(100,190,220,.025) 1px,transparent 1px);background-size:auto,30px 30px,30px 30px;background-attachment:scroll}
 html:not(.dark) body{background-image:radial-gradient(ellipse at 12% 0%,rgba(14,165,233,.075),transparent 36%),linear-gradient(rgba(30,100,150,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(30,100,150,.025) 1px,transparent 1px)}
 body.modal-open{overflow:hidden!important}button,textarea,input{-webkit-tap-highlight-color:transparent}button{touch-action:manipulation}textarea,pre,code{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}textarea{resize:vertical;min-width:0;max-width:100%}
 ::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--app-scroll-track)}::-webkit-scrollbar-thumb{background:var(--app-scroll-thumb);border-radius:9999px}
@@ -39,8 +39,90 @@ body.modal-open{overflow:hidden!important}button,textarea,input{-webkit-tap-high
 @media(max-width:639px){.page-header{gap:.85rem;padding-bottom:.9rem}.page-header h1{font-size:1.12rem}.page-card{border-radius:1.1rem}#splitterModal>div{height:min(88svh,620px)!important;max-height:88dvh}#splitterModal .text-xs{line-height:1.4}.admin-body{padding:11px}.admin-color-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-list-item{flex-direction:column}.admin-action-row{width:100%;justify-content:flex-start}.admin-category-group{padding:10px}.admin-category-heading{align-items:center}.admin-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-action-top{padding:12px}.admin-action-content{padding:11px}}
 @media(max-width:520px){.admin-sidebar{padding:8px}.admin-tab{padding:9px 6px}.admin-dashboard-tools{margin-bottom:10px}.admin-search-input{min-height:46px}.admin-color-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.admin-field-section-title::after,.admin-category-heading::after{transition:none}}
+
+#adminModal .admin-panel,#adminActionModal .admin-action-dialog{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:12px}
+#adminModal .admin-panel * ,#adminActionModal .admin-action-dialog *{font-size:11px!important;letter-spacing:normal}
+#adminModal .admin-panel{width:min(100%,1180px);height:min(96dvh,1020px);border-radius:14px}
+#adminModal .admin-top{padding:9px 12px;gap:8px}
+#adminModal .admin-body{padding:9px;overscroll-behavior-y:contain;scrollbar-gutter:stable}
+#adminModal .admin-card{padding:9px;border-radius:10px}
+#adminModal .admin-label{font-size:10px!important;margin-bottom:4px;line-height:1.3}
+#adminModal .admin-field{font-size:11px!important;min-height:34px;padding:7px 9px;border-radius:8px;line-height:1.35}
+#adminModal textarea.admin-field{min-height:82px}
+#adminModal .admin-tab{font-size:10px!important;padding:7px 8px;line-height:1.25;border-radius:7px}
+#adminModal .admin-primary,#adminModal .admin-secondary,#adminModal .admin-danger{font-size:10px!important;min-height:29px;padding:6px 9px;border-radius:7px;line-height:1.25}
+#adminModal .admin-muted,#adminModal .admin-error,#adminModal .admin-success{font-size:10px!important;line-height:1.4;min-height:0}
+#adminModal .admin-category-description,#adminModal .admin-field-section-description,#adminModal .admin-tab-intro-copy,#adminModal .admin-popup-launcher-description{font-size:10px!important;line-height:1.4}
+#adminModal .admin-category-title,#adminModal .admin-tab-intro-title,#adminModal .admin-field-section-title{font-size:11px!important;line-height:1.3}
+#adminModal .admin-category-count{font-size:9px!important;padding:2px 6px}
+#adminModal .admin-sidebar{padding:7px;border-radius:9px}
+#adminModal .admin-sidebar-label{font-size:9px!important;padding:3px 5px 6px}
+#adminModal .admin-tabs{gap:5px}
+#adminModal .admin-workspace{grid-template-columns:190px minmax(0,1fr);gap:9px}
+#adminModal .admin-dashboard-tools{position:sticky;top:-9px;z-index:30;margin:-9px 0 9px;padding:8px 0 8px;background:#0d1725;border-bottom:1px solid #263b53;gap:5px}
+#adminModal .admin-search-wrap{gap:4px}
+#adminModal .admin-search-input{font-size:11px!important;min-height:34px;padding:7px 9px}
+#adminModal .admin-search-empty{font-size:10px!important;padding:10px;margin-top:5px;text-align:left}
+#adminModal .admin-category-stack{gap:8px}
+#adminModal .admin-category-group{gap:7px;padding:8px;border-radius:10px}
+#adminModal .admin-category-heading{gap:7px;padding:0;min-height:20px;text-align:left}
+#adminModal .admin-category-group .admin-list{gap:6px}
+#adminModal .admin-list{gap:6px}
+#adminModal .admin-list-item{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:6px;padding:8px;border-radius:8px;text-align:left}
+#adminModal .admin-list-copy{width:100%;text-align:left}
+#adminModal .admin-list-copy .font-bold{font-size:11px!important;line-height:1.35;text-align:left}
+#adminModal .admin-action-row{width:100%;justify-content:flex-start;gap:5px}
+#adminModal .admin-field-section{gap:7px;padding:8px;border-radius:8px}
+#adminModal .admin-form-dropdown{margin-bottom:7px}
+#adminModal .admin-form-dropdown>summary{font-size:11px!important;padding:7px 9px;border-radius:8px}
+#adminModal .admin-field-section-title{min-height:18px}
+#adminModal .admin-color-grid{gap:7px}
+#adminModal .admin-color{height:32px;border-radius:7px}
+#adminModal .admin-check{width:15px;height:15px}
+#adminModal .admin-tab-intro{gap:2px;margin-bottom:0;text-align:left}
+#adminModal .admin-tab-intro-title,#adminModal .admin-tab-intro-copy{text-align:left}
+#adminModal #adminFeedback{text-align:left!important}
+#adminModal #adminDashboard>.flex:first-child{align-items:flex-start;flex-direction:column;gap:2px}
+#adminActionModal .admin-action-dialog{width:min(100%,680px);max-height:min(90dvh,860px);border-radius:13px;box-shadow:0 5px 14px rgba(0,0,0,.12)}
+#adminActionModal .admin-action-top{padding:8px 11px;gap:8px}
+#adminActionModal .admin-action-title{font-size:12px!important}
+#adminActionModal .admin-action-content{padding:9px;gap:8px;overscroll-behavior-y:contain}
+#adminActionModal .admin-action-content>form{gap:8px}
+#adminActionModal .admin-field{font-size:11px!important;min-height:34px;padding:7px 9px}
+#adminActionModal textarea.admin-field{min-height:90px}
+#adminActionModal #promptTemplateBody{min-height:42dvh}
+#adminActionModal .admin-action-close{width:30px;height:30px;border-radius:7px}
+html:not(.dark) #adminModal .admin-dashboard-tools{background:#fff;border-color:#dce5f0}
+html:not(.dark) #adminModal .admin-category-group{background:#f8fafd}
+html:not(.dark) #adminModal .admin-list-item{background:#fff}
+@media(max-width:1023px){
+#adminModal .admin-panel{height:min(96dvh,1000px);border-radius:14px 14px 0 0}
+#adminModal .admin-body{padding:8px}
+#adminModal .admin-dashboard-tools{top:-8px;margin-top:-8px}
+#adminModal .admin-workspace{grid-template-columns:1fr;gap:8px}
+#adminModal .admin-sidebar{position:static;padding:6px}
+#adminModal .admin-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+#adminModal .admin-tab{text-align:left;min-height:31px;padding:6px 7px}
+#adminModal .admin-category-group{padding:7px}
+#adminModal .admin-list-item{flex-direction:column}
+#adminActionModal .admin-action-dialog{width:100%;max-height:min(94dvh,940px);border-radius:14px 14px 0 0}
+#adminActionModal .admin-action-content{padding:9px}
+}
+@media(max-width:639px){
+.page-shell{padding-top:max(.65rem,env(safe-area-inset-top));padding-bottom:max(.6rem,env(safe-area-inset-bottom))}
+#adminModal .admin-top{padding:8px 10px}
+#adminModal .admin-body{padding:7px}
+#adminModal .admin-dashboard-tools{top:-7px;margin-top:-7px;padding:7px 0;background:#0d1725}
+#adminModal .admin-category-heading{align-items:flex-start}
+#adminModal .admin-list-item{flex-direction:column;align-items:stretch}
+#adminModal .admin-action-row{justify-content:flex-start}
+#adminModal .admin-tab{font-size:9px!important;padding:6px}
+#adminActionModal .admin-action-top{padding:8px 10px}
+#adminActionModal .admin-action-content{padding:8px}
+}
+@media(prefers-reduced-motion:reduce){.admin-dashboard-tools{scroll-behavior:auto!important}}
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="min-h-dvh bg-slate-100 dark:bg-[#080b11] text-slate-800 dark:text-zinc-100 antialiased selection:bg-cyan-500 selection:text-white flex flex-col clean-grid transition-colors duration-200">
 <div class="page-shell relative z-10 w-full max-w-7xl mx-auto px-3.5 py-4 sm:px-6 sm:py-5 lg:px-8 flex-1 flex flex-col">
@@ -170,7 +252,8 @@ function getRevisionProJsonFileName(){const input=document.getElementById('rev-p
 function getRevisionProGasUrl(){const input=document.getElementById('rev-pro-gas-url'),raw=input?.value.trim()||'';if(!raw)return'GANTI_INI';if(!/^https?:\/\//i.test(raw)||raw==='GANTI_INI')return raw;return`${raw.replace(/\/+$/,'').replace(/\/exec$/i,'')}/exec`}
 function buildRevisionProPrompt(){const code=document.getElementById('rev-pro-code').value.trim(),isLocal=revisionProStorageMode==='LOCAL',adminEnabled=revisionProAdminEnabled,promptGasUrl=isLocal?'':getRevisionProGasUrl(),jsonFile=isLocal?'':getRevisionProJsonFileName(),username=adminEnabled?(document.getElementById('rev-pro-admin-user').value.trim()||'GANTI_INI'):'',password=adminEnabled?(document.getElementById('rev-pro-admin-pass').value||'GANTI_INI'):'',revisionRules=renderPromptTemplate('revision_rules',{}),storageInstruction=renderPromptTemplate(isLocal?'revision_storage_local':'revision_storage_server',{gasUrl:promptGasUrl,jsonFile:jsonFile}),adminTemplate=adminEnabled?(isLocal?'revision_admin_local':'revision_admin_server'):'revision_admin_disabled',adminInstruction=renderPromptTemplate(adminTemplate,{username:username,password:password}),performanceInstruction=renderPromptTemplate('revision_performance',{}),outputInstruction=renderPromptTemplate(isLocal?'revision_output_local':'revision_output_server',{});return renderPromptTemplate('revision_pro',{revisionRules:revisionRules,storageInstruction:storageInstruction,adminInstruction:adminInstruction,performanceInstruction:performanceInstruction,outputInstruction:outputInstruction,code:code})}
 async function generateRevisionProPrompt(){const input=document.getElementById('rev-pro-code'),code=input.value.trim();if(!code){showToast('Silakan paste source code website lama!',true);input.focus();return}if(revisionProStorageMode==='SERVER'){getRevisionProJsonFileName();const urlInput=document.getElementById('rev-pro-gas-url');if(urlInput&&urlInput.value.trim())urlInput.value=getRevisionProGasUrl()}let prompt;try{prompt=appendPromptExtras(buildRevisionProPrompt(),'revision')}catch(error){showToast(error.message,true);return}const ok=await writeClipboard(prompt);showToast(ok?'Prompt Revisi Pro berhasil digenerate & otomatis disalin!':'Gagal menyalin otomatis. Silakan coba lagi.',!ok)}
-function resetNewForm(){document.getElementById('new-detail').value='';document.getElementById('pro-detail').value='';document.getElementById('pro-theme').value='MODERN_TECH';document.getElementById('pro-theme-custom').value='';document.getElementById('pro-main-color').value='';document.getElementById('pro-gas-url').value='';document.getElementById('pro-json-name').value='';document.getElementById('pro-admin-user').value='';document.getElementById('pro-admin-pass').value='';updateProThemeFields();updateProDatabaseFields();setProStorage('SERVER');setProAdmin(true);setNewMode('basic');document.getElementById('new-detail').focus();showToast('Form Buat Web berhasil direset.')}
+function resetNewForm(){document.getElementById('new-detail').value='';document.getElementById('pro-detail').value='';document.getElementById('pro-theme').value='MODERN_TECH';document.getElementById('pro-theme-custom').value='';document.getElementById('pro-main-color').value='';document.getElementById('pro-gas-url').value='';document.getElementById('pro-json-name').value='';document.getElementById('pro-admin-user').value='';
+document.getElementById('pro-admin-pass').value='';updateProThemeFields();updateProDatabaseFields();setProStorage('SERVER');setProAdmin(true);setNewMode('basic');document.getElementById('new-detail').focus();showToast('Form Buat Web berhasil direset.')}
 function resetRevForm(){document.getElementById('rev-changes').value='';document.getElementById('rev-code').value='';document.getElementById('rev-pro-code').value='';document.getElementById('rev-pro-gas-url').value='';document.getElementById('rev-pro-json-name').value='';document.getElementById('rev-pro-admin-user').value='';document.getElementById('rev-pro-admin-pass').value='';setRevisionProStorage('SERVER');setRevisionProAdmin(true);setRevisionMode('basic');document.getElementById('rev-changes').focus();showToast('Form Revisi Web berhasil direset.')}
 const splitterState={mode:2,parts:[],source:'',nextCopyIndex:0};
 function countWords(value){const clean=value.trim();return clean?clean.split(/\s+/u).length:0}
@@ -208,7 +291,7 @@ async function adminAction(action,extra={}){if(adminRecoveryRequired&&action!=='
 function setAdminTab(name){if(adminRecoveryRequired&&!['data','restore','maintenance'].includes(name)){setAdminFeedback('DATA.json rusak. Gunakan tab Backup Data, Restore Data, atau Reset & Maintenance.',true);return}document.querySelectorAll('[data-admin-tab]').forEach(button=>button.setAttribute('aria-selected',String(button.dataset.adminTab===name)));document.querySelectorAll('.admin-tab-panel').forEach(panel=>panel.classList.add('hidden'));const panel=document.getElementById('admin'+name.charAt(0).toUpperCase()+name.slice(1)+'Tab');if(panel)panel.classList.remove('hidden');setAdminFeedback('')}
 function normalizeAdminSearch(value){return String(value||'').toLocaleLowerCase('id').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()}
 function filterAdminSearchGroup(group,query){const rows=Array.from(group.querySelectorAll('.admin-list-item'));const heading=group.querySelector(':scope > .admin-category-heading');const headingMatches=heading&&normalizeAdminSearch(heading.textContent).includes(query);if(rows.length){rows.forEach(row=>{row.hidden=!(headingMatches||normalizeAdminSearch(row.textContent).includes(query))});const visible=headingMatches||rows.some(row=>!row.hidden);group.hidden=!visible;if(visible&&group.tagName==='DETAILS')group.open=true;return visible}const visible=normalizeAdminSearch(group.textContent).includes(query);group.hidden=!visible;if(visible&&group.tagName==='DETAILS')group.open=true;return visible}
-function filterAdminDashboard(){const input=document.getElementById('adminSearchInput');if(!input)return;const query=normalizeAdminSearch(input.value);const buttons=Array.from(document.querySelectorAll('[data-admin-tab]'));let firstMatch='';let matchedTabs=0;buttons.forEach(button=>{const name=button.dataset.adminTab;const panel=document.getElementById('admin'+name.charAt(0).toUpperCase()+name.slice(1)+'Tab');if(!panel)return;const children=Array.from(panel.children);children.forEach(child=>{child.hidden=false;child.querySelectorAll('[hidden]').forEach(element=>{element.hidden=false})});let matched=true;if(query){children.forEach(child=>{if(child.classList.contains('admin-category-stack')){const groups=Array.from(child.children);groups.forEach(group=>{if(group.classList.contains('admin-category-group'))filterAdminSearchGroup(group,query);else group.hidden=!normalizeAdminSearch(group.textContent).includes(query)});child.hidden=!groups.some(group=>!group.hidden)}else if(child.classList.contains('admin-category-group')){filterAdminSearchGroup(child,query)}else{child.hidden=!normalizeAdminSearch(child.textContent).includes(query)}});matched=children.some(child=>!child.hidden);if(matched){matchedTabs++;if(!firstMatch)firstMatch=name}}button.hidden=Boolean(query&&!matched)});const empty=document.getElementById('adminSearchEmpty');if(empty)empty.hidden=!query||matchedTabs>0;if(query){const active=document.querySelector('[data-admin-tab][aria-selected="true"]');if((!active||active.hidden)&&firstMatch)setAdminTab(firstMatch)}}
+function filterAdminDashboard(){const input=document.getElementById('adminSearchInput');if(!input)return;const query=normalizeAdminSearch(input.value);const buttons=Array.from(document.querySelectorAll('[data-admin-tab]'));let firstMatch='';let matchedTabs=0;buttons.forEach(button=>{const name=button.dataset.adminTab;const panel=document.getElementById('admin'+name.charAt(0).toUpperCase()+name.slice(1)+'Tab');if(!panel)return;const children=Array.from(panel.children);children.forEach(child=>{child.hidden=false;child.querySelectorAll('[hidden]').forEach(element=>{element.hidden=false})});let matched=true;if(query){children.forEach(child=>{if(child.classList.contains('admin-category-stack')){const groups=Array.from(child.children);groups.forEach(group=>{if(group.classList.contains('admin-category-group'))filterAdminSearchGroup(group,query);else group.hidden=!normalizeAdminSearch(group.textContent)});child.hidden=!groups.some(group=>!group.hidden)}else if(child.classList.contains('admin-category-group')){filterAdminSearchGroup(child,query)}else{child.hidden=!normalizeAdminSearch(child.textContent).includes(query)}});matched=children.some(child=>!child.hidden);if(matched){matchedTabs++;if(!firstMatch)firstMatch=name}}button.hidden=Boolean(query&&!matched)});const empty=document.getElementById('adminSearchEmpty');if(empty)empty.hidden=!query||matchedTabs>0;if(query){const active=document.querySelector('[data-admin-tab][aria-selected="true"]');if((!active||active.hidden)&&firstMatch)setAdminTab(firstMatch)}}
 function enhanceAdminAccordions(){document.querySelectorAll('#adminDashboard .admin-field-section').forEach(section=>{if(section.parentElement&&section.parentElement.tagName==='DETAILS')return;const title=section.querySelector(':scope > .admin-field-section-title');if(!title)return;const details=document.createElement('details');details.className=section.className+' admin-accordion';details.open=false;const summary=document.createElement('summary');summary.className=title.className;Array.from(title.childNodes).forEach(node=>summary.appendChild(node));details.appendChild(summary);Array.from(section.children).forEach(child=>{if(child!==title)details.appendChild(child)});section.replaceWith(details)});document.querySelectorAll('#adminDashboard div.admin-category-group').forEach(group=>{const title=group.querySelector(':scope > .admin-category-heading');if(!title)return;const details=document.createElement('details');details.className=group.className+' admin-accordion';details.open=false;const summary=document.createElement('summary');summary.className=title.className;Array.from(title.childNodes).forEach(node=>summary.appendChild(node));details.appendChild(summary);Array.from(group.children).forEach(child=>{if(child!==title)details.appendChild(child)});group.replaceWith(details)})}
 function createAdminCategoryGroup(title,description,count){const group=document.createElement('details');group.className='admin-category-group admin-accordion';group.open=false;const heading=document.createElement('summary');heading.className='admin-category-heading';const copy=document.createElement('span');copy.className='admin-category-heading-copy';const headingTitle=document.createElement('strong');headingTitle.className='admin-category-title';headingTitle.textContent=title;const headingDescription=document.createElement('span');headingDescription.className='admin-category-description';headingDescription.textContent=description;copy.append(headingTitle,headingDescription);const badge=document.createElement('span');badge.className='admin-category-count';badge.textContent=count+' item';heading.append(copy,badge);const items=document.createElement('div');items.className='admin-list';group.append(heading,items);return{group:group,list:items}}
 function getSnippetCategory(item){const explicit=String(item.category||item.group||'').trim();if(explicit)return explicit;const content=(String(item.title||'')+' '+String(item.body||'')).toLowerCase();if(/keamanan|security|login|password|autentikasi|authentication|otorisasi|permission|hak akses|session|privasi/.test(content))return'Keamanan & Akses';if(/performa|performance|optimasi|optimalisasi|responsive|responsif|mobile|scroll|jank|loading|lazy load|cache|kecepatan|ringan/.test(content))return'Performa & Responsivitas';if(/desain|design|visual|warna|color|tema|theme|layout|ui\b|ux\b|interface|tipografi|typography|animasi/.test(content))return'Desain & Tampilan';if(/seo|search engine|metadata|meta tag|artikel|blog|konten|content|copywriting|heading|deskripsi/.test(content))return'Konten & SEO';if(/fitur|function|crud|database|storage|backend|api|form|dashboard|admin|data|integrasi|upload|download|filter|pencarian|search/.test(content))return'Fitur & Pengelolaan Data';return'Umum'}
