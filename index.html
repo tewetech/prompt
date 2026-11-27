@@ -145,6 +145,46 @@ html:not(.dark) #adminModal .admin-dashboard-tools{background:#fff}
 #adminModal .admin-sidebar{max-height:min(24dvh,180px)}
 }
 @media(prefers-reduced-motion:reduce){#adminModal .admin-sidebar,#adminModal .admin-main{scroll-behavior:auto!important}}
+
+.product-tour{position:fixed;inset:0;z-index:150;pointer-events:none}
+.product-tour.hidden{display:none}
+.tour-shade{position:fixed;background:rgba(2,8,18,.76);pointer-events:auto;touch-action:none}
+.tour-spotlight{position:fixed;z-index:151;border:2px solid #22d3ee;border-radius:12px;pointer-events:none;box-shadow:0 0 0 1px rgba(34,211,238,.12)}
+.tour-card{position:fixed;z-index:152;width:min(380px,calc(100vw - 24px));max-height:min(420px,calc(100dvh - 24px));overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:17px;border:1px solid #31516b;border-radius:16px;background:#0d1725;color:#e7eef8;box-shadow:0 8px 28px rgba(0,0,0,.26);pointer-events:auto;visibility:hidden}
+.tour-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.tour-kicker{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#22d3ee}
+.tour-title{font-size:17px;font-weight:800;line-height:1.35;color:#f1f5f9;margin-top:4px}
+.tour-close{width:32px;height:32px;flex:0 0 auto;border:1px solid #344b63;border-radius:9px;background:#142235;color:#d8e5f4}
+.tour-description{font-size:13px;line-height:1.65;color:#b7c6d8;margin-top:11px}
+.tour-progress-track{height:4px;border-radius:99px;background:#24364b;overflow:hidden;margin-top:16px}
+.tour-progress-fill{height:100%;width:0;border-radius:99px;background:#22d3ee;transition:width .16s ease}
+.tour-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.tour-counter{font-size:11px;color:#91a4ba;font-variant-numeric:tabular-nums}
+.tour-preference{display:flex;align-items:center;gap:8px;margin-top:15px;padding-top:12px;border-top:1px solid #263b53;font-size:12px;color:#bdcbdc;cursor:pointer;user-select:none}
+.tour-preference input{width:16px;height:16px;accent-color:#0891b2;flex:0 0 auto}
+.tour-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:15px}
+.tour-action-group{display:flex;align-items:center;gap:7px}
+.tour-button{min-height:38px;padding:8px 12px;border:1px solid #344b63;border-radius:9px;background:#142235;color:#d8e5f4;font-size:12px;font-weight:700;touch-action:manipulation}
+.tour-button-primary{border-color:rgba(34,211,238,.34);background:#087f9f;color:#fff}
+.tour-button:disabled{opacity:.4;cursor:not-allowed}
+#productTourBtn{min-height:32px}
+html:not(.dark) .tour-card{background:#fff;color:#172338;border-color:#cbd9e8;box-shadow:0 8px 24px rgba(27,48,76,.16)}
+html:not(.dark) .tour-title{color:#172338}
+html:not(.dark) .tour-description{color:#52647a}
+html:not(.dark) .tour-close,html:not(.dark) .tour-button{background:#f1f5f9;color:#334155;border-color:#d5e0ec}
+html:not(.dark) .tour-button-primary{background:#087f9f;color:#fff;border-color:#087f9f}
+html:not(.dark) .tour-preference{color:#475569;border-color:#e0e8f1}
+html:not(.dark) .tour-counter{color:#64748b}
+html:not(.dark) .tour-progress-track{background:#e2e8f0}
+@media(max-width:639px){
+.tour-card{padding:15px;border-radius:14px}
+.tour-title{font-size:16px}
+.tour-description{font-size:13px;line-height:1.6}
+.tour-button{min-height:40px;padding:9px 11px}
+}
+@media(prefers-reduced-motion:reduce){
+.tour-progress-fill{transition:none}
+}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -152,7 +192,7 @@ html:not(.dark) #adminModal .admin-dashboard-tools{background:#fff}
 <div class="page-shell relative z-10 w-full max-w-7xl mx-auto px-3.5 py-4 sm:px-6 sm:py-5 lg:px-8 flex-1 flex flex-col">
 <header class="page-header mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-200/90 dark:border-zinc-800 pb-4">
 <div class="flex items-center gap-3 min-w-0"><div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0"><i class="fa-solid fa-code text-lg" aria-hidden="true"></i></div><div class="min-w-0"><div class="flex items-center gap-2"><h1 id="siteTitle" class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white truncate">WEB TEWE TECH</h1><span id="siteBadge" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-700 dark:text-cyan-300 text-[11px] font-semibold shrink-0">✦ PROMPT</span></div><p id="siteSubtitle" class="public-explanation text-xs text-slate-500 dark:text-zinc-400 mt-0.5 truncate">Generator prompt terstruktur untuk pembuatan & revisi website</p></div></div>
-<div class="flex items-center justify-between sm:justify-end gap-2.5 shrink-0 pt-1 sm:pt-0"><div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-xs font-medium text-slate-600 dark:text-zinc-400"><i class="fa-solid fa-circle-check text-emerald-500" aria-hidden="true"></i><span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span id="statusLabel">Auto Copy Aktif</span></div><button type="button" id="adminOpenBtn" onclick="runButtonTask(this,openAdminPanel,'Memuat admin…')" class="h-8 px-2.5 inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 hover:border-cyan-500/60 text-xs font-semibold shrink-0"><i class="fa-solid fa-gear" aria-hidden="true"></i>Admin</button><button type="button" id="themeToggleBtn" onclick="toggleTheme()" class="h-8 px-2.5 inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:border-cyan-500/50 hover:text-cyan-600 dark:hover:text-cyan-400 active:scale-95 transition-colors text-xs font-medium shrink-0 shadow-sm" aria-label="Ganti Tema"><span id="themeToggleIcon">☼</span><span id="themeToggleLabel">Dark</span></button></div>
+<div class="flex items-center justify-between sm:justify-end gap-2.5 shrink-0 pt-1 sm:pt-0"><div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-xs font-medium text-slate-600 dark:text-zinc-400"><i class="fa-solid fa-circle-check text-emerald-500" aria-hidden="true"></i><span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span id="statusLabel">Auto Copy Aktif</span></div><button type="button" id="productTourBtn" onclick="startProductTour(true)" class="h-8 px-2.5 inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 hover:border-cyan-500/60 text-xs font-semibold shrink-0" aria-label="Tampilkan panduan penggunaan"><i class="fa-solid fa-circle-question" aria-hidden="true"></i><span>Panduan</span></button><button type="button" id="adminOpenBtn" onclick="runButtonTask(this,openAdminPanel,'Memuat admin…')" class="h-8 px-2.5 inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 hover:border-cyan-500/60 text-xs font-semibold shrink-0"><i class="fa-solid fa-gear" aria-hidden="true"></i>Admin</button><button type="button" id="themeToggleBtn" onclick="toggleTheme()" class="h-8 px-2.5 inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 hover:border-cyan-500/50 hover:text-cyan-600 dark:hover:text-cyan-400 active:scale-95 transition-colors text-xs font-medium shrink-0 shadow-sm" aria-label="Ganti Tema"><span id="themeToggleIcon">☼</span><span id="themeToggleLabel">Dark</span></button></div>
 </header>
 <main class="page-main grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 flex-1 items-stretch w-full min-w-0">
 <section class="page-card bg-white dark:bg-[#0e131d] border border-slate-200 dark:border-zinc-800/90 rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5 shadow-sm min-w-0 transition-colors duration-200">
@@ -204,6 +244,27 @@ html:not(.dark) #adminModal .admin-dashboard-tools{background:#fff}
 <div id="adminPopupStore" class="hidden"><form id="promptTemplateForm" class="grid gap-3"><input id="promptTemplateId" type="hidden"><div class="admin-field-section"><div class="admin-field-section-title">Editor Template Terpilih</div><div><label class="admin-label" for="promptTemplateLabel">Nama template</label><input id="promptTemplateLabel" class="admin-field" maxlength="100" required></div><div><label class="admin-label" for="promptTemplateBody">Isi template utama</label><textarea id="promptTemplateBody" class="admin-field" rows="18" maxlength="30000" spellcheck="false" required></textarea></div></div><div class="flex flex-wrap gap-2"><button class="admin-primary" type="submit">Simpan Template</button><button class="admin-secondary" type="button" onclick="resetPromptTemplateForm()">Form Kosong</button><button class="admin-danger" type="button" onclick="runButtonTask(this,restorePromptTemplateDefault,'Memulihkan…')">Pulihkan Template Bawaan</button></div></form></div></div></div></div></div>
 <div id="adminActionModal" class="admin-action-overlay hidden" aria-hidden="true"><div class="admin-action-dialog" role="dialog" aria-modal="true" aria-labelledby="adminActionTitle"><div class="admin-action-top"><h3 id="adminActionTitle" class="admin-action-title">Pengaturan</h3><button type="button" class="admin-action-close" onclick="closeAdminPopup()" aria-label="Tutup popup"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div><div id="adminActionContent" class="admin-action-content"></div></div></div>
 <div id="sequenceWarningModal" class="sequence-warning-overlay hidden" role="alertdialog" aria-modal="true" aria-labelledby="sequenceWarningTitle" aria-describedby="sequenceWarningText"><div class="sequence-warning-dialog"><div class="sequence-warning-icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div><h3 id="sequenceWarningTitle" class="font-bold">Urutan salin belum sesuai</h3><p id="sequenceWarningText" class="mt-2 text-sm text-slate-600 dark:text-zinc-300">Silakan salin bagian sesuai urutan.</p><button type="button" onclick="closeSequenceWarning()" class="admin-primary w-full mt-4">Mengerti</button></div></div>
+<div id="productTour" class="product-tour hidden" aria-hidden="true">
+<div id="tourShadeTop" class="tour-shade"></div>
+<div id="tourShadeLeft" class="tour-shade"></div>
+<div id="tourShadeRight" class="tour-shade"></div>
+<div id="tourShadeBottom" class="tour-shade"></div>
+<div id="tourSpotlight" class="tour-spotlight"></div>
+<section id="tourCard" class="tour-card" role="dialog" aria-modal="true" aria-labelledby="tourTitle" aria-describedby="tourDescription">
+<div class="tour-card-head">
+<div><div id="tourKicker" class="tour-kicker">Panduan penggunaan</div><h2 id="tourTitle" class="tour-title">Selamat datang</h2></div>
+<button type="button" id="tourCloseBtn" class="tour-close" onclick="skipProductTour()" aria-label="Tutup panduan"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+</div>
+<p id="tourDescription" class="tour-description"></p>
+<div class="tour-progress-track"><div id="tourProgressFill" class="tour-progress-fill"></div></div>
+<div class="tour-footer"><span id="tourCounter" class="tour-counter">1 dari 10</span><span class="tour-counter">Product Tour</span></div>
+<label class="tour-preference" for="tourDontShowAgain"><input type="checkbox" id="tourDontShowAgain"><span>Jangan tampilkan lagi secara otomatis</span></label>
+<div class="tour-actions">
+<button type="button" class="tour-button" onclick="skipProductTour()">Lewati</button>
+<div class="tour-action-group"><button type="button" id="tourPreviousBtn" class="tour-button" onclick="previousTourStep()">Kembali</button><button type="button" id="tourNextBtn" class="tour-button tour-button-primary" onclick="nextTourStep()">Berikutnya</button></div>
+</div>
+</section>
+</div>
 <div id="toast" class="fixed bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-[90] flex items-center gap-2.5 px-4 py-2.5 rounded-xl border shadow-xl opacity-0 translate-y-3 pointer-events-none transition-all duration-200 max-w-[calc(100vw-2rem)] bg-slate-900 dark:bg-[#111822] text-white border-cyan-500/30"><span id="toast-icon" class="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">✓</span><span id="toast-text" class="text-xs sm:text-sm font-medium"></span></div>
 <script>
 const gasUrl = "https://script.google.com/macros/s/AKfycbwWXjS8hhL7dI8p8njyRQqwDHm_iahBYghrP3eeFkDJZR-eQwae6GQiKYr6JCX6TXaUgA/exec";
@@ -352,8 +413,197 @@ document.getElementById('adminActionModal').addEventListener('click',event=>{if(
 document.getElementById('customCount').addEventListener('change',()=>{const input=document.getElementById('customCount'),value=Math.max(2,Math.min(12,parseInt(input.value,10)||2));input.value=value;if(splitterState.mode==='custom'){const source=splitterState.source||document.getElementById('splitterSource')?.value||'';if(source.trim().length>=2)doSplit(false)}});
 document.getElementById('splitterModal').addEventListener('click',event=>{if(event.target.id==='splitterModal')closeSplitterModal()});
 document.getElementById('sequenceWarningModal').addEventListener('click',event=>{if(event.target.id==='sequenceWarningModal')closeSequenceWarning()});
-document.addEventListener('keydown',event=>{if(event.key==='Escape'){const warning=document.getElementById('sequenceWarningModal');if(warning&&!warning.classList.contains('hidden')){closeSequenceWarning();return}const action=document.getElementById('adminActionModal');if(action&&!action.classList.contains('hidden')){closeAdminPopup();return}const modal=document.getElementById('splitterModal');if(modal&&!modal.classList.contains('pointer-events-none')){closeSplitterModal();return}const admin=document.getElementById('adminModal');if(admin&&!admin.classList.contains('hidden'))closeAdminPanel()}},{passive:true});
-enhanceAdminAccordions();document.getElementById('adminSearchInput').addEventListener('input',filterAdminDashboard,{passive:true});initTheme();updateProThemeFields();updateProDatabaseFields();setProStorage('SERVER');setProAdmin(true);setNewMode('basic');setRevisionProStorage('SERVER');setRevisionProAdmin(true);setRevisionMode('basic');loadDefaultSplitMode();updateSplitterMeta();loadPublicData();
+
+const PRODUCT_TOUR_SEEN_KEY='tewe_product_tour_seen';
+const PRODUCT_TOUR_DISABLED_KEY='tewe_product_tour_disabled';
+const productTourSteps=[
+{target:'siteTitle',title:'Selamat datang di Tewe Web Prompt',description:'Ini adalah halaman utama generator prompt. Panduan ini akan memperkenalkan bagian-bagian penting agar Anda dapat mulai membuat atau merevisi website dengan lebih mudah.'},
+{target:'newModeBasicBtn',title:'Pilih mode pembuatan website',description:'Bagian Buat Web menyediakan dua mode. Basic digunakan untuk kebutuhan yang sederhana dan cepat, sedangkan Pro menyediakan pengaturan lebih lengkap untuk tema, storage, dan sistem admin.',mode:'basic'},
+{target:'new-detail',title:'Tulis detail website',description:'Masukkan gambaran website yang ingin dibuat, seperti tujuan, fitur, target pengguna, susunan halaman, section, dan gaya desain. Semakin jelas instruksinya, semakin terarah prompt yang dihasilkan.',mode:'basic'},
+{target:'newModeProBtn',title:'Mode Pro untuk pengaturan lanjutan',description:'Pilih Mode Pro untuk mengatur tampilan, pilihan database, dan kebutuhan admin sebelum membuat prompt website.',mode:'basic'},
+{target:'pro-theme',title:'Atur tema dan visual',description:'Pilih preset tema yang sesuai dengan karakter website. Anda juga dapat menggunakan tema Custom atau mengubah warna utama melalui pengaturan visual.',mode:'pro'},
+{target:'proStorageServerBtn',title:'Tentukan penyimpanan data',description:'Pilih Server Storage untuk menggunakan Google Apps Script dan Google Drive, atau Local Storage untuk menyimpan data di browser perangkat pengguna.',mode:'pro'},
+{target:'revModeBasicBtn',title:'Bagian Revisi Web',description:'Bagian ini digunakan ketika Anda sudah memiliki website dan ingin memperbaiki, menambah, atau memodifikasi fitur tanpa harus membuat semuanya dari awal.',mode:'basic',revisionMode:'basic'},
+{target:'rev-changes',title:'Jelaskan perubahan yang dibutuhkan',description:'Tuliskan secara spesifik bagian yang ingin diubah, ditambah, atau diperbaiki. Anda dapat menyertakan beberapa perubahan sekaligus.',mode:'basic',revisionMode:'basic'},
+{target:'rev-code',title:'Tempel source code lama',description:'Tempelkan source code HTML website lama agar instruksi revisi dapat merujuk pada struktur dan fitur yang sudah ada. Kolom ini bersifat opsional di Mode Basic.',mode:'basic',revisionMode:'basic'},
+{target:'productTourBtn',title:'Buka panduan kapan saja',description:'Selesai! Anda dapat membuka panduan ini kembali melalui tombol Panduan di bagian atas halaman. Centang “Jangan tampilkan lagi secara otomatis” agar panduan tidak muncul otomatis pada kunjungan berikutnya.'}
+];
+let productTourIndex=0;
+let productTourActive=false;
+let productTourOriginalModes=null;
+let productTourResizeHandler=null;
+let productTourPositionFrame=0;
+function getProductTourElement(id){return document.getElementById(id)}
+function setTourShadePosition(id,left,top,width,height){const el=getProductTourElement(id);if(!el)return;el.style.left=Math.max(0,left)+'px';el.style.top=Math.max(0,top)+'px';el.style.width=Math.max(0,width)+'px';el.style.height=Math.max(0,height)+'px'}
+function updateProductTourPosition(){
+if(!productTourActive)return;
+const step=productTourSteps[productTourIndex];
+const target=step?getProductTourElement(step.target):null;
+const card=getProductTourElement('tourCard');
+const spotlight=getProductTourElement('tourSpotlight');
+const root=getProductTourElement('productTour');
+if(!card||!spotlight||!root)return;
+if(!target||!target.isConnected||target.getClientRects().length===0){
+setTourShadePosition('tourShadeTop',0,0,window.innerWidth,window.innerHeight);
+setTourShadePosition('tourShadeLeft',0,0,0,0);
+setTourShadePosition('tourShadeRight',0,0,0,0);
+setTourShadePosition('tourShadeBottom',0,0,0,0);
+spotlight.style.display='none';
+card.style.left='12px';
+card.style.top='50%';
+card.style.transform='translateY(-50%)';
+card.style.visibility='visible';
+return;
+}
+const rect=target.getBoundingClientRect();
+const pad=7;
+const left=Math.max(0,rect.left-pad);
+const top=Math.max(0,rect.top-pad);
+const right=Math.min(window.innerWidth,rect.right+pad);
+const bottom=Math.min(window.innerHeight,rect.bottom+pad);
+setTourShadePosition('tourShadeTop',0,0,window.innerWidth,top);
+setTourShadePosition('tourShadeLeft',0,top,left,Math.max(0,bottom-top));
+setTourShadePosition('tourShadeRight',right,top,Math.max(0,window.innerWidth-right),Math.max(0,bottom-top));
+setTourShadePosition('tourShadeBottom',0,bottom,window.innerWidth,Math.max(0,window.innerHeight-bottom));
+spotlight.style.display='block';
+spotlight.style.left=left+'px';
+spotlight.style.top=top+'px';
+spotlight.style.width=Math.max(0,right-left)+'px';
+spotlight.style.height=Math.max(0,bottom-top)+'px';
+card.style.transform='none';
+card.style.visibility='hidden';
+const cardRect=card.getBoundingClientRect();
+const margin=12;
+const isMobile=window.innerWidth<=639;
+const cardWidth=cardRect.width||Math.min(380,window.innerWidth-24);
+let cardLeft=isMobile?margin:Math.max(margin,Math.min(window.innerWidth-cardWidth-margin,rect.left));
+let cardTop;
+const spaceBelow=window.innerHeight-rect.bottom-margin;
+const spaceAbove=rect.top-margin;
+if(spaceBelow>=cardRect.height+16){cardTop=rect.bottom+margin}
+else if(spaceAbove>=cardRect.height+16){cardTop=rect.top-cardRect.height-margin}
+else{cardTop=Math.max(margin,Math.min(window.innerHeight-cardRect.height-margin,window.innerHeight-cardRect.height-margin))}
+cardTop=Math.max(margin,Math.min(window.innerHeight-cardRect.height-margin,cardTop));
+cardLeft=Math.max(margin,Math.min(window.innerWidth-cardWidth-margin,cardLeft));
+card.style.left=cardLeft+'px';
+card.style.top=cardTop+'px';
+card.style.visibility='visible';
+}
+function scheduleProductTourPosition(){if(!productTourActive||productTourPositionFrame)return;productTourPositionFrame=requestAnimationFrame(()=>{productTourPositionFrame=0;updateProductTourPosition()})}
+function prepareProductTourStep(step){
+if(step.mode)setNewMode(step.mode);
+if(step.revisionMode)setRevisionMode(step.revisionMode);
+}
+function renderProductTourStep(){
+if(!productTourActive)return;
+const step=productTourSteps[productTourIndex];
+if(!step)return;
+prepareProductTourStep(step);
+const target=getProductTourElement(step.target);
+const title=getProductTourElement('tourTitle');
+const description=getProductTourElement('tourDescription');
+const kicker=getProductTourElement('tourKicker');
+const counter=getProductTourElement('tourCounter');
+const progress=getProductTourElement('tourProgressFill');
+const previous=getProductTourElement('tourPreviousBtn');
+const next=getProductTourElement('tourNextBtn');
+if(title)title.textContent=step.title;
+if(description)description.textContent=step.description;
+if(kicker)kicker.textContent='Panduan penggunaan';
+if(counter)counter.textContent=`${productTourIndex+1} dari ${productTourSteps.length}`;
+if(progress)progress.style.width=`${((productTourIndex+1)/productTourSteps.length)*100}%`;
+if(previous)previous.disabled=productTourIndex===0;
+if(next)next.textContent=productTourIndex===productTourSteps.length-1?'Selesai':'Berikutnya';
+if(target){
+const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+target.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'center',inline:'nearest'});
+}
+scheduleProductTourPosition();
+requestAnimationFrame(()=>scheduleProductTourPosition());
+}
+function saveProductTourPreference(){
+const checkbox=getProductTourElement('tourDontShowAgain');
+try{
+localStorage.setItem(PRODUCT_TOUR_SEEN_KEY,'1');
+if(checkbox&&checkbox.checked)localStorage.setItem(PRODUCT_TOUR_DISABLED_KEY,'1');
+else localStorage.removeItem(PRODUCT_TOUR_DISABLED_KEY);
+}catch(error){}
+}
+function restoreProductTourModes(){
+if(!productTourOriginalModes)return;
+setNewMode(productTourOriginalModes.newMode);
+setRevisionMode(productTourOriginalModes.revisionMode);
+productTourOriginalModes=null;
+}
+function closeProductTour(){
+if(!productTourActive)return;
+productTourActive=false;
+const root=getProductTourElement('productTour');
+if(root){root.classList.add('hidden');root.setAttribute('aria-hidden','true')}
+if(productTourResizeHandler){
+window.removeEventListener('resize',productTourResizeHandler);
+window.removeEventListener('orientationchange',productTourResizeHandler);
+productTourResizeHandler=null;
+}
+if(productTourPositionFrame){cancelAnimationFrame(productTourPositionFrame);productTourPositionFrame=0}
+restoreProductTourModes();
+syncModalOpen();
+}
+function finishProductTour(){
+saveProductTourPreference();
+closeProductTour();
+}
+function skipProductTour(){
+if(!productTourActive)return;
+finishProductTour();
+}
+function startProductTour(manual=false){
+if(productTourActive)return;
+if(!manual){
+try{if(localStorage.getItem(PRODUCT_TOUR_DISABLED_KEY)==='1'||localStorage.getItem(PRODUCT_TOUR_SEEN_KEY)==='1')return}catch(error){}
+}
+const root=getProductTourElement('productTour');
+const checkbox=getProductTourElement('tourDontShowAgain');
+if(!root)return;
+productTourOriginalModes={newMode:newPromptMode,revisionMode:revisionMode};
+productTourIndex=0;
+productTourActive=true;
+if(checkbox){
+try{checkbox.checked=localStorage.getItem(PRODUCT_TOUR_DISABLED_KEY)==='1'}catch(error){checkbox.checked=false}
+}
+root.classList.remove('hidden');
+root.setAttribute('aria-hidden','false');
+productTourResizeHandler=scheduleProductTourPosition;
+window.addEventListener('resize',productTourResizeHandler,{passive:true});
+window.addEventListener('orientationchange',productTourResizeHandler,{passive:true});
+renderProductTourStep();
+requestAnimationFrame(()=>{
+const next=getProductTourElement('tourNextBtn');
+if(next)next.focus({preventScroll:true});
+scheduleProductTourPosition();
+});
+}
+function nextTourStep(){
+if(!productTourActive)return;
+if(productTourIndex>=productTourSteps.length-1){finishProductTour();return}
+productTourIndex++;
+renderProductTourStep();
+}
+function previousTourStep(){
+if(!productTourActive||productTourIndex<=0)return;
+productTourIndex--;
+renderProductTourStep();
+}
+document.addEventListener('keydown',event=>{
+if(event.key==='Escape'){
+if(productTourActive){skipProductTour();return}
+const warning=document.getElementById('sequenceWarningModal');if(warning&&!warning.classList.contains('hidden')){closeSequenceWarning();return}
+const action=document.getElementById('adminActionModal');if(action&&!action.classList.contains('hidden')){closeAdminPopup();return}
+const modal=document.getElementById('splitterModal');if(modal&&!modal.classList.contains('pointer-events-none')){closeSplitterModal();return}
+const admin=document.getElementById('adminModal');if(admin&&!admin.classList.contains('hidden'))closeAdminPanel()
+}
+});
+enhanceAdminAccordions();document.getElementById('adminSearchInput').addEventListener('input',filterAdminDashboard,{passive:true});initTheme();updateProThemeFields();updateProDatabaseFields();setProStorage('SERVER');setProAdmin(true);setNewMode('basic');setRevisionProStorage('SERVER');setRevisionProAdmin(true);setRevisionMode('basic');loadDefaultSplitMode();updateSplitterMeta();loadPublicData();requestAnimationFrame(()=>startProductTour(false));
 </script>
 </body>
 </html>
